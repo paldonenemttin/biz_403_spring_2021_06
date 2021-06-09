@@ -9,9 +9,7 @@
 <title>나의 홈페이지</title>
 </head>
 <body>
-<h1>냉풍기 사야겠다~</h1>
-<p><a href="${rootPath}/comp/insert">출판사 추가</a></p>
-<p><a href="${rootPath}/author/insert">작가 추가</a></p>
-<p><a href="${rootPath}/book/insert">책 추가</a></p>
+<h1>작가 정보 등록</h1>
+
 </body>
 </html>

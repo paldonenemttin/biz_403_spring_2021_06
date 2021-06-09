@@ -7,41 +7,41 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
-<!--
-	주석을 작성할때 꺽쇠, 느낌표 기호 사용금지
-	*-context.xml파일
-	project에서 선언한 , 사용할 클래스를 객체로 미리 선언하귀 한 설정을 하는 곳
-	
-	bean
-	Spring container가 클래스를 컴파일하여 객체로 생성한 후 보관하고 있는 상태
-	java 코드에서 Class obj = new Class()와 같은 코드를 사용해 객체를 생성(초기화)하면
-	이때 obj가 바로 bean이다
-	
-	Spring Container는 여기에 설정된 항목을 보고
-	서버가 시작될때 클래스를 컴파일하여 객체로 생성한 후
-	보관을 하게 된다
-  -->
-  
-  <!-- 여기세엇는 spring-jdbc를 사용하여 DBMS 연동을 위한 설정 -->
-  <!-- 클래스르 사용해 객체를 선언(초기화)하겠다라는 선언 -->
-  <!-- DriverManagerDataSource dateSource = new DriverManagerDataSource()-->
-  <!-- JDBC를 통해 DBMS에 연결하는 Connection생성 -->
-  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-  <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-  <property name="url" value="jdbc:mysql://localhost:3306/mydb"/>
-  <property name="username"  value="gbUser"/>
-  <property name="password" value="1234"/>
-  
-  </bean>
-  <!-- 
-  java 코드를 사용해 DBMS에 SQL을 보내고
-  결과를 수신하기 위한 Helper class
-  JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-  JdbcTemplate 클래스를 사용하여 객체를 생성할때는
-  생성자 method에 반드시 데이터 소스를 전달해 주어야 한다
-  -->
-  <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-  	<constructor-arg ref="dataSource"/>
-  </bean>
-  
+	<!-- properties 파일의 내용을 읽어서 변수 사용하기위한 bean 설정 -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="fileEncoding" value="UTF-8" />
+		<property name="locations">
+		<list>
+		<value>/WEB-INF/spring/config/mysql.properties</value>
+		</list>
+			</property>
+	</bean>
+	<!-- 주석을 작성할때 꺽쇠, 느낌표 기호 사용금지 *-context.xml파일 project에서 선언한 , 사용할 클래스를 객체로 
+		미리 선언하귀 한 설정을 하는 곳 bean Spring container가 클래스를 컴파일하여 객체로 생성한 후 보관하고 있는 상태 
+		java 코드에서 Class obj = new Class()와 같은 코드를 사용해 객체를 생성(초기화)하면 이때 obj가 바로 bean이다 
+		Spring Container는 여기에 설정된 항목을 보고 서버가 시작될때 클래스를 컴파일하여 객체로 생성한 후 보관을 하게 된다 -->
+
+	<!-- 여기세엇는 spring-jdbc를 사용하여 DBMS 연동을 위한 설정 -->
+	<!-- 클래스르 사용해 객체를 선언(초기화)하겠다라는 선언 -->
+	<!-- DriverManagerDataSource dateSource = new DriverManagerDataSource() -->
+	<!-- JDBC를 통해 DBMS에 연결하는 Connection생성 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="${mysql.driver}" />
+		<property name="url"
+			value="${mysql.url}"/>
+		<property name="username" value="${mysql.username}" />
+		<property name="password" value="${mysql.password}" />
+
+	</bean>
+	<!-- java 코드를 사용해 DBMS에 SQL을 보내고 결과를 수신하기 위한 Helper class JdbcTemplate jdbcTemplate 
+		= new JdbcTemplate(dataSource); JdbcTemplate 클래스를 사용하여 객체를 생성할때는 생성자 method에 
+		반드시 데이터 소스를 전달해 주어야 한다 -->
+	<bean id="jdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
+
 </beans>
