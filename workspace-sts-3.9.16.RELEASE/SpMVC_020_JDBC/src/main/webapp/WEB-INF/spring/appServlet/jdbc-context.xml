@@ -14,6 +14,7 @@
 		<property name="locations">
 		<list>
 		<value>/WEB-INF/spring/config/mysql.properties</value>
+		<value>/WEB-INF/spring/config/spring.properties</value>
 		</list>
 			</property>
 	</bean>
