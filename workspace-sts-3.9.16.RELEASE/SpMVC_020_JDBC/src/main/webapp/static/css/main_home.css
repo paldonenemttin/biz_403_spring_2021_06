@@ -4,13 +4,13 @@
 section#main_sec {
 	width: 100%;
 	margin: 5px auto;
-	border: 1px solid #999;
+	border: 1px solid rgb(101,254,166);
 	display: flex;
 }
 
 section#main_sec article {
 	flex: 1;
-	border: 1px solid green;
+	border: 1px solid rgb(101,254,166);
 	margin: 6px 3px;
 	padding: 5px;
 }
@@ -27,7 +27,7 @@ section#main_sec article li {
 
 section#ad_sec {
 	width: 100%;
-	bordre: 1px solid #999;
+	bordre: 1px solid rgb(101,254,166);
 	display: flex;
 }
 

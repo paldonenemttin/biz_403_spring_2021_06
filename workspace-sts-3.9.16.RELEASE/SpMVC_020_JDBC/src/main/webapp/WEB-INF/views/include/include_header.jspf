@@ -8,10 +8,11 @@
 	margin: 0;
 	padding: 0;
 }
+
 header {
-	background-color: green;
+	background-color: rgb(101, 254, 166);
 	color: white;
-	text-shadow: 1px 1px 1px black;
+	text-shadow: 1px 1px 1px rgb(26, 219, 137);
 	text-align: center;
 	padding: 2rem;
 }
@@ -45,8 +46,12 @@ nav#main_nav li {
 	transition: 0.5s;
 }
 
-nav#main_nav li:first-child {
-	margin-left: 15px;
+/*
+flex-item의 특정한 요소의 margin-left를 auto로 지정하면
+해당 요소부터 오른쪽으로 밀리는 layout을 만들 수 있다
+*/
+nav#main_nav li:nth-of-type(5){
+	margin-left: auto;
 }
 
 nav#main_nav li:hover {
@@ -79,13 +84,15 @@ section#ad_sec article:nth-of-type(5) {
 	background: url("${rootPath}/static/images/image5.jpg") no-repeat;
 }
 
+h1, p {
+	color: pink;
+}
 </style>
 <script>
 	// jsp의 el tag의 변수를 js 변수로 다시 선언하기
 	// var 전역변수, 위치에 관계없이 어디서나 읽을 수 있는변수
 	// var rootPath = "/jdbc"
 	var rootPath = "${rootPath}";
-	
 </script>
 <script src="${rootPath}/static/js/main_nav.js?ver=2021-06-10-003"></script>
 <header>
