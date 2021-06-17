@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
-<aop-project name="SpMVC_030_Try"/>
-<aop-project name="SpMVC_011_Hello"/>
-<aop-project name="SpMVC_012_HelloSpring"/>
 <aop-project name="SpMVC_020_JDBC"/>
-<aop-project name="SpMVC_010_Hello"/>
 </aop-reference-model>

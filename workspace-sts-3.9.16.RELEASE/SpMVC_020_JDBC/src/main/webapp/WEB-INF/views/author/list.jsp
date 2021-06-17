@@ -28,14 +28,14 @@
 	</table>
 	
 	<div class="btn_box">
-		<button class="btn_insert_author">저자등록</button>
+		<button class="btn_insert author">저자등록</button>
 	</div>
 	
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf" %>
 
 </body>
 <script>
-document.querySelector("button.btn_insert.author")// 동시 적용
+document.querySelector("button.btn_insert")// 동시 적용
 	.addEventListener("click",()=>{
 		location.href = "${rootPath}/author/insert";
 });

@@ -68,24 +68,59 @@
 	form#login_form button:hover {
 		background-color: #2ecc71;
 	}
+	form#login div.msg{
+		margin: 5px auto;
+		padding:12px 16px;
+		border-radius:15px;
+		background-color:red;
+		color: yellow;
+		font-size:20px;
+	}
 
 </style>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf" %>
 	<form id="login_form" method="POST">
 		<h2>로그인</h2>
-		<input name="m_username" placeholder="사용자 ID"/>
-		<input type="password" name="m_password" placeholder="비밀번호"/>
-		<button>로그인</button>
+		<div class="msg">${MSG}</div>
+		<input name="m_username" id="m_username" placeholder="사용자 ID"/>
+		<input type="password" name="m_password" id="m_password" placeholder="비밀번호"/>
+		<button  type="button" class="btn_login">로그인</button>
+		<button type="button" class="btn_join">회원가입</button>
 	</form>
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf" %>
 
 </body>
 <script>
-document.querySelector("button.btn_book_insert")
+
+//if( "${MSG}" === "NONE") {
+document.querySelector("div.msg").style.display = "${MSG}"
+// }
+
+document.querySelector("button.btn_join")
 	.addEventListener("click",()=>{
-		location.href = "${rootPath}/books/insert";
+		location.href = "${rootPath}/member/join";
 });
+document.querySelector("button.btn_login").addEventListener("click",(e)=>{
+	let username = document.querySelector("#m_username")
+	let password = document.querySelector("#m_password")
+	// view단에서 입력 유효성 검사하기
+	// 값이 입력되는가를 검사하기
+	//. 입력되지 않으면 alert 창을 보이고
+	// 입력되지 않으면 alert를 보이고 입력 box에 focus주기
+	if(username.value === ""){
+		alert("사용자 id를 입력")
+		username.focus()
+		return false;
+	}
+	if(password.value === ""){
+		alert("password를 입력")
+		password.focus()
+		return false;
+	}
+	// 유효성검사를 통과하면 서버로 전송하기
+	document.querySelector("#login_form").submit();
+})
 </script>
 
 </html>

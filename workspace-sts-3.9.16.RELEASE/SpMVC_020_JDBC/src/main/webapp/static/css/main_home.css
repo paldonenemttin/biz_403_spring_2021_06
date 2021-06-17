@@ -2,6 +2,7 @@
 
 
 section#main_sec {
+	flex:auto;
 	width: 100%;
 	margin: 5px auto;
 	border: 1px solid rgb(101,254,166);
@@ -26,6 +27,7 @@ section#main_sec article li {
 }
 
 section#ad_sec {
+	
 	width: 100%;
 	bordre: 1px solid rgb(101,254,166);
 	display: flex;
@@ -37,6 +39,12 @@ section#ad_sec article {
 	width: 100%;
 	height: 100px;
 	margin: 6px 3px;
+	/*
+	article box에 지정된 background를 box에 가득차도록하고
+	이미지는 box 크기만큼 가로세로를 조절하여 채워라
+	현재 article에 background를 채우면서
+	nth-of-type(*) 가상 클래스르 사용했더니 background-sixe
+	*/
 	background-size: 100% 100%; /* cover */
 	border-radius: 5px;
 }

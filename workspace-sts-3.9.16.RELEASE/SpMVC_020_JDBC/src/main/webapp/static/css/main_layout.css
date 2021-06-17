@@ -1,9 +1,42 @@
 @charset "UTF-8";
-
-h1.page_title {
-	width: 90%;
-	margin: 10px auto;
+body{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
 }
+section.main_sec{
+	flex:auto;
+	overflow: auto;
+}
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background-color: rgb(101, 254, 166);
+	color: white;
+	text-shadow: 1px 1px 1px rgb(26, 219, 137);
+	text-align: center;
+	padding: 2rem;
+}
+
+/*
+style지정을 할때
+tag에 id나 class를 ㄹ부착하지 않고 지정한느 경우
+1. 현재 mian_layout.css파일은 모든 jsp에서 공콩으로 include
+  모든 jsp에 있는 table에 공통으로 속성이 적용된다
+
+2. 만역 즉정한 jsp파일에서만 table tag에 속성을 부여 하고 싶으면
+	table tag에 id나 class를 지정하고
+	table#id table.class 형식으로 style을 지정해야 한다
+
+3. 전체 프로젝트의 view를 인관되게 구현하고 자 할때
+	대표적인 tag에 style을 지정하고
+	include하여 사용하는 방법
+*/
 
 table {
 	border-collapse: collapse;

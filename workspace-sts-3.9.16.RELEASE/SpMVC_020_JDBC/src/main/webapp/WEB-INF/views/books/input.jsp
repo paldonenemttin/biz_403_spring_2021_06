@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 <%@ include file="/WEB-INF/views/include/head.jspf"%>
-<%@ include file="/static/css/main_form.css" %>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
 
