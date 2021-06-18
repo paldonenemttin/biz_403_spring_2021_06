@@ -103,7 +103,7 @@ h1, p {
 		<li>출판사정보</li>
 		<li>저자정보</li>
 		
-		<c:if test="${empty USERVO }">
+		<c:if test="${empty USERVO}">
 		<li>로그인</li>
 		<li>회원가입</li>
 		</c:if>
