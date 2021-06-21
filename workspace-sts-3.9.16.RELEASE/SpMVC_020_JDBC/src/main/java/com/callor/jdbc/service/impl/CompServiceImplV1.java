@@ -1,5 +1,7 @@
 package com.callor.jdbc.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.callor.jdbc.model.CompVO;
@@ -36,6 +38,23 @@ public class CompServiceImplV1 implements CompService{
 		compDao.insert(vo);
 		return 0;
 	}
+	@Override
+	public List<CompVO> findByCName(String cp_name) {
+		// TODO Auto-generated method stub
+		
+		return compDao.finByCName(cp_name.trim());
+	}
+	@Override
+	public List<CompVO> selectAll() {
+		// TODO Auto-generated method stub
+		return compDao.selectAll();
+	}
+	@Override
+	public CompVO findByCCode(String cp_code) {
+		// TODO Auto-generated method stub
+		return compDao.findByCCode(cp_code.trim());
+	}
+	
 	
 
 }

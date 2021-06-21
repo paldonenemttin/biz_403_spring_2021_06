@@ -43,12 +43,18 @@ public class CompDaoImplV1 implements CompDao{
 		String sql = " SELECT * FROM tbl_company ";
 		List<CompVO> comp = jdbcTemplate.query(sql, new BeanPropertyRowMapper<CompVO>(CompVO.class));
 		log.debug("SELECT {}",comp.toString());
-		return null;
+		return comp;
 	}
 
 	@Override
-	public void findById(String pk) {
+	public CompVO findById(String cp_code) {
 		// TODO Auto-generated method stub
+		String sql = " SELECT * FROM tbl_company ";
+		Object[] params = new Object[] {cp_code};
+		CompVO vo = (CompVO)jdbcTemplate.query(sql, params,  new BeanPropertyRowMapper<CompVO>(CompVO.class));
+		log.debug("SELECT {}",vo.toString());
+		return vo;
+		
 		
 	}
 
@@ -114,6 +120,10 @@ public class CompDaoImplV1 implements CompDao{
 	@Override
 	public List<CompVO> finByCName(String cname) {
 		// TODO Auto-generated method stub
+		String sql = " SELECT * FROM tbl_company ";
+		sql += " WHERE cp_name LIKE CONCAT('%' , ? '%' )";
+		List<CompVO> compList = jdbcTemplate.query(sql, new Object[] {cname},
+				new BeanPropertyRowMapper<CompVO>(CompVO.class));
 		return null;
 	}
 	@Override
@@ -123,6 +133,11 @@ public class CompDaoImplV1 implements CompDao{
 	}
 	@Override
 	public List<CompVO> finByCeo(String ceo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public CompVO findByCCode(String code) {
 		// TODO Auto-generated method stub
 		return null;
 	}

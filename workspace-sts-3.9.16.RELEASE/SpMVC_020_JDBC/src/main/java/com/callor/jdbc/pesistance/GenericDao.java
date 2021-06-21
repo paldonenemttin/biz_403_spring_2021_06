@@ -2,6 +2,8 @@ package com.callor.jdbc.pesistance;
 
 import java.util.List;
 
+import com.callor.jdbc.model.CompVO;
+
 /*
  * 제네릭(interface의 부모 역할을 하는 super interface
  * Dao와 같은 interface를 설계할때
@@ -33,7 +35,7 @@ import java.util.List;
 public interface GenericDao<VO, PK> {
 	
 	public List<VO> selectAll();
-	public void findById(PK pk);
+	public VO findById(PK pk);
 	public int insert(VO vo);
 	public int update(VO vo);
 	public int delete(PK pk);

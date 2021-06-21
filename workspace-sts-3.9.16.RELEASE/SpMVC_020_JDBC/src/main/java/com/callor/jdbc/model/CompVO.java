@@ -18,6 +18,6 @@ public class CompVO {
 	private String cp_ceo;
 	private String cp_tel;
 	private String cp_addr;
-	private String cp_gerne;
+    private String cp_genre;
 
 }

@@ -2,6 +2,7 @@ package com.callor.jdbc.pesistance.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -16,7 +17,13 @@ import lombok.extern.slf4j.Slf4j;
 @Repository("authorDaoV1")
 public class AuthorDaoImplV1 implements AuthorDao{
 	
-	protected final JdbcTemplate jdbcTemplate;
+	/*
+	 * 일반적인 spring Framework에서 다른 bean을 연결하기
+	 * @Autowired는 이미 bean으로 생성되어 Spring 
+	 */
+//	protected final JdbcTemplate jdbcTemplate;
+	@Autowired
+	protected JdbcTemplate jdbcTemplate;
 	
 	public AuthorDaoImplV1(JdbcTemplate jdbcTemplate) {
 		// TODO Auto-generated constructor stub
@@ -27,13 +34,19 @@ public class AuthorDaoImplV1 implements AuthorDao{
 	public List<AuthorVO> selectAll() {
 		// TODO Auto-generated method stub
 		String sql = " SELECT * FROM tbl_author ";
-		List<AuthorVO> author = jdbcTemplate.query(sql, new BeanPropertyRowMapper<AuthorVO>(AuthorVO.class));
-		log.debug("SELECT {}",author.toString());
-		return null;
+		List<AuthorVO> authorList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<AuthorVO>(AuthorVO.class));
+		log.debug("SELECT {}",authorList.toString());
+		return authorList;
 	}
 
 	@Override
-	public void findById(String pk) {
+	public AuthorVO findById(String au_code) {
+		
+		String sql = " SELECT * FROM tbl_author ";
+		Object[] params = new Object[] {au_code};
+		AuthorVO vo = (AuthorVO)jdbcTemplate.query(sql, params,  new BeanPropertyRowMapper<AuthorVO>(AuthorVO.class));
+		log.debug("SELECT {}",vo.toString());
+		return vo;
 		// TODO Auto-generated method stub
 		
 	}

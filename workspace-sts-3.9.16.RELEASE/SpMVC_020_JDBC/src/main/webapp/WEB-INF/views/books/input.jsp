@@ -6,10 +6,21 @@
 <!DOCTYPE html>
 <html>
 <%@ include file="/WEB-INF/views/include/head.jspf"%>
+<style>
+from#book_input input.search {
+	width: 30%;
+}
+
+
+</style>
+<script src="${rootPath}/static/js/book_input.js?ver=2021-06-21-010"></script>
+<script type="text/javascript">
+ 	var rootPath = "${rootPath}";
+</script>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
 
-	<form method="POST">
+	<form id="book_input" method="POST">
 		<fieldset>
 			<legend>도서정보 등록</legend>
 			<div>
@@ -21,12 +32,12 @@
 					placeholder="">
 			</div>
 			<div>
-				<label>출판사</label> <input name="bk_ccode" id="bk_ccode"
-					placeholder="">
+				<label>출판사</label> <input class="search" name="bk_ccode"
+					id="bk_ccode" placeholder="">
 			</div>
 			<div>
-				<label>저자</label> <input name="bk_acode" id="bk_acode"
-					placeholder="">
+				<label>저자</label> <input class="search" name="bk_acode"
+					id="bk_acode" placeholder="">
 			</div>
 			<div>
 				<label>출판년도</label> <input name="bk_date" id="bk_date"
@@ -49,16 +60,8 @@
 	</form>
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf"%>
 
+
 </body>
-<script>
-document.querySelector("button.btn_book_insert")
-	.addEventListener("click",()=>{
-		location.href = "${rootPath}/books/insert";
-});
-document.querySelector("button.btn_book_list")
-.addEventListener("click",()=>{
-	location.href = "${rootPath}/books";
-});
-</script>
+
 
 </html>

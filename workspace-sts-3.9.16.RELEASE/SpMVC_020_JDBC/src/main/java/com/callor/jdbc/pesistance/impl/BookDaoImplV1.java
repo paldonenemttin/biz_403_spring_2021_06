@@ -39,11 +39,12 @@ public class BookDaoImplV1 implements BookDao {
 		 * return ÇØ´Þ¶ó
 		 */
 		log.debug("SELECT {}", books.toString());
-		return null;
+		return books;
 	}
 
 	@Override
-	public void findById(String pk) {
+	public BookVO findById(String pk) {
+		return null;
 		// TODO Auto-generated method stub
 
 	}

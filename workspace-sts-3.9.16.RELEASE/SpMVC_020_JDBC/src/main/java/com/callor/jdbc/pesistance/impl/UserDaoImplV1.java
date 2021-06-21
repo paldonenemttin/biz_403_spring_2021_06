@@ -27,7 +27,8 @@ public class UserDaoImplV1 implements UserDao{
 	}
 
 	@Override
-	public void findById(String pk) {
+	public UserVO findById(String pk) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
