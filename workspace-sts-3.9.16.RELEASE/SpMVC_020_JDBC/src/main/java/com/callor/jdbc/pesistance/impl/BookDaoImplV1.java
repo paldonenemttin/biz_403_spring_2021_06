@@ -2,8 +2,6 @@ package com.callor.jdbc.pesistance.impl;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -31,7 +29,19 @@ public class BookDaoImplV1 implements BookDao {
 	@Override
 	public List<BookVO> selectAll() {
 		// TODO Auto-generated method stub
-		String sql = " SELECT * FROM tbl_books ";
+		String sql = " SELECT ";
+		sql += "bk_isbn,";
+		sql += "bk_title,";
+		sql += "C.cp_code as bk_ccode,";
+		sql += "A.au_code as bk_acode,";
+		sql += "bk_date,";
+		sql += "bk_price,";
+		sql += "bk_pages ";
+		sql	+= "FROM tbl_books B ";
+		sql += " LEFT JOIN tbl_author A";
+		sql += " 	ON B.bk_acode = a.au_code";
+		sql += " LEFT JOIN tbl_company C";
+		sql += " 	ON B.bk_ccode = C.cp_code";
 		List<BookVO> books = jdbcTemplate.query(sql, new BeanPropertyRowMapper<BookVO>(BookVO.class));
 		/*
 		 * jdbsTemplet.query(sql,return type)
@@ -52,8 +62,26 @@ public class BookDaoImplV1 implements BookDao {
 	@Override
 	public int insert(BookVO vo) {
 		// TODO Auto-generated method stub
+		String sql = " INSERT INTO tbl_books( ";
+		sql += "bk_isbn,";
+		sql += "bk_title,";
+		sql += "bk_ccode,";
+		sql += "bk_acode,";
+		sql += "bk_date,";
+		sql += "bk_price,";
+		sql += "bk_pages)";
+		sql += "VALUES(?,?,?,?,?,?,?)";
 		
-		return 0;
+		Object[] params = new Object[] {
+				vo.getBk_isbn(),
+				vo.getBk_title(),
+				vo.getBk_ccode(),
+				vo.getBk_acode(),
+				vo.getBk_date(),
+				vo.getBk_pages(),
+				vo.getBk_price()
+		};
+		return jdbcTemplate.update(sql, params);
 	}
 
 	@Override

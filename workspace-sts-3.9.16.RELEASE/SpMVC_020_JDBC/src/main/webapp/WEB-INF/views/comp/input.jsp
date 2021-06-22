@@ -17,6 +17,7 @@
 	<legend>출판사 정보</legend>
 		<div>
 			<label>출판사명</label><input name="cp_title" id="cp_title"/>
+			
 		</div>
 		<div>
 			<label>대표자명</label><input name="cp_ceo" id="cp_ceo"/>

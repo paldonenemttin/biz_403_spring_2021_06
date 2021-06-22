@@ -54,6 +54,18 @@ public class CompServiceImplV1 implements CompService{
 		// TODO Auto-generated method stub
 		return compDao.findByCCode(cp_code.trim());
 	}
+	@Override
+	public List<CompVO> findByTitleAndCeoAndTel(String text) {
+		// TODO 미래의 나여 반드시 수정하시오..!!
+		List<CompVO> mainList = compDao.finByCName(text);
+		List<CompVO> ceoList = compDao.finByCeo(text);
+		List<CompVO> telList = compDao.finByTel(text);
+		
+		mainList.addAll(ceoList);
+		mainList.addAll(telList);
+		
+		return mainList;
+	}
 	
 	
 

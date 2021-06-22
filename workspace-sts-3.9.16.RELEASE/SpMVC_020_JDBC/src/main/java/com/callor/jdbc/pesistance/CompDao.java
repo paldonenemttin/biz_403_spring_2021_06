@@ -13,5 +13,6 @@ public interface CompDao extends GenericDao<CompVO,String>{
 	public CompVO findByCCode(String code);
 	
 	
+	
 
 }

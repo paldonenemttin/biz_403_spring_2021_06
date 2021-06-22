@@ -29,10 +29,18 @@ import lombok.RequiredArgsConstructor;
 @Service("bookServiceV1")
 public class BookServiceImplV1 implements BookService{
 
+	protected BookDao bookDao;
+	
 	@Override
 	public List<BookVO> selectAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return bookDao.selectAll();
+	}
+
+	@Override
+	public Integer insert(BookVO bookVO) {
+		// TODO Auto-generated method stub
+		return bookDao.insert(bookVO);
 	}
 
 }
