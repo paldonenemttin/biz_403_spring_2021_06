@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.callor.hello.Service.HomeService"/>
-    <fullyQualifiedTypeName name="java.awt.print.Book"/>
-    <fullyQualifiedTypeName name="org.slf4j.Logger"/>
-    <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
-    <fullyQualifiedTypeName name="com.callor.jdbc.service.RentService"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
     <fullyQualifiedTypeName name="sun.util.logging.resources.logging"/>
     <fullyQualifiedTypeName name="com.mysql.cj.log.Log"/>
@@ -21,23 +15,16 @@
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="com.callor.jdbc.model.UserVO"/>
-    <fullyQualifiedTypeName name="lombok.Getter"/>
-    <fullyQualifiedTypeName name="lombok.Setter"/>
-    <fullyQualifiedTypeName name="lombok.ToString"/>
-    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
-    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
     <fullyQualifiedTypeName name="com.callor.oneday.model.StudentVO"/>
     <fullyQualifiedTypeName name="com.callor.oneday.pesistance.GenericDao"/>
     <fullyQualifiedTypeName name="com.callor.oneday.model.ScoreVO"/>
     <fullyQualifiedTypeName name="com.callor.oneday.pesistance.ScoreDao"/>
-    <fullyQualifiedTypeName name="lombok.extern.slf4j.Slf4j"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
     <fullyQualifiedTypeName name="org.springframework.jdbc.core.BeanPropertyRowMapper"/>
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
     <fullyQualifiedTypeName name="com.callor.jdbc.service.HomeService"/>
     <fullyQualifiedTypeName name="com.callor.jdbc.service.CompService"/>
     <fullyQualifiedTypeName name="com.callor.jdbc.model.CompVO"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
     <fullyQualifiedTypeName name="org.springframework.validation.BindingResult"/>
     <fullyQualifiedTypeName name="com.callor.jdbc.model.AuthorVO"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
@@ -50,10 +37,27 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
     <fullyQualifiedTypeName name="com.callor.jdbc.service.BookService"/>
-    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
     <fullyQualifiedTypeName name="com.callor.jdbc.pesistance.BookDao"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
     <fullyQualifiedTypeName name="com.sun.org.apache.xalan.internal.xsltc.compiler.Template"/>
     <fullyQualifiedTypeName name="org.springframework.jdbc.core.JdbcTemplate"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="com.callor.score.dao.StudentDao"/>
+    <fullyQualifiedTypeName name="lombok.extern.slf4j.Slf4j"/>
+    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
+    <fullyQualifiedTypeName name="com.callor.score.service.StudentService"/>
+    <fullyQualifiedTypeName name="com.callor.score.model.StudentVO"/>
+    <fullyQualifiedTypeName name="com.callor.score.dao.ScoreDao"/>
+    <fullyQualifiedTypeName name="lombok.Getter"/>
+    <fullyQualifiedTypeName name="lombok.Setter"/>
+    <fullyQualifiedTypeName name="lombok.ToString"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="com.callor.score.dao.GenericDao"/>
     <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.callor.score.dao.SubjectDao"/>
+    <fullyQualifiedTypeName name="com.callor.score.service.ScoreService"/>
+    <fullyQualifiedTypeName name="com.callor.score.service.SubjectService"/>
+    <fullyQualifiedTypeName name="com.callor.score.model.ScoreVO"/>
+    <fullyQualifiedTypeName name="com.callor.score.model.SubjectVO"/>
 </qualifiedTypeNameHistroy>

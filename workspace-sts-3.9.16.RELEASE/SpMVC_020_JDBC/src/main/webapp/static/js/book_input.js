@@ -23,24 +23,27 @@ document.addEventListener("DOMContentLoaded", () => {
             urlPath += `/author/search?au_name=${text}`;
           }
             if (className === "search") {
-        modal.style.display = "block";
-        fetch(urlPath)
-          .then((res) => {
-            return res.text();
-          })
-          .then((result) => {
-            // 새로운 element(tag)
-            let div = document.createElement("div");
-            // 본문 내용 추가
-            div.innerHTML = result;
-            // id 추가
-            div.setAttribute("id", "div_search");
-            document.querySelector("body").appendChild(div);
-          });
-  
-         
-      
+            modal.style.display = "block";
+            fetch(urlPath)
+            .then((res) => {
+                return res.text();
+            })
+            .then((result) => {
+                // 새로운 element(tag)
+                let div = document.createElement("div");
+                // 본문 내용 추가
+                div.innerHTML = result;
+                // id 추가
+                div.setAttribute("id", "div_search");
+                document.querySelector("body").appendChild(div);
+            });
     
+           
+            } else if (id === "bk_acode") {
+            modal.style.display = "block";
+            }
+        }
+    });
     document.querySelector("form#book_input button.btn_save").addEventListener("click", (e)=>{
         let form = document.querySelector("form#book_input");
         let bk_isbn = form.querySelector("input#bk_isbn");
@@ -52,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         // front안에서 유효성검사
         if(bk_isbn === ""){
-            alert("ISBN 반드시 입력")
+            alert("ISBN 반드시 입력");
             bk_isbn.focus();
             return false;
         }if(bk_isbn.value.length() !== 13){
@@ -60,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
             bk_isbn.focus();
             return false;
         }if(bk_title.value === ""){
-            alert("제목 반드시 입력")
+            alert("제목 반드시 입력");
             bk_isbn.focus();
             return false;
         }
