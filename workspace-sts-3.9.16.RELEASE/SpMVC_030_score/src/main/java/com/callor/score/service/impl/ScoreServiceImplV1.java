@@ -10,6 +10,7 @@ import com.callor.score.dao.ext.SubjectDao;
 import com.callor.score.model.ScoreVO;
 import com.callor.score.model.StudentVO;
 import com.callor.score.model.SubjectVO;
+import com.callor.score.service.ScoreService;
 import com.callor.score.service.StudentService;
 
 import lombok.RequiredArgsConstructor;
@@ -17,30 +18,19 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-@Service("studentV1")
-public class StudentServiceImplV1 implements StudentService{
+@Service("scoreV1")// Annotation은 유일한 이름이어야 함
+public class ScoreServiceImplV1 implements ScoreService{
 	
-	protected final StudentDao stDao;
 	protected final ScoreDao scDao;
-	protected final SubjectDao sbDao;
 	
 	@Override
-	public List<StudentVO> selectAll() {
+	public List<ScoreVO> selectAll() {
 		// TODO Auto-generated method stub
-		List<StudentVO> stList = stDao.selectAll();
+	
 		List<ScoreVO> scList = scDao.selectAll();
-		List<SubjectVO> sbList = sbDao.selectAll();
-		
-		log.debug("Service {}" , stList.toString());
 		log.debug("Service {}" , scList.toString());
-		log.debug("Service {}" , sbList.toString());
-		return stList;
-	}
-
-	@Override
-	public int insert() {
-		// TODO Auto-generated method stub
-		return 0;
+	
+		return scList;
 	}
 
 }

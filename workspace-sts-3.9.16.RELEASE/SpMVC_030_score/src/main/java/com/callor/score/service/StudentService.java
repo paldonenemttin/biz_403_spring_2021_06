@@ -7,5 +7,6 @@ import com.callor.score.model.StudentVO;
 public interface StudentService {
 	
 	public List<StudentVO> selectAll();
+	public int insert();
 
 }

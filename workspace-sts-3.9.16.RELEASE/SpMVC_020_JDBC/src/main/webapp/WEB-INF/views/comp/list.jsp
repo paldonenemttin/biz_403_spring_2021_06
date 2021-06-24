@@ -36,15 +36,6 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-
-		<tr>
-			<td>CODE</td>
-			<td>출판사명</td>
-			<td>대표</td>
-			<td>전화번호</td>
-			<td>주소</td>
-			<td>주요장르</td>
-		</tr>
 	</table>
 
 	<div class="btn_box">
