@@ -5,12 +5,24 @@
 <mapper namespace="com.callor.score.dao.ext.StudentDao">
 	<select id="selectAll" resultType="StudentVO">
 		SELECT * FROM tbl_student
+		order by st_num DESC limit 10
 	</select>
 	<select id="findById" resultType="StudentVO">
-		select * from tbl_student where st_num = #{st_num}
+		select * from tbl_student where
+		st_num = #{st_num}
 	</select>
+	<!-- 
+	mapper의 각 기능의 id값은 Dao에 설정된 method 이름으로 설정 
+	Dao의 method 가 id로 사용되는 까닭에
+	Mybatis에서는 Dao의 method를 중복정의 할수 없다.
+	-->
+	<select id="getMaxStNum" resultType="String">
+		SELECT MAX(st_num) AS st_num FROM tbl_student
+	</select>
+	
 	<insert id="insert" parameterType="StudentVO">
-		insert into tbl_student(st_num, st_name, st_dept, st_grade, st_tel, st_addr)
+		insert into
+		tbl_student(st_num, st_name, st_dept, st_grade, st_tel, st_addr)
 		values(#{st_num},#{st_name},#{st_dept},#{st_grade},#{st_tel},#{st_addr})
 	</insert>
 	<delete id="delete">
@@ -18,12 +30,14 @@
 	</delete>
 	<update id="update" parameterType="StudentVO">
 		update tbl_student set
-		st_name = #{st_name}	,
-		st_dept = #{st_dept}	,
+		st_name
+		= #{st_name} ,
+		st_dept = #{st_dept} ,
 		st_grade = #{st_grade},
-		st_tel = #{st_tel},
+		st_tel =
+		#{st_tel},
 		st_addr= #{st_addr}
 		where st_num = #{st_num}
 	</update>
-	
+
 </mapper>

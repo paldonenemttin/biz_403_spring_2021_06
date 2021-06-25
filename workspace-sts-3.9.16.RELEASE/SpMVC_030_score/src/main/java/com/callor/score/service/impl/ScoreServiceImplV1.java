@@ -5,13 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.callor.score.dao.ext.ScoreDao;
-import com.callor.score.dao.ext.StudentDao;
-import com.callor.score.dao.ext.SubjectDao;
+import com.callor.score.model.ScoreDTO;
 import com.callor.score.model.ScoreVO;
-import com.callor.score.model.StudentVO;
-import com.callor.score.model.SubjectVO;
+import com.callor.score.model.SubjectAndScoreDTO;
 import com.callor.score.service.ScoreService;
-import com.callor.score.service.StudentService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,13 +21,20 @@ public class ScoreServiceImplV1 implements ScoreService{
 	protected final ScoreDao scDao;
 	
 	@Override
-	public List<ScoreVO> selectAll() {
+	public List<ScoreDTO> selectAll() {
 		// TODO Auto-generated method stub
 	
-		List<ScoreVO> scList = scDao.selectAll();
+		List<ScoreDTO> scList = scDao.selectViewAll();
 		log.debug("Service {}" , scList.toString());
 	
 		return scList;
+	}
+
+	@Override
+	public List<SubjectAndScoreDTO> selectScore(String st_num) {
+		// TODO Auto-generated method stub
+		List<SubjectAndScoreDTO> ssList = scDao.selectSubjectAndSocre(st_num);
+		return ssList;
 	}
 
 }

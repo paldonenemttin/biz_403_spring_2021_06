@@ -10,12 +10,56 @@
 		select * from tbl_score where
 		sc_seq = #{sc_seq}
 	</select>
+	<select id="scoreCount" resultType="Integer">
+		select count(*) from tbl_score
+		where sc_stnum = #{sc_stnum}
+	</select>
+	<select id="scoreSum" resultType="Integer">
+		select sum(sc_score) from tbl_score
+		where sc_stnum = #{sc_stnum}
+	</select>
+	<select id="selectViewAll" resultType="ScoreDTO">
+		SELECT sc_seq,
+		sc_stnum,
+		ST.st_name sc_stname,
+		sc_sbcode,
+		SB.sb_name sc_sbname,
+		sc_score
+		FROM
+		tbl_score SC
+		LEFT JOIN tbl_student ST
+		ON SC.sc_stnum = ST.st_num
+		LEFT
+		JOIN tbl_subject SB
+		ON SC.sc_sbcode = SB.sb_code
+		ORDER BY sc_stnum,
+		sc_sbcode
+	</select>
+	<select id="selectSubjectAndSocre"
+		resultType="SubjectAndScoreDTO">
+		select SB.sb_code as ss_code,
+		SB.sb_name as ss_name,
+		SB.sb_prof as ss_prof,
+		sc_stnum as ss_stnum,
+		sc_score as ss_score
+		from tbl_subject
+		SB
+		left join tbl_score
+		on sc_stnum = SB.sb_code
+		and sc_stnum = #{sc_stnum} limit 5
+	</select>
 
 	<insert id="insert" parameterType="ScoreVO">
 		insert into
 		tbl_score(sc_stnum, sc_sbcode, sc_score)
 		values(#{st_stnum},
 		#{sc_sbcode}, #{sc_score})
+	</insert>
+	<insert id="insertOrUpdate">
+		insert into tbl_score(sc_stnum, sc_sbcode, sc_score)
+		values(#{sc_stnum}, #{sc_sbcode}, #{sc_score})
+		on duplicate key update 
+		sc_score = #{sc_score}
 	</insert>
 	<delete id="delete">
 		delete * from tbl_score where sc_seq = #{sc_seq}

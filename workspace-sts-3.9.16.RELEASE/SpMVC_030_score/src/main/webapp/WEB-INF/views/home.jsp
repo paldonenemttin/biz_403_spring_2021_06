@@ -17,7 +17,7 @@
 
 body {
 	width: 100%;
-	height:100%;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	overflow: auto;
@@ -41,7 +41,6 @@ section#main_sec {
 	background: linear-gradient(to bottom, blue, green);
 	background-size: 100% 100%;
 	background-attachment: fixed;
-	
 }
 
 table {
@@ -60,103 +59,136 @@ tr:last-child {
 	border-bottom: 1px solid green;
 }
 
-tr:nth-of-type(odd){
+tr:nth-of-type(odd) {
 	background-color: #aaa;
 }
 
-tr:nth-of-type(even){
+tr:nth-of-type(even) {
 	background-color: #ccc;
 }
 
-tr:hover td{
+tr:hover td {
 	background-color: #aaa;
 	cursor: pointer;
 }
+
 td, th {
 	border-right: 1px solid green;
 	padding: 8px 10px;
 	text-align: center;
 }
-td.number{
+
+td.number {
 	text-align: right;
 }
+
 td:last-child, th:last-child {
 	border: none;
 }
-div.btn_box{
-	width:90%;
+
+div.btn_box {
+	width: 90%;
 	/*
 		table의 margin:10px auto로 설정되어 있기 때문에
 		top margin은 0으로 bottom margin은 10px 좌우는 auto
 	*/
-	margin: 8px auto 10px auto; 
+	margin: 8px auto 10px auto;
 	padding: 5px;
 	text-align: right;
 }
-div.btn_box button{
-	border:0;
-	outline:0;
-	padding:12px 16px;
+
+div.btn_box button {
+	border: 0;
+	outline: 0;
+	padding: 12px 16px;
 	margin-left: 10px;
 	border-radius: 5px;
 }
-button:hover{
+
+button:hover {
 	box-shadow: 2px 2px 2px 2px black;
 	cursor: pointer;
 }
-button.score.insert{
-	background-color: rgba(0,0,200,1);
+
+button.score.insert {
+	background-color: rgba(0, 0, 200, 1);
 	color: white;
 }
-button.score.student{
+
+button.score.student {
 	background-color: orange;
 	color: white;
 }
-h2{
-	width:90%;
+
+h2 {
+	width: 90%;
 }
 
-form{
-	width:90%;
+form {
+	width: 90%;
 	margin: 0 auto 10px auto;
 }
-fieldset{
+
+fieldset {
 	background-color: #eee;
 	border: 1px solid green;
 	border-radius: 5px;
 	padding: 0.7rem;
 }
-form label, form input{
+
+form label, form input {
 	display: inline-block;
 	margin: 5px;
 	padding: 8px 16px;
 }
-from label{
+
+from label {
 	width: 30%;
 	text-align: right;
-	color:blue;
+	color: blue;
 	font-weight: bold;
 }
-form input{
-	width:60%;
+
+form input {
+	width: 60%;
 	outline: 0;
-	border:#aaa;
+	border: #aaa;
 	border-radius: 50px;
 }
+
 form input:hover {
 	background-color: #ccc;
 }
-form button.save{
+
+button.save {
 	background-color: blue;
-	color:white;
+	color: white;
 }
-form button.reset{
+
+button.reset {
 	background-color: olive;
-	color:white;
+	color: white;
 }
-form button.list{
+
+button.list {
 	background-color: green;
-	color:white;
+	color: white;
+}
+
+button.home {
+	background-color: maroon;
+	color: white;
+	text-shadow: 1px 1px 1px black;
+}
+
+button.update {
+	background-color: green;
+	color: white;
+}
+
+button.delete {
+	background-color: maroon;
+	color: white;
 }
 </style>
 </head>
@@ -171,10 +203,13 @@ form button.list{
 				<%@ include file="/WEB-INF/views/score/list.jsp"%>
 			</c:when>
 			<c:when test="${BODY eq 'STUDENT_VIEW'}">
-				<%@ include file="/WEB-INF/views/student/list.jsp" %>
+				<%@ include file="/WEB-INF/views/student/list.jsp"%>
 			</c:when>
 			<c:when test="${BODY eq 'STUDENT_INPUT'}">
-				<%@ include file="/WEB-INF/views/student/input.jsp" %>
+				<%@ include file="/WEB-INF/views/student/input.jsp"%>
+			</c:when>
+			<c:when test="${BODY eq 'STUDENT_DETAIL'}">
+				<%@ include file="/WEB-INF/views/student/detail.jsp"%>
 			</c:when>
 			<c:otherwise>
 				<%@ include file="/WEB-INF/views/main.jsp"%>
@@ -208,9 +243,23 @@ if(home){
 }
 
 if(st_insert){
-	home.addEventListener("click", (e)=>{
+	st_insert.addEventListener("click", (e)=>{
 		location.href = "${rootPath}/student/input"
 	})
 }
+let table = document.querySelector("table.detail")
+if(table !== null){
+	table.addEventListener("click", (e)=>{
+	let target = e.target
+	let tagName = target.tagName
+	if(tagName === "TD"){
+		let tr = target.closest("TR")
+		let stNum = tr.dataset.stnum
+		location.href = "${rootPath}/student/detail?st_num=" +stNum
+	}
+
+})
+}
+
 </script>
 </html>
