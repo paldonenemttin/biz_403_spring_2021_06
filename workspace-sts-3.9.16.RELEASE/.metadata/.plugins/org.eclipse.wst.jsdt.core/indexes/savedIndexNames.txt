@@ -1,9 +1,3 @@
 INDEX VERSION 1.4+C:\bizworks\biz_403_spring_2021_06\workspace-sts-3.9.16.RELEASE\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-38141850.index
-2972211159.index
-3648153499.index
-724811291.index
-4113194026.index
-1066822245.index
-1550486165.index
-1787780170.index
+919277846.index
+240908583.index

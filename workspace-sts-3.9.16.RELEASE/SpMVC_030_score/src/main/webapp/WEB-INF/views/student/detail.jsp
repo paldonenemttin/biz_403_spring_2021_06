@@ -26,16 +26,16 @@
 </style>    
 <table class="student_detail">
 	<tr>
-		<th>학번</th><td>${STD.st_num}</td>
-		<th>이름</th><td>${STD.st_name}</td>
+		<th>학번</th><td>${ST.st_num}</td>
+		<th>이름</th><td>${ST.st_name}</td>
 	</tr>
 	<tr>
-		<th>학과</th><td>${STD.st_dept}</td>
-		<th>학년</th><td>${STD.st_grade}</td>
+		<th>학과</th><td>${ST.st_dept}</td>
+		<th>학년</th><td>${ST.st_grade}</td>
 	</tr>
 	<tr>
-		<th>전화번호</th><td>${STD.st_tel}</td>
-		<th>주소</th><td>${STD.st_addr}</td>
+		<th>전화번호</th><td>${ST.st_tel}</td>
+		<th>주소</th><td>${ST.st_addr}</td>
 	</tr>
 </table>   
 <div class="btn_box">
@@ -56,7 +56,7 @@
 </c:forEach>
 	<div class="btn_box">
 		<button type="submit" class="save">저장</button>
-		<button type="button" class="list">리스트로</button>
+		<button type="button" class="student list">리스트로</button>
 		<button type="button" class="student home">처음으로</button>
 	</div>
 	</fieldset>

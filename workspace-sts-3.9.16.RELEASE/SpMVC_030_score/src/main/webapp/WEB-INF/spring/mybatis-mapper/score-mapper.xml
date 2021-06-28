@@ -38,7 +38,7 @@
 	<select id="selectSubjectAndSocre"
 		resultType="SubjectAndScoreDTO">
 		select SB.sb_code as ss_code,
-		SB.sb_name as ss_name,
+		SB.sb_name as ss_stname,
 		SB.sb_prof as ss_prof,
 		sc_stnum as ss_stnum,
 		sc_score as ss_score
@@ -55,6 +55,55 @@
 		values(#{st_stnum},
 		#{sc_sbcode}, #{sc_score})
 	</insert>
+	<!--  LIst에 담긴 데이터를 받아서 bulk insert수행하기 -->
+	<insert id="insertOrUpdateForList">
+		insert into tbl_score(sc_stnum, sc_sbcode, sc_score)
+		values
+		<foreach collection="scoreMaps" item="map" separator=", ">
+			(#{sc_stnum},#{map.subject},#{map.score})
+		</foreach>
+		as new(st_num, subject, score)
+		on duplicate key update
+		sc_score = score
+	</insert>
+	<!-- 
+	데이터의 insert를 먼저 수행하라
+	만약 데이터가 이미 있으면 업데이트를 수행하라
+	
+	pk로 설정된 칼럼에 값을 세팅한 후 insert를 수행
+	sc_seq =3 과 같은 방법으로 세팅을 하여 insert 수행
+	만약 table의sv_seq 칼럼에 이미 3이라는 값이 있으면
+	unique 오류가 발생할 것이다
+	내부적으로 DBMS(mysql)에서 exception이 발생 할 것이다
+	
+	mysql insert문에 다음 명령절이 있음녀
+	on duplicate key update
+	
+	insert를 수행할때 exception을 발생하는 대신
+	pk를 기준으로 update를 수행하는 절차가 실행된다
+	
+	tip
+	pk를 기존의 칼럼지정으로 유지하면서
+	duplicate.. update를 사용학 ㅣ위해
+	insert에 필요한 칼럼중 학번과 과목코드를 묶어서 unique로 설정했다
+	
+	그랬더니 이미 값이 저장되어 있는 학번과 과목코드와
+	동일 값을 insert하려 하면
+	exception이 발생하고
+	자동으로 duplcate update가 실행되는 것이다
+	
+	on duplcat e key update를 사용해 
+	insert or update를 수행하기 
+	어떤데이터를 수행하려는데
+	이미 같은 pk를 찾는 데이터가 있으면
+	update를 하고 없으면 추가하라
+	
+	조건
+	insert를 할때 반드시 pkj값이 alue에 있어야 한다
+	
+	변형
+	insert를 할때 포함되는 칼럼들을 unique로 설정하면 같은 효과를 낼 수 있다
+	 -->
 	<insert id="insertOrUpdate">
 		insert into tbl_score(sc_stnum, sc_sbcode, sc_score)
 		values(#{sc_stnum}, #{sc_sbcode}, #{sc_score})

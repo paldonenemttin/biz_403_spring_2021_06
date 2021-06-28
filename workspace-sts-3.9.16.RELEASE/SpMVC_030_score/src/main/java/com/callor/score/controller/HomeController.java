@@ -38,7 +38,7 @@ public class HomeController {
 	
 		log.debug("Controller {} ", stList.toString());
 		
-		return "redirect:/score/list";
+		return "redirect:/student/list";
 	}
 	
 	

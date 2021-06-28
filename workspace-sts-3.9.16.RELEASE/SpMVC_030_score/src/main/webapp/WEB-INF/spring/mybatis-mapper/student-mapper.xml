@@ -5,7 +5,7 @@
 <mapper namespace="com.callor.score.dao.ext.StudentDao">
 	<select id="selectAll" resultType="StudentVO">
 		SELECT * FROM tbl_student
-		order by st_num DESC limit 10
+		order by st_num DESC
 	</select>
 	<select id="findById" resultType="StudentVO">
 		select * from tbl_student where

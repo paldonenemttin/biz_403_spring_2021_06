@@ -27,5 +27,16 @@
 		<constructor-arg ref="sqlSessionFactory"/>
 	</bean>
 	
+	<!-- Spring JDBC에서 transaction 설정하기
+		DataSourceTransactionManager를 bean으로 선언하기
+		이때 id는 transactionManager로 설정하기
+		dataSource 속성에 위에서 선언한 dataSource를 ref로 설정하기
+		tx:annotation-driven
+	 -->
+	<tx:annotation-driven/>
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds" />
+	</bean>
+	
 	<mybatis-spring:scan base-package="com.callor.score.dao.ext"/>
 </beans>
