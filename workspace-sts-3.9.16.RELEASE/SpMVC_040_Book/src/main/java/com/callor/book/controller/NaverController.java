@@ -26,7 +26,9 @@ public class NaverController {
 	public List<BookDTO> book(String search) throws MalformedURLException, IOException, ParseException {
 		
 		String queryURL = nBookService.URL(search);
+		
 		String jsonString = nBookService.getJsonString(queryURL);
+		System.out.println(jsonString);
 		List<BookDTO> bookList = nBookService.getNaverList(jsonString);
 		return bookList;
 		

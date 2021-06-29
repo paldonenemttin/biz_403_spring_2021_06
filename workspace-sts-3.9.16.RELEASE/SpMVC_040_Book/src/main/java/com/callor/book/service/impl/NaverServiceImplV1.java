@@ -16,7 +16,8 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
-import com.callor.book.config.NaverSecret;
+//import com.callor.book.config.NaverSecret;
+import com.callor.book.config.NaverSecret_sample;
 import com.callor.book.model.BookDTO;
 import com.callor.book.service.NaverService;
 
@@ -42,7 +43,7 @@ public class NaverServiceImplV1 implements NaverService<BookDTO> {
 		}
 
 		StringBuilder queryURL = new StringBuilder();
-		queryURL.append(NaverSecret.URL.BookURL); // queryString += BookURL 알아서 빌딩 해줘서 이것만 써줘도 됌
+		queryURL.append(NaverSecret.URL.BOOK); // queryString += BookURL 알아서 빌딩 해줘서 이것만 써줘도 됌
 		String queryString = String.format("?query=%s", searchUTF8);
 		queryURL.append(queryString);
 
@@ -75,11 +76,11 @@ public class NaverServiceImplV1 implements NaverService<BookDTO> {
 		httpConn.setRequestProperty("X-Naver-Client-Secret", NaverSecret.NAVER_CLIENT_SECRET);
 		// naver가 어떤 응답을 할것인지를 미리 확인하는 코드를 요청
 		int httpStatusCode = httpConn.getResponseCode();
-
+ 
 		// naver로 부터 데이터를 수신할 객체
 		InputStreamReader is = null;
 		if (httpStatusCode == 200) {
-			is = new InputStreamReader(httpConn.getInputStream());
+			is = new InputStreamReader(httpConn.getInputStream(), "UTF-8");
 		} else {
 			// 오류 처리
 			is = new InputStreamReader(httpConn.getErrorStream());

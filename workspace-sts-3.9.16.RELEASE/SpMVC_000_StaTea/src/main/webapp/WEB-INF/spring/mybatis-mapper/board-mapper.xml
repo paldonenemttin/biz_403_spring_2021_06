@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.team.statea.dao.ext.BoardDao">
 <select id="selectBoardView" resultType="BoardDTO">
 		SELECT 
 		board_code, board_title, board_user,board_content, like_count, board_view, board_date, board_time,img_src
@@ -10,6 +14,15 @@
 		ON board_code = img_concode
 </select>
 
+<insert id="insertorUpdate" parameterType="BoardVO">
+	insert into tbl_board(board_code, board_title,
+	 board_content, board_writer, board_vcount, 
+	 board_date,board_time)
+	 values(#{board_code}, #{board_title},
+	 #{board_content}, #{board_writer}, #{board_vcount}, 
+	 #{board_date},#{board_time})
+</insert>
+
 <select id="selectBoardList" resultType="BoardDTO">
 		SELECT 
 		board_code, board_title, board_user, like_count, board_view, board_date, board_time
@@ -17,5 +30,6 @@
 		tbl_board 
 		LEFT JOIN tbl_like
 		ON board_code = like_bdcode
-		order by board_code desc
+		order by board_code DESC
 </select>
+</mapper>

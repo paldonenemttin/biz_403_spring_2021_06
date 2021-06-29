@@ -103,7 +103,7 @@
 	
 	변형
 	insert를 할때 포함되는 칼럼들을 unique로 설정하면 같은 효과를 낼 수 있다
-	 -->
+	 -->	
 	<insert id="insertOrUpdate">
 		insert into tbl_score(sc_stnum, sc_sbcode, sc_score)
 		values(#{sc_stnum}, #{sc_sbcode}, #{sc_score})
