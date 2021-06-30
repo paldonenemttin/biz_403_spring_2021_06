@@ -2,8 +2,8 @@ package com.team.statea.service;
 
 import java.util.List;
 
-import com.team.statea.model.NoticeListDTO;
-import com.team.statea.model.NoticeViewDTO;
+import com.team.statea.model.dto.NoticeListDTO;
+import com.team.statea.model.dto.NoticeViewDTO;
 
 public interface NoticeService {
 	

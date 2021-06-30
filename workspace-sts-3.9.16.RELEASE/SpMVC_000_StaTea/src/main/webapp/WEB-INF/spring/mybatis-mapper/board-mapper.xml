@@ -27,7 +27,7 @@
 		SELECT 
 		board_code, board_title, board_user, like_count, board_view, board_date, board_time
 		FROM
-		tbl_board 
+		tbl_board
 		LEFT JOIN tbl_like
 		ON board_code = like_bdcode
 		order by board_code DESC

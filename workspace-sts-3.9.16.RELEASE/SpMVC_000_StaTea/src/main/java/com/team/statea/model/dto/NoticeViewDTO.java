@@ -1,4 +1,4 @@
-package com.team.statea.model;
+package com.team.statea.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

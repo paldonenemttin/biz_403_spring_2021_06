@@ -3,9 +3,9 @@ package com.team.statea.dao.ext;
 import java.util.List;
 
 import com.team.statea.dao.GenericDao;
-import com.team.statea.model.BoardListDTO;
 import com.team.statea.model.BoardVO;
-import com.team.statea.model.BoardViewDTO;
+import com.team.statea.model.dto.BoardListDTO;
+import com.team.statea.model.dto.BoardViewDTO;
 
 public interface BoardDao extends GenericDao<BoardVO, String> {
 	
