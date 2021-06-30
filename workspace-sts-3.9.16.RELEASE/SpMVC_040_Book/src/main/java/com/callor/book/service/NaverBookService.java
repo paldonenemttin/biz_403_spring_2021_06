@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
-public interface NaverService<T> {
+public interface NaverBookService<T> {
 	
 	
 	

@@ -138,8 +138,6 @@ div.cate_body{
 	text-align: center;
 }
 </style>
-<link href="${rootPath}/static/css/freeboard.css?ver=2021-06-14-005"
-	rel="stylesheet" />
 <script src="https://kit.fontawesome.com/7f8ef4d19e.js"
 	crossorigin="anonymous"></script>
 
@@ -149,13 +147,12 @@ div.cate_body{
 	<hr></hr>
 	<div class="main">
 		<div class="btn_writ">
-			<button id="write" onclick="location.href='freeboard/input'"
+			<button id="write" onclick="location.href='${rootPath}/board/input'"
 				value="글쓰기">글쓰기</button>
 		</div>
 		<div>
 			<table>
-			<c:choose>
-				<tr class="table">
+			<tr class="table">
 					<th id="th_no">번호</th>
 					<th id="th_title">제목</th>
 					<th id="th_au">작성자</th>
@@ -164,16 +161,17 @@ div.cate_body{
 					<th id="th_date">작성일</th>
 					<th id="th_time">작성시간</th>
 				</tr>
+			
 				<tr class="value">
 					<td id="td_no">1</td>
-					<td id="td_title"><a href="freeboard/view"></a></td>
+					<td id="td_title"><a href="board/view"></a></td>
 					<td id="td_writer"></td>
 					<td id="td_avo">111</td>
 					<th id="th_vcount"></th>
 					<td id="td_date">yyyy-mm-dd</td>
 					<td id="td_time">hh:mm:ss</td>
 				</tr>
-				</c:choose>
+			
 			</table>
 		</div>
 		<div class="ser_title">

@@ -5,8 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="${rootPath}/static/css/input.css?ver=2021-06-14-008"
-	rel="stylesheet" />
+
 
 <meta charset="UTF-8">
 <title>글 작성 페이지</title>
@@ -23,7 +22,7 @@
 		<div class="under">
 			<input id="date" name="st_date" type="date" /> <input id="time"
 				name="board_time" type="time" />
-			<button id="save" onclick="location.href='/starbucks/board/list'">저장</button>
+			<button id="save" onclick="location.href='/statea/board/list'">저장</button>
 		</div>
 		<!--파일 업로드-->
 		<div class="file">

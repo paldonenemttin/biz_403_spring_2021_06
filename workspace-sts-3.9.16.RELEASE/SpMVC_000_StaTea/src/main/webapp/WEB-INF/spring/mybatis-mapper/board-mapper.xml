@@ -32,4 +32,7 @@
 		ON board_code = like_bdcode
 		order by board_code DESC
 </select>
+<delete id="delete">
+	delete 
+</delete>
 </mapper>

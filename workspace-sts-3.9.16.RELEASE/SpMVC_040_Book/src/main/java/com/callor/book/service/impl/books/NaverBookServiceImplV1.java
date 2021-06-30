@@ -1,4 +1,4 @@
-package com.callor.book.service.impl;
+package com.callor.book.service.impl.books;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,16 +16,16 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
-//import com.callor.book.config.NaverSecret;
-import com.callor.book.config.NaverSecret_sample;
+import com.callor.book.config.NaverSecret;
+//import com.callor.book.config.NaverSecret_sample;
 import com.callor.book.model.BookDTO;
-import com.callor.book.service.NaverService;
+import com.callor.book.service.NaverBookService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service
-public class NaverServiceImplV1 implements NaverService<BookDTO> {
+@Service("NaverBookServiceV1")
+public class NaverBookServiceImplV1 implements NaverBookService<BookDTO> {
 
 	/*
 	 * naver에 요청하기 BookURL + "?query=" + 검색문자열
@@ -43,7 +43,7 @@ public class NaverServiceImplV1 implements NaverService<BookDTO> {
 		}
 
 		StringBuilder queryURL = new StringBuilder();
-		queryURL.append(NaverSecret.URL.BOOK); // queryString += BookURL 알아서 빌딩 해줘서 이것만 써줘도 됌
+		queryURL.append(NaverSecret.URL.BookURL); // queryString += BookURL 알아서 빌딩 해줘서 이것만 써줘도 됌
 		String queryString = String.format("?query=%s", searchUTF8);
 		queryURL.append(queryString);
 
@@ -127,7 +127,7 @@ public class NaverServiceImplV1 implements NaverService<BookDTO> {
 	@Override
 	public List<BookDTO> getNaverList(String jsonString) throws ParseException {
 		// TODO Auto-generated method stub
-
+		log.debug("나는 V1");
 		List<BookDTO> bookList = new ArrayList<BookDTO>();
 
 		// 1. json Parsing 도구 선언

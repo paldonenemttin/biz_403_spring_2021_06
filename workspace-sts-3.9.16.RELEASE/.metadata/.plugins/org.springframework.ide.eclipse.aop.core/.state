@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
-<aop-project name="SpMVC_030_Try"/>
-<aop-project name="SpMVC_011_Hello"/>
-<aop-project name="SpMVC_One_01_Score"/>
-<aop-project name="SpMVC_040_Book"/>
-<aop-project name="SpMVC_030_score"/>
 <aop-project name="SpMVC_000_StaTea"/>
-<aop-project name="SpMVC_012_HelloSpring"/>
-<aop-project name="SpMVC_020_JDBC"/>
 </aop-reference-model>

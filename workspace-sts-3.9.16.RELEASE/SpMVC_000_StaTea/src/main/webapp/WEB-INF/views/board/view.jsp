@@ -39,7 +39,7 @@
 			</div>
 			<hr></hr>
 			<div class="btn_avo_list">
-				<button id="list" onclick="location.href='/starbucks/freeboard'">목록으로</button>
+				<button id="list" onclick="location.href='statea/board'">목록으로</button>
 				<button id="like">추천</button>
 			</div>
 		
