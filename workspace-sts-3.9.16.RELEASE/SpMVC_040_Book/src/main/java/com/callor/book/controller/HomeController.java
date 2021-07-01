@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.callor.book.model.BookDTO;
-import com.callor.book.service.NaverBookService;
+import com.callor.book.service.NaverGenericService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class HomeController {
 
 	@Qualifier("NaverBookServiceV2")
-	protected final NaverBookService<BookDTO> nBookService;
+	protected final NaverGenericService<BookDTO> nBookService;
 
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String home() {

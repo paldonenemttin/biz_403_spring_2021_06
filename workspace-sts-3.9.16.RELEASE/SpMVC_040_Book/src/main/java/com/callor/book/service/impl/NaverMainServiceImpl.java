@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 
 import com.callor.book.model.BookDTO;
 import com.callor.book.model.MovieDTO;
-import com.callor.book.service.NaverBookService;
+import com.callor.book.service.NaverGenericService;
 import com.callor.book.service.NaverMovieService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class NaverMainServiceImpl {
 	
 	@Qualifier("NaverBookServiceV2")
-	protected final NaverBookService<BookDTO> nBookService;
+	protected final NaverGenericService<BookDTO> nBookService;
 	
 	@Qualifier("NaverMovieServiceV1")
 	protected final NaverMovieService nmService;

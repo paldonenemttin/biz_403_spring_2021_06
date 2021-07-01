@@ -19,13 +19,13 @@ import org.springframework.stereotype.Service;
 import com.callor.book.config.NaverSecret;
 //import com.callor.book.config.NaverSecret_sample;
 import com.callor.book.model.BookDTO;
-import com.callor.book.service.NaverBookService;
+import com.callor.book.service.NaverGenericService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service("NaverBookServiceV1")
-public class NaverBookServiceImplV1 implements NaverBookService<BookDTO> {
+public class NaverBookServiceImplV1 implements NaverGenericService<BookDTO> {
 
 	/*
 	 * naver에 요청하기 BookURL + "?query=" + 검색문자열
@@ -96,9 +96,9 @@ public class NaverBookServiceImplV1 implements NaverBookService<BookDTO> {
 		 * String형의 데이터를 += 하면 예) 다음과 같은 코드를 반복하면 String str = "대한민국" str += "Korea" str
 		 * += "Republic"
 		 * 
-		 * 내부적으로는 str변수를 생서으 제거, 생성, 제거, 생성하는 코드가 반복적으로 수행된다
+		 * 내부적으로는 str변수를 생성 제거, 생성, 제거, 생성하는 코드가 반복적으로 수행된다
 		 * 
-		 * 이러한 현상이 반복되면 메모리에 문제가 발생 하 ㄹ수 있다
+		 * 이러한 현상이 반복되면 메모리에 문제가 발생 할 수 있다
 		 * 
 		 * 그러한 문제를 해결하기 위해 탄생한 클래스이다
 		 * 

@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.callor.book.model.BookDTO;
-import com.callor.book.service.NaverBookService;
+import com.callor.book.service.NaverGenericService;
 
 //@Controller
 @RestController
 //@RequestMapping(value = "/naver")
 public class NaverExitController {
 
-	protected final NaverBookService<BookDTO> nBookService;
+	protected final NaverGenericService<BookDTO> nBookService;
 
-	public NaverExitController(@Qualifier("NaverBookServiceV2") NaverBookService<BookDTO> nBookService) {
+	public NaverExitController(@Qualifier("NaverBookServiceV2") NaverGenericService<BookDTO> nBookService) {
 		// TODO Auto-generated constructor stub
 		this.nBookService = nBookService;
 	}
