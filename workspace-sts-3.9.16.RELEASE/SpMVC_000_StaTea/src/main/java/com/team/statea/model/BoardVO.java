@@ -12,10 +12,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BoardVO {
-	private String board_code;
-	private String board_title;
-	private String board_content;
-	private String board_vcount;
-	private String board_date;
-	private String board_time;
+	private String bd_code;
+	private String bd_title;
+	private String bd_content;
+	private String bd_vcount;
+	private String bd_date;
+	private String bd_time;
 }

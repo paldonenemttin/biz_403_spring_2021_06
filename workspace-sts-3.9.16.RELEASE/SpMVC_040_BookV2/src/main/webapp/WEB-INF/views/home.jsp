@@ -1,7 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page
+	language="java"
+	contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="rootPath" value="${pageContext.request.contextPath}" />
+<%@ taglib
+	uri="http://java.sun.com/jsp/jstl/core"
+	prefix="c"%>
+<c:set
+	var="rootPath"
+	value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,48 +19,54 @@
 	margin: 0;
 	padding: 0;
 }
+
 p b {
 	color: blue;
 }
+
 body {
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
 }
+
 nav#main_nav {
-	background-color: rgba(0,255,0,0.7);
+	background-color: rgba(0, 255, 0, 0.7);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-size: 100% 100%;
 }
+
 nav#main_nav form {
-	margin:0.6rem;
+	margin: 0.6rem;
 	width: 50%;
 }
+
 nav#main_nav input {
-	
-	padding:8px;
-	border:0;
+	padding: 8px;
+	border: 0;
 	outline: 0;
-	width:100%;
-	border-radius: 10px;
-	
-}
-nav#main_nav select{
-	padding:8px;
-	width:20%;
+	width: 100%;
 	border-radius: 10px;
 }
+
+nav#main_nav select {
+	padding: 8px;
+	width: 20%;
+	border-radius: 10px;
+}
+
 section.content_box {
-	flex:1;
+	flex: 1;
 	border: 1px solid green;
 	padding: 12px 16px;
 	display: flex;
 	flex-wrap: wrap;
-		background-size: 100% 100%;
+	background-size: 100% 100%;
 	overflow: auto;
 }
+
 section.content_box div.content {
 	border: 1px solid yellowgreen;
 	margin: 5px auto;
@@ -62,80 +74,125 @@ section.content_box div.content {
 	width: 30%;
 	height: 30vh;
 	overflow: auto;
-	transition:0.5s;
+	transition: 0.5s;
 }
+
 section.content_box div.content::-webkit-scrollbar {
-	opacity:0;
-	width:1px;
-	
+	opacity: 0;
+	width: 1px;
 }
-section.content_box div.content::-webkit-scrollbar-thumb,
-section.content_box div.content::-webkit-scrollbar-track {
-	background-color : transparent;
-	transition:3s;
+
+section.content_box div.content::-webkit-scrollbar-thumb, section.content_box div.content::-webkit-scrollbar-track
+	{
+	background-color: transparent;
+	transition: 3s;
 }
+
 section.content_box div.content:hover::-webkit-scrollbar {
 	opacity: 1;
-	width:1px;
-} 
+	width: 1px;
+}
+
 section.content_box div.content:hover::-webkit-scrollbar-thumb {
-	opacity:1;
-	width:1px;
+	opacity: 1;
+	width: 1px;
 	background-color: blue;
 }
+
 section.content_box div.content img {
 	flex: 1;
-	width:30%;
+	width: 30%;
 	height: 50%;
 }
+
 section.content_box div.content div {
 	flex: 2;
-	margin:5px;
+	margin: 5px;
 }
-@media (min-width:1200px) {
+
+@media ( min-width :1200px) {
 	section.content_box div.content {
-		width:18%;
-		margin:5px auto;
+		width: 18%;
+		margin: 5px auto;
 	}
 }
-@media (max-width:700px) {
+
+@media ( max-width :700px) {
 	section.content_box div.content {
-		width:95%;
+		width: 95%;
 	}
 }
+
 a {
 	text-decoration: none;
 }
+
 a:hover {
-	color:green;
+	color: green;
+}
+
+table {
+	width: 95%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin: 0 auto;
+}
+/* 전체적으로 th와 td의 위쪽만 선을 만들고*/
+th, td {
+	white-space: nowrap;
+	padding: 16px 12px;
+	border-top: 1px solid #ddd;
+}
+/* 가장 끝에 나타난 td에는 아래쪽에서 선을 만들기*/
+td:last-child td{
+	border-bottom: 1px solid #ddd;
 }
 </style>
 </head>
 <body>
 	<nav id="main_nav">
-	<c:if test="${CAT == 'BOOK'}">
-		<c:set var="pHolder" value="도서 검색어"></c:set>
-	</c:if>
-	<c:if test="${CAT == 'MOVIE'}">
-		<c:set var="pHolder" value="영화 검색어"></c:set>
-	</c:if>
-	<c:if test="${CAT == 'NEWS'}">
-		<c:set var="pHolder" value="뉴스 검색어"></c:set>
-	</c:if>
-	<select name="category">
-		<option value="BOOK" <c:if test="${CAT == 'BOOK'}"> selected= "selected"</c:if>>도서검색</option>
-		<option value="MOVIE" <c:if test="${CAT == 'MOVIE'}"> selected="selected"</c:if>>영화검색</option>
-		<option value="NEWS" <c:if test="${CAT == 'NEWS'}"> selected="selected"</c:if>>뉴스검색</option>
-	</select>
+		<c:if test="${CAT == 'BOOK'}">
+			<c:set
+				var="pHolder"
+				value="도서 검색어"></c:set>
+		</c:if>
+		<c:if test="${CAT == 'MOVIE'}">
+			<c:set
+				var="pHolder"
+				value="영화 검색어"></c:set>
+		</c:if>
+		<c:if test="${CAT == 'NEWS'}">
+			<c:set
+				var="pHolder"
+				value="뉴스 검색어"></c:set>
+		</c:if>
+		<select name="category">
+			<option
+				value="BOOK"
+				<c:if test="${CAT == 'BOOK'}"> selected= "selected"</c:if>>도서검색</option>
+			<option
+				value="MOVIE"
+				<c:if test="${CAT == 'MOVIE'}"> selected="selected"</c:if>>영화검색</option>
+			<option
+				value="NEWS"
+				<c:if test="${CAT == 'NEWS'}"> selected="selected"</c:if>>뉴스검색</option>
+		</select>
 		<form>
-			<input name="search" placeholder="${pHolder} 입력후 Enter...">
+			<input
+				name="search"
+				placeholder="${pHolder} 입력후 Enter...">
 		</form>
 	</nav>
 	<section class="content_box">
-		<%@ include file="/WEB-INF/views/book_list.jsp" %>
-		<%@ include file="/WEB-INF/views/movie_list.jsp" %>
-		<%@ include file="/WEB-INF/views/news_list.jsp" %>
+		<%@ include file="/WEB-INF/views/book_list.jsp"%>
+		<%@ include file="/WEB-INF/views/movie_list.jsp"%>
+		<%@ include file="/WEB-INF/views/news_list.jsp"%>
+
+		<c:if test="${not empty MY_BOOKS}">
+			<%@ include file="/WEB-INF/views/book/list_view.jsp"%>
+		</c:if>
 	</section>
+
 
 </body>
 <script type="text/javascript">

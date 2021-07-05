@@ -13,7 +13,7 @@
 	<!-- oracle 의 경우 jdbc:orable:thin:@localhost:1501:xe -->
 	<bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName"
-			value="com.mysql.sj.jdbc.Driver" />
+			value="com.mysql.cj.jdbc.Driver" />
 		<property name="url"
 			value="jdbc:mysql://localhost:3306/myLibs" />
 		<property name="username" value="gbUser" />
@@ -33,7 +33,7 @@
 		<property name="typeAliasesPackage"
 			value="com.callor.book.model" />
 		<property name="mapperLocations"
-			value="/WEB-INF/spring/mybitas-mapper/*-mapper" />
+			value="/WEB-INF/spring/mybatis-mapper/*-mapper.xml" />
 	</bean>
 
 	<!-- sesstionTemplate -->

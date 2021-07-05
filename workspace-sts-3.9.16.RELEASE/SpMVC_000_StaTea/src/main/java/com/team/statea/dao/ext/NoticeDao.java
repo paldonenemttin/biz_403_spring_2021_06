@@ -11,5 +11,6 @@ public interface NoticeDao extends GenericDao<NoticeVO, String> {
 
 	public List<NoticeListDTO> selecList();
 	public List<NoticeViewDTO> selectView();
+	public List<NoticeListDTO> findSearch();
 	
 }

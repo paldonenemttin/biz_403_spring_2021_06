@@ -13,8 +13,8 @@ import lombok.ToString;
 @NoArgsConstructor
 public class LikeVO {
 	
+	private Long like_seq;
 	private String like_concode;
-	private String like_user;
 	private int like_count;
 
 }

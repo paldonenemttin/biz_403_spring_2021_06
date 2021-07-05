@@ -9,5 +9,6 @@ public interface BoardService {
 	
 	public List<BoardListDTO> selectList();
 	public List<BoardViewDTO> selectView();
+	public List<BoardListDTO> searchList();
 
 }

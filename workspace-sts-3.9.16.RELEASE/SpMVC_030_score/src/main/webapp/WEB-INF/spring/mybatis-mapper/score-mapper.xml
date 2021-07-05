@@ -72,11 +72,11 @@
 	
 	pk로 설정된 칼럼에 값을 세팅한 후 insert를 수행
 	sc_seq =3 과 같은 방법으로 세팅을 하여 insert 수행
-	만약 table의sv_seq 칼럼에 이미 3이라는 값이 있으면
+	만약 table의 sc_seq 칼럼에 이미 3이라는 값이 있으면
 	unique 오류가 발생할 것이다
 	내부적으로 DBMS(mysql)에서 exception이 발생 할 것이다
 	
-	mysql insert문에 다음 명령절이 있음녀
+	mysql insert문에 다음 명령절이 있으면
 	on duplicate key update
 	
 	insert를 수행할때 exception을 발생하는 대신

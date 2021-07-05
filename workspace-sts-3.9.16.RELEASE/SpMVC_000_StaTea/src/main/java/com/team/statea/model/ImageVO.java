@@ -16,5 +16,6 @@ public class ImageVO {
 	private String img_code;
 	private String img_dbcode;
 	private String img_src;
+	private String img_name;
 	
 }

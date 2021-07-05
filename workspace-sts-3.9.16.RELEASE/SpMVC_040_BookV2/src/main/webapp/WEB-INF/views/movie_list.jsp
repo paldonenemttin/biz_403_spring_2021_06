@@ -9,16 +9,15 @@
 			<p class="title">
 				<a href="${MOVIE.link}" target="_NEW"> ${MOVIE.title} </a>
 			</p>
-			<p class="actor">
-			<strong>출연배우 : </strong>${MOVIE.actor}
-			</p>
-			<p class="pubDate">
-				<strong>제작년도 : </strong>${MOVIE.pubDate}
-			</p>
-			<p class="director">
+			<p class="author">
 				<strong>감독 : </strong>${MOVIE.director}
 			</p>
-			<button class="insert">내 서재등록</button>
+			<p class="publisher">
+				<strong>등장인물 : </strong>${MOVIE.actor}
+			</p>
+			<p class="userRating">
+				<strong>평점 : </strong>${MOVIE.userRating}
+			</p>
 		</div>
 	</div>
 </c:forEach>

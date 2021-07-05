@@ -13,11 +13,10 @@ import lombok.ToString;
 @AllArgsConstructor
 public class NoticeVO {
 	
-	private Long notice_code;
-	private String notice_title;
-	private String notice_content;
-	private String notice_date;
-	private String notice_time;
-	private String notice_user;
+	private Long nt_code;
+	private String nt_title;
+	private String nt_content;
+	private String nt_time;
+	private String nt_user;
 
 }

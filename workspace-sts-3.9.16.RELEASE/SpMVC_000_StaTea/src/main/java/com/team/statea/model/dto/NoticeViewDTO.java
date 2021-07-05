@@ -13,13 +13,12 @@ import lombok.ToString;
 @AllArgsConstructor
 public class NoticeViewDTO {
 	
-	private String notice_code;
-	private String notice_title;
-	private String notice_content;
-	private int notice_vcount;
-	private String notice_user;
-	private String notice_date;
-	private String notice_time;
-	private String img_src;
+	private String nt_code;
+	private String nt_title;
+	private String nt_content;
+	private int nt_vcount;
+	private String nt_user;
+	private String nt_time;
+	private String nt_src;
 	
 }

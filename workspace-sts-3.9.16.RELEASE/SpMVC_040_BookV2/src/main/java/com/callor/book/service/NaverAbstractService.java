@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 
@@ -81,6 +82,6 @@ public abstract class NaverAbstractService<T> {
 		return sb.toString();
 	}
 	
-	public abstract List<T> getNaverList(String jsonString) throws ParseException;
+	public abstract List<T> getNaverList(String jsonString) throws ParseException, URISyntaxException, Exception;
 
 }

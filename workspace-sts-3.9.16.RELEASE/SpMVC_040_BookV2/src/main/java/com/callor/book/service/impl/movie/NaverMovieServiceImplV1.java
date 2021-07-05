@@ -32,9 +32,11 @@ public class NaverMovieServiceImplV1 extends NaverAbstractService<MovieDTO>{
 	public String URL(String search) throws UnsupportedEncodingException {
 		// TODO Auto-generated method stub
 		
+		String searchUTF = URLEncoder.encode(search,"UTF-8");
+		
 		String url = NaverSecret.URL.MovieURL;
 		url += "?query%s&display=10";
-		String searchUTF = URLEncoder.encode(search,"UTF-8");
+		
 		url = String.format(url, searchUTF);
 		
 		log.debug("queryURL: {}", url);
@@ -50,12 +52,12 @@ public class NaverMovieServiceImplV1 extends NaverAbstractService<MovieDTO>{
 		
 		JsonElement jsonElement = JsonParser.parseString(jsonString);
 		
-		JsonElement item = jsonElement.getAsJsonObject().get("items");
+		JsonElement oItem = jsonElement.getAsJsonObject().get("items");
 		
 		Gson gson = new Gson();
 		
 		TypeToken<List<MovieDTO>> tToken = new TypeToken<List<MovieDTO>>() {};
-		List<MovieDTO> movieList = gson.fromJson(item, tToken.getType());
+		List<MovieDTO> movieList = gson.fromJson(oItem, tToken.getType());
 		return movieList;
 	}
 

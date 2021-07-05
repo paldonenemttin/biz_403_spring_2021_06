@@ -13,16 +13,13 @@ import lombok.ToString;
 @ToString
 public class BoardViewDTO {
 	
-	private String board_code;
-	private String board_title;
-	private String board_wirte;
-	private String board_content;
-	private String like_concode;
+	private String bd_code;
+	private String bd_title;
+	private String bd_writer;
+	private String bd_content;
 	private int like_count;
-	private String img_src;
-	private String img_concode;
-	private String board_date;
-	private String board_time;
-	private int board_vcount;
+	private String bd_img;
+	private String bd_time;
+	private int bd_vcount;
 
 }
