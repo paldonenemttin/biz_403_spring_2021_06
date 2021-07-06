@@ -137,6 +137,7 @@ div.main{
 div.cate_body{
 	text-align: center;
 }
+
 </style>
 <script src="https://kit.fontawesome.com/7f8ef4d19e.js"
 	crossorigin="anonymous"></script>

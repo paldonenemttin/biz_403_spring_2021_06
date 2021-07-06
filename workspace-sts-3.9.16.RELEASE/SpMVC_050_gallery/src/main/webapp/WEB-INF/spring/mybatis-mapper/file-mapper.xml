@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.callor.gallery.persistance.ext.FileDao">
+ 
+ <update id="create_table">
+ create table if not exists tbl_files(
+	file_seq	bigint	auto_increment	primary key,
+	file_gseq	bigint	not null	,
+	file_origin	varchar(125)	not null	,
+	file_upname	varchar(125)	not null	
+)
+
+</update>
+</mapper>

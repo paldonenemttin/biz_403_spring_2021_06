@@ -10,7 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@Primary
 @Service("fileServiceV2")
 public class FileServiceImplV2 extends FileServiceImplV1{
 	
@@ -49,7 +48,7 @@ public class FileServiceImplV2 extends FileServiceImplV1{
 		File uploadPathAndFile = new File(fileUpPath , strUUID);
 		file.transferTo(uploadPathAndFile);
 		
-		return null;
+		return strUUID;
 	}
 	
 	

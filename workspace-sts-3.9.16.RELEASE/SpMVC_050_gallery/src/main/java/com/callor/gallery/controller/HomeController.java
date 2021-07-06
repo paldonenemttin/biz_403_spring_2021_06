@@ -27,16 +27,18 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-
-		return "home";
+		return "redirect:/gallery";
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String home(MultipartHttpServletRequest m_file, Model model) throws Exception {
 
-//		List<MultipartFile> files = m_file.getFiles("m_file");
-//		String fileName = fileService.fileUp(files.get(0));
-//		model.addAttribute(fileName, fileName);
+		//		List<MultipartFile> files = m_file.getFiles("m_file");
+		//		String fileName = fileService.fileUp(files.get(0));
+		//		model.addAttribute(fileName, fileName);
+
+		List<String> fileNames = fileService.filesUp(m_file);
+		model.addAttribute("FILES", fileNames);
 		return "home";
 	}
 

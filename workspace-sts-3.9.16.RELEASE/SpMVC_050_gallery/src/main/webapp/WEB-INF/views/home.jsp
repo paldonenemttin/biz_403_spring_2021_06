@@ -16,33 +16,31 @@
 </head>
 <body>
 	<h1>갤러리</h1>
-	<form
-		method="POST"
-		enctype="multipart/form-data">
-		<div>
-			<input
-				type="file"
-				name="one_file">
-			<button>전송</button>
-		</div>
-		<div>
-			<input
-				type="file"
-				name="m_file"
-				multiple="multiple">
-		</div>
-	</form>
+	<c:choose>
+		<c:when test="${BODY eq 'GA-INPUT'}">
+			<%@ include file="/WEB-INF/views/gallery/input.jsp"%>
+		</c:when>
+		<c:when test="${BODY eq 'GA-LIST'}">
+		<%@ include file="/WEB-INF/views/gallery/list.jsp" %>
+		<a href="${rootPath}/gallery/input">이미지 등록</a>
+	</c:when>
+		<c:otherwise>
+			<a href="${rootPath}/gallery/input">이미지등록</a>
+		</c:otherwise>
+	</c:choose>
 
 	<c:forEach
 		items="${FILES}"
 		var="file">
-		<a href="${rootPath}/file/${file}"> <img
+		<a
+			href="${rootPath}/files/${file}"
+			target="_NEW"> <img
 			src="${rootPath}/files/${file}"
-			width="200px"> <img
-			src="${rootPath}/files/title.jpg"
-			width="200px">
+			width="100px">
 		</a>
 	</c:forEach>
-
+	<img
+		src="${rootPath}/files/${file}"
+		width="100px" />
 </body>
 </html>

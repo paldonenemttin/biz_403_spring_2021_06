@@ -3,6 +3,8 @@ C:\bizworks\biz_403_spring_2021_06\workspace-sts-3.9.16.RELEASE\.metadata\.plugi
 \SpMVC_000_StaTea\src\main\java
 C:\bizworks\biz_403_spring_2021_06\workspace-sts-3.9.16.RELEASE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1245957152.index
 \SpMVC_020_JDBC\src\main\java
+C:\bizworks\biz_403_spring_2021_06\workspace-sts-3.9.16.RELEASE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2962049382.index
+\SpMVC_050_gallery\src\main\java
 C:\bizworks\biz_403_spring_2021_06\workspace-sts-3.9.16.RELEASE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3570107580.index
 \SpMVC_040_BookV2\src\main\java
 C:\bizworks\biz_403_spring_2021_06\workspace-sts-3.9.16.RELEASE\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\716037961.index

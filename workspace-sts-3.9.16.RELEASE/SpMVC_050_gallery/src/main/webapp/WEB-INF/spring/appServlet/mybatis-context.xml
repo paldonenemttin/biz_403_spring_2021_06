@@ -8,33 +8,37 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
 	<!-- data source -->
 	<bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName"
-			value="com.mysql.sj.jdbc.Driver" />
+			value="com.mysql.cj.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://localhost:3306/statea" />
+			value="jdbc:mysql://localhost:3306/myLibs" />
 		<property name="username" value="gbUser" />
 		<property name="password" value="1234" />
 	</bean>
-	<!-- sesstionRactory -->
-	<bean id="sqlSessionFactory"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
+
+	<!-- sqlSessionFactory -->
+	<bean id="sf" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="ds" />
 		<property name="typeAliasesPackage"
-			value="com.team.statea.model" />
+			value="com.callor.gallery.model" />
 		<property name="mapperLocations"
 			value="/WEB-INF/spring/mybatis-mapper/*-mapper.xml" />
 	</bean>
+
+	<!-- sqlSessionTemplate -->
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSessionFactory" />
+		<constructor-arg ref="sf" />
 	</bean>
-	<tx:annotation-driven />
+	
+	<!-- TransactionManager -->
+	<tx:annotation-driven/>
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="ds" />
 	</bean>
-
-	<mybatis-spring:scan
-		base-package="com.team.statea.dao.ext" />
+	
+	<mybatis-spring:scan base-package="com.callor.gallery.persistance.ext"/>
 </beans>

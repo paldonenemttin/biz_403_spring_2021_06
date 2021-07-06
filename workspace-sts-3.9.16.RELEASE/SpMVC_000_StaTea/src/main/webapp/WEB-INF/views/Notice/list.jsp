@@ -10,132 +10,101 @@
 }
 html,body{
 	height: 100%;
-	width: 100%;
 }
-h2 {
-	margin-top: 5px;
-	text-align: center;
-	color:rgb(3, 102, 53);
-}
-/* 검색창 */
-div.ser_title {
-	display: flex;
-	align-items: center;
-	justify-content:center;
+p#title {
+	font-size: 20px;
+	margin-left: 25%;
+	padding-bottom: 15px;
 }
 
-input#search {
-	font-size:15px;
-	height: 25px;
-	width: 400px;
+div.view {
+	margin: auto;
 }
 
-i {
-	margin-right: 2px;
-	font-size: 25px;
-}
-/* 게시물 표 */
 table {
-	margin:auto;
-	width:100%;
+	margin-left: 25%;
 	border-collapse: collapse;
 	border-spacing: 0;
-}
-div.all_table{
-	
-}
-table th, td {
-	border: 1px solid #aaa;
-	padding: 3px 5px;
 	height: 10px;
-	font-size: 15px;
+	width: 50%;
+}
+
+td, th {
+	text-align: center;
+	padding: 1px 2px;
+	height: 10px;
+	font-size: 5px;
+	width:12.5%;
+}
+
+th#th_date, td#td_date{
+	width:12.5%;
+}
+
+th:first-child, th:last-child, td:first-child, td:last-child {
 	border-left: none;
 	border-right: none;
 }
 
-tr.value:hover {
-	cursor: pointer;
-	background-color: #F2F5F4;
-	transition: background-color 0.2s;
+div.main_cont {
+	margin-left: 25%;
+	border: 1px solid #aaa;
+	width: 50%;
+	height: 60%;
 }
 
-th, td {
-	text-align: center;
+p#content {
+	margin:2px 2px 2px 2px;
+	font-size: 10px;
 }
-
-th#th_au, td#td_au {
-	width: 10px;
-}
-
-th#th_date, td#td_date {
-	width: 10px;
-}
-
-th#th_time, td#td_time {
-	width: 10px;
-}
-
-th#th_title, th#td_title {
-	width: 100px;
-}
-
-th#th_no, td#td_no {
-	width: 10px;
-}
-
-th#th_avo, td#td_avo {
-	width: 10px;
-}
-a{
-	text-decoration: none;
+p#ex_image{
 	
+	margin: 2px 2px 2px 2px;
 }
-a:hover{
-	cursor: pointer;
-}
-/* 버튼 */
+
+
+
 button {
-	padding: 7px 12px;
+	padding: 5px 10px;
 	background-color: rgb(3, 102, 53);
 	color: white;
 	border: none;
 	border-radius: 5px;
 	font-size: 15px;
 	transition: background-color 0.3s;
-	margin-bottom: 5px
+	margin-bottom: 5px;
+	margin-top: 2px;
 }
 
 button:hover {
-	padding: 7px 12px;
+	padding: 5px 10px;
 	background-color: rgb(68, 32, 32);
 	color: white;
 	border: none;
 	border-radius: 5px;
 	font-size: 15px;
 	transition: background-color 0.3s;
+	cursor: pointer;
 	box-shadow: 1px 1px 1px gray;
-	margin-bottom: 5px;
+	margin-bottom: 5px
+}
+
+button#list {
+	font-size: 12px;
+	margin-left: 25%;
+}
+
+button#like {
+	font-size: 12px;
+	margin-left: 42.3%;
+}
+div.view_cont{
+	height:85%; 
+	position: relative;
 	
 }
-
-button#write {
-	margin-left: 80%;
-	margin-top: 5px;
-	font-size: 12px;
-}
-
-button#sear_click {
-	font-size: 12px;
-	margin-left: 8px;
-	margin-top: 5px; 
-}
-div.main{
-	height:79%; 
-	position: relative;
-	padding-bottom: 20px;
-}
-div.cate_body{
-	text-align: center;
+div.btn_avo_list{
+	padding-bottom: 52px;
 }
 </style>
 <link href="${rootPath}/static/css/freeboard.css?ver=2021-06-14-005"
@@ -159,15 +128,13 @@ div.cate_body{
 					<th id="th_no">번호</th>
 					<th id="th_title">제목</th>
 					<th id="th_au">작성자</th>
-					<th id="th_date">작성일</th>
 					<th id="th_time">작성시간</th>
 				</tr>
 				<tr class="value">
-					<td id="td_no"></td>
-					<td id="td_title"><a href="freeboard/view" ></a></td>
-					<td id="td_writer"></td>
-					<td id="td_date"></td>
-					<td id="td_time"></td>
+					<td id="td_no">${nt_seq}</td>
+					<td id="td_title"><a href="freeboard/view" ></a>${nt_title}</td>
+					<td id="td_writer">${nt_user}</td>
+					<td id="td_time">${nt_user}</td>
 				</tr>
 				</c:choose>
 			</table>

@@ -25,7 +25,7 @@
 		<div class="under">
 			<input id="date" name="st_date" type="date" /> <input id="time"
 				name="st_time" type="time" />
-			<button id="save" onclick="location.href='/starbucks/freeboard'">저장</button>
+			<button id="save" onclick="location.href='/starbucks/board'">저장</button>
 		</div>
 		<!--파일 업로드-->
 		<div class="file">
