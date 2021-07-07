@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+
+	<mvc:resources mapping="/files/**"
+		location="/files/, file:///c:/bizworks/files/, Users/403/Documents/workspace/files/"></mvc:resources>
+	<bean id="macPath" class="java.lang.String">
+		<constructor-arg
+			value="/Users/aipro/Documents/workspace/files/" />
+	</bean>
+	<bean id="winPath" class="java.lang.String">
+		<constructor-arg value="c:/bizworks/files/" />
+	</bean>
+
+</beans>

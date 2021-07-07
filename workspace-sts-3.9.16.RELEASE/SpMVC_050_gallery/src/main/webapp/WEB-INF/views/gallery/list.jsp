@@ -28,7 +28,7 @@ div.ga_box:last-of-type {
 		<div>
 			<img src="${rooPath}/files/${gallery.g_image}">
 			<div>
-				<h3>${gallery.g_subject}</h3>
+				<h3><a href="${rootPath}/gallery/detail/${GALLERY.g_seq}">${gallery.g_subject}</a></h3>
 				<p>${gallery.g_content}</p>
 			</div>
 		</div>

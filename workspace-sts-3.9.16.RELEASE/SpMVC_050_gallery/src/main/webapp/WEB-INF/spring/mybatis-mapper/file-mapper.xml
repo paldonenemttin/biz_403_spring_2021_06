@@ -2,15 +2,56 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.callor.gallery.persistance.ext.FileDao">
- 
- <update id="create_table">
- create table if not exists tbl_files(
-	file_seq	bigint	auto_increment	primary key,
-	file_gseq	bigint	not null	,
-	file_origin	varchar(125)	not null	,
-	file_upname	varchar(125)	not null	
-)
+<mapper namespace="com.callor.gallery.persistance.ext.FileDao">
+	<!-- 개별적으로 한개씩 -->
+	<insert id="insert" parameterType="FileDTO">
+		insert into tbl_files(file_gseq, file_origin, file_upname)
+		values(#{file_gseq},#{file_origin},#{file_upname})
+	</insert>
+	<!--  
+	g_fseq 값이 있는 (이미 있는)데이터를 추가하려고 할때
+	PK 값이 중복되어 내부에서 unique 익셉션이 발생하는데 
+	이 익셉션을 개치하여 업데이트로 전환하는 마이에스큐엘 고유 에스큐에리 명령을
+	사용하여 Insert or update를 수행하는 방법 
+	이 문법을 사용하기 위해 file_seq데이터를 insert하도록 선행코드가 필요하다
+	-->
+	<insert id="insertOrUpdate" parameterType="FileDTO">
+		insert into tbl_files(file_seq, file_gseq, file_origin, file_upname)
+		values(#{file_seq},#{file_gseq},#{file_origin},#{file_upname})
+		on duplicate key update
+		file_gseq = #{file_gseq},
+		file_origin = #{file_origin},
+		file_upname = #{file_upname}
+	</insert>
+	<!-- List<DTO>에 담긴 데이터를 한번에 insert -->
+	<insert id="insertWithList" parameterType="FileDTO">
+		insert into tbl_files(file_gseq, file_origin, file_upname)
+		values
+		<foreach collection="filesList" item="file" separator=", ">
+			(#{file.file_gseq},#{file.file_origin},#{file.file_upname})
+		</foreach>
+		
+	</insert>
+	<!-- List<DTO>에 담긴 데이터를 insert or update 수행하기 -->
+	<insert id="insertOrUpdateWithList" parameterType="FileDTO">
+		insert into tbl_files(file_seq,file_gseq, file_origin, file_upname)
+		values
+		<foreach collection="filesList" item="file" separator=", ">
+			(#{file.file_seq},#{file.file_gseq},#{file.file_origin},#{file.file_upname})
+		</foreach>
+		as new(f_seq, f_gseq,f_origin,f_upname)
+		on duplicate key update
+		file_gseq = f_gseq,
+		file_origin = f_origin, 
+		file_upname = f_upname
+	</insert>
+	<update id="create_table">
+		create table if not exists tbl_files(
+		file_seq bigint auto_increment primary key,
+		file_gseq bigint not null ,
+		file_origin varchar(256) not null ,
+		file_upname varchar(256) not null
+		)
 
-</update>
+	</update>
 </mapper>

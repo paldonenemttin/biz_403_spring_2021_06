@@ -8,32 +8,49 @@
 		select * from tbl_gallery
 		order by g_date desc, g_time desc
 	</select>
-	<!-- 
-	insert나 update tag에서는 select key라는 내부 tag를 사용할 수 있다
-	insert나 update가 실행되기 전 후에 다른 sql문을 실행하고자 할때
-	insert를 수행한 후 (order="After")에 last_insert_id() 함수를 실행하여
-	GalleryDTO의 g_seq
-	 -->
+	<!-- insert나 update tag에서는 select key라는 내부 tag를 사용할 수 있다 insert나 update가 
+		실행되기 전 후에 다른 sql문을 실행하고자 할때 insert를 수행한 후 (order="After")에 last_insert_id() 
+		함수를 실행하여 GalleryDTO의 g_seq -->
 	<select id="findById" resultType="GalleryDTO">
 		select from tbl_gallery
-		where g_seq = #{g_seq}
+		where
+		g_seq = #{g_seq}
 		order by g_date desc, g_time desc
 	</select>
+	<select id="findByIdGalleryFiles" resultType="GalleryFilesDTO">
+		select G.g_seq as g_seq, G.g_writer AS g_writer, G.g_date as g_date,
+		G.g_time as g_time, G.g_subject as g_subject, G.g_content as
+		g_content,G.g_image as g_image,
+		F.file_seq as f_seq,F.file_origin as
+		f_origin,F.file_upname as f_upname
+		from tbl_gallery G, tbl_files F
+		where G.g_seq = #{g_seq} 
+		and G.g_seq = F.file_gseq
+	</select>
 	<insert id="insert" parameterType="GalleryDTO">
-		insert into tbl_gallery(g_writer,g_date,g_time,g_subject,g_content,g_image)
+		insert into
+		tbl_gallery(g_writer,g_date,g_time,g_subject,g_content,g_image)
 		values(#{g_writer},#{g_date},#{g_time},#{g_subject},#{g_content},#{g_image})
-	<selectKey keyProperty="g_seq" order="AFTER" resultType="Long">
-		select last_insert_id()
-	</selectKey>
+		<selectKey keyProperty="g_seq" order="AFTER"
+			resultType="Long">
+			select last_insert_id()
+		</selectKey>
 	</insert>
 	<update id="update" parameterType="GalleryDTO"></update>
 	<delete id="delete"></delete>
+	<!-- 현재 프로젝트에서 프로젝트를 Run하면 자동으로 table을 검사하여 table이 없으면 새로 생성하도록 작성 DDL 명령(CREAT, 
+		DROP, ALTER)을 수행하면 Transaction이 완전히 무시된다 Transaction 한가지의 일련의 작업(JOB)이 진행되는 
+		과정에서 다수의 table에 대해 sql(dal,create=insert ,update,delete) table에 저장된 데이터의 
+		변화가 생길때 JOB이 두 정상적으로 수행되었을땐 COMMIT을 하여 데이터 변화를 완성하고 중간에 사소한 exception이라도 
+		발생하면 모든 작업을 롤백하여 데이터 베이스의 무결성을 보장하는 한가지의 규칙이며 코드 작성 원칙 Transaction이 진행되는 
+		도중에 다른 task에서 DDL이 실행되거나 TCL(Commit, Rollback)이 실행되면 현재 task에서 실행되는 트랜잭션이 
+		무력화되는 현상이 발생한다 mybatis에서는 공식적으로 mapper와 Dao를 활용해 DDL명령을 사용하는 것을 밝히지 않는다 -->
 	<update id="create_table">
 		create table if not exists tbl_gallery(
 		g_seq bigint
 		auto_increment primary
 		key,
-		g_writer varchar(20) not null ,
+		g_writer varchar(120) not null ,
 		g_date
 		varchar(10) not null ,
 		g_time varchar(10) not null ,
@@ -41,7 +58,7 @@
 		varchar(50) not null,
 		g_content varchar(1000) not null ,
 		g_image
-		varchar(125)
+		varchar(256)
 		)
 	</update>
 

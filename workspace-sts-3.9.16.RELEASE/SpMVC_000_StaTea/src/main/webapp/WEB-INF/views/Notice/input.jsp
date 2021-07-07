@@ -7,32 +7,29 @@
 <head>
 <link href="${rootPath}/static/css/input.css?ver=2021-06-14-008"
 	rel="stylesheet" />
-
 <meta charset="UTF-8">
 <title>글 작성 페이지</title>
 </head>
 <body>
-
-
 	<h3>글 작성</h3>
-	<hr></hr>
+<form method="post">
 	<div class="input">
 		<div class="tit_con">
-			<input id="title" type="text" name="st_title" placeholder="제목을 입력하세요" />
-			<input id="user" type="text" name="st_name" placeholder="닉네임입력" />
+			<input id="title" type="text" name="bd_title" placeholder="제목을 입력하세요" />
+			<label>작성자</label><input type="hidden" name="bd_user" value="${user_id}"><p>${user_id}</p>
 			<textarea id="box" name="content" placeholder="내용을 입력하세요"></textarea>
 		</div>
 		<div class="under">
 			<input id="date" name="st_date" type="date" /> <input id="time"
 				name="st_time" type="time" />
-			<button id="save" onclick="location.href='/starbucks/board'">저장</button>
+			<button id="save" onclick="location.href='/starbucks/freeboard'">저장</button>
 		</div>
 		<!--파일 업로드-->
 		<div class="file">
 			<input id="image" multiple="multiple" type="file" name="filename" />
 		</div>
 	</div>
-
+	</form>
 </body>
 <script type="text/javascript">
 document.querySelector("#save").addEventListener("click",(e)=>{

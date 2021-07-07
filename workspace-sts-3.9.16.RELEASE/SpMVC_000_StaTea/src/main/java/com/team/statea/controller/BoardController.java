@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.team.statea.model.BoardVO;
 import com.team.statea.model.ImageVO;
@@ -22,12 +23,12 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/input", method = RequestMethod.GET)
-	public String insert() {
+	public String insert(Model model) {
 		return "board/input";
 		
 	}
 	@RequestMapping(value = "/input", method = RequestMethod.POST)
-	public String insert(LikeVO likeVO, BoardVO boardVO, ImageVO imgVO) {
+	public String insert( BoardVO boardVO, MultipartHttpServletRequest m_file) {
 		return "redirect:/board/list";
 		
 	}

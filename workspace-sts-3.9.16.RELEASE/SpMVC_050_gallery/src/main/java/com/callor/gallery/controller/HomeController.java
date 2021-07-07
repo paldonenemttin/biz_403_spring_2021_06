@@ -59,8 +59,8 @@ public class HomeController {
 		// list<MultipartFile> type의 객체에 담는다
 		// 이때 getFiles()에는 form에서 설정된 input tag의 name 값을 지정해준다
 		// 또한 input tag에는 multiple="multiple" 설정이 되어야 한다
-		List<MultipartFile> files = m_file.getFiles("m_files");
-		for (MultipartFile file : files) {
+		List<MultipartFile> mfiles = m_file.getFiles("m_files");
+		for (MultipartFile file : mfiles) {
 			log.debug("파일들 :{}", file.getName());
 		}
 		return "home";

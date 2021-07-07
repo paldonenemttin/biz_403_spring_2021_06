@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.gallery.model.FileDTO;
 import com.callor.gallery.model.GalleryDTO;
+import com.callor.gallery.model.GalleryFilesDTO;
 import com.callor.gallery.persistance.ext.FileDao;
 import com.callor.gallery.persistance.ext.GalleryDao;
 import com.callor.gallery.service.FileService;
@@ -75,11 +76,13 @@ public class GalleryServiceImplV1 implements GalleryService{
 		// 갤러리 게시판 seq값과 파일들을 묶음으로 insert하기 위한 준비 하기
 		Long g_seq = gaDTO.getG_seq();
 		
+		List<FileDTO> files = new ArrayList<FileDTO>();
+		
 		// 업로드되 ㄴ멀티파일을 서버에 업로드하고
 		// 원래 파일이름과 UUID가 첨가된  파일이름을 추출하여
 		// FileDTO에 담고 다시 List에 담아 놓는다
-		List<FileDTO> files = new ArrayList<FileDTO>();
-		for(MultipartFile file :m_file.getFiles("m_file")) {
+		List<MultipartFile> mfiles = m_file.getFiles("m_file");
+		for(MultipartFile file : mfiles) {
 			
 			String fileOriginName = file.getOriginalFilename();
 			String fileUUName = fService.fileUp(file);
@@ -88,7 +91,9 @@ public class GalleryServiceImplV1 implements GalleryService{
 			files.add(fDto);
 		}
 		
-		log.debug("이미지들 :{} ", files.toString());
+		log.debug("이미지들 :{} ", mfiles.toString());
+		
+		fDao.insertOrUpdateWithList(files);
 		
 	}
 
@@ -99,6 +104,14 @@ public class GalleryServiceImplV1 implements GalleryService{
 		List<GalleryDTO> gaList = gaDao.selectAll();
 		log.debug("갤러리 리스트 :{}",gaList.toString());
 		return gaList;
+	}
+
+	@Override
+	public List<GalleryFilesDTO> findByIdGalleryFiles(Long g_seq) {
+		// TODO Auto-generated method stub
+		
+		return gaDao.findByIdGalleryFiles(g_seq);
+		
 	}
 
 	
