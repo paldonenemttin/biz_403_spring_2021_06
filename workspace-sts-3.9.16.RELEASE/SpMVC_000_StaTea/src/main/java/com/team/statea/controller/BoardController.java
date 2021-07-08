@@ -1,5 +1,8 @@
 package com.team.statea.controller;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -24,9 +27,20 @@ public class BoardController {
 
 	@RequestMapping(value = "/input", method = RequestMethod.GET)
 	public String insert(Model model) {
+		
+		Date date = new Date(System.currentTimeMillis());
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd/hh:MM:ss");
+		
+		String datetime = sd.format(date);
+		
+		BoardVO boardVO = BoardVO.builder().bd_time(datetime).build();
+		
+		model.addAttribute("FREE", boardVO);
+		
 		return "board/input";
 		
 	}
+	
 	@RequestMapping(value = "/input", method = RequestMethod.POST)
 	public String insert( BoardVO boardVO, MultipartHttpServletRequest m_file) {
 		return "redirect:/board/list";

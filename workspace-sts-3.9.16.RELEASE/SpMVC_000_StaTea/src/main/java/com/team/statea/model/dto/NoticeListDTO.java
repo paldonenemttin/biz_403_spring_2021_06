@@ -17,7 +17,6 @@ public class NoticeListDTO {
 	private String notice_title;
 	private String notice_user;
 	private String notice_vcount;
-	private String notice_date;
 	private String notice_time;
 
 

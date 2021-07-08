@@ -27,6 +27,36 @@ public class GalleryController {
 
 	protected final GalleryService gaService;
 
+	/*
+	 * localhost:8080/rootPath/gallery/dumy로 요청할때 Request를 처리
+	 * 		http://localhost:8080/gallery/dumy
+	 * 
+	 * a tag클릭시
+	 * <a href="${rootPath}/gallery/dumy">열기</a>
+	 * 
+	 * js
+	 * location.href = "${rootPath}/gallery/dumy"
+	 */
+	@RequestMapping(value="/dumy", method = RequestMethod.GET)
+	public String dumy() {
+		
+		return "home";
+	}
+	
+	/*
+	 * <form action="${rootPath}/dumy" method="POST">
+	 * <input name="str">
+	 * <button type="submit">전송</button>
+	 * js
+	 */
+	@RequestMapping(value="/dumy", method = RequestMethod.POST)
+	public String dumy(String str) {
+		
+		return "home";
+	}
+	
+	// localhost:8080/rootPath/gallery/ 또는
+	// localhost:8080/rootPath/gallery로 요청했을때
 	@RequestMapping(value = { "/", "" }, method = RequestMethod.GET)
 	public String list(Model model) throws Exception {
 		List<GalleryDTO> gaList = gaService.selectAll();
