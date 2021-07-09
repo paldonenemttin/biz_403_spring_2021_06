@@ -23,18 +23,32 @@ h1 {
 }
 
 div.ga_box {
-	border: 1px solid black;
+	border : 1px solid black;
+	box-sizing: border-box;
 	border-radius: 5px;
 	width: 100vh;
 	height: 20vh;
 	margin: 10px 25%;
-	display: flex;
 	justify-content: center;
 }
 
 div.header {
 	background-color: gray;
-	padding: 20px;
+	height: 100px;
+}
+
+div#tit_img {
+	position: relative;
+	margin-top: 30px;
+}
+
+div#sub_con {
+	border:1px solid black;
+	display: flex;
+	position: relative;
+	width: 70%;
+	right:0;
+	flex-direction: column;
 }
 /*list end*/
 
@@ -85,12 +99,21 @@ div.content {
 div.image {
 	text-align: center;
 }
+
+div.au_date {
+	display: flex;
+	justify-content: space-around;
+	margin: 20px;
+	border: 1px solid black;
+	width: 50%;
+	margin-left: 25%;
+}
 </style>
 </head>
 <body>
 	<div class="header">
 		<h1>갤러리</h1>
-		<%@ include file="/WEB-INF/views/include/include_nav.jspf" %>
+		<%@ include file="/WEB-INF/views/include/include_nav.jspf"%>
 	</div>
 	<div class="content">
 		<c:choose>
@@ -102,8 +125,8 @@ div.image {
 				<%@ include file="/WEB-INF/views/gallery/list.jsp"%>
 				<a href="${rootPath}/gallery/input">이미지등록</a>
 			</c:when>
-			<c:when test="${BODY eq 'GA-DETAIL'}">
-				<%@ include file="/WEB-INF/views/gallery/detail.jsp"%>
+			<c:when test="${BODY eq 'GA-DETAIL-V2'}">
+				<%@ include file="/WEB-INF/views/gallery/detail2.jsp"%>
 			</c:when>
 			<c:when test="${BODY eq 'JOIN'}">
 				<%@ include file="/WEB-INF/views/member/join.jsp"%>
@@ -139,7 +162,7 @@ if(main_nav){
 			if(menu.id === "join"){
 				location.href = "${rootPath}/member/join"
 			} else if(menu.id === "login"){
-				location.href = "${rootPath}/member/login"
+				location.href = "${rootPath}/member/login/nav"
 			} else if(menu.id === "logout"){
 				location.href = "${rootPath}/member/logout"
 			} else if(menu.id === "image_create"){

@@ -19,19 +19,22 @@
 				<label>작성자</label>
 				<input
 					name="g_writer"
-					value="${CMD.g_writer}">
+					value="${CMD.g_writer}" type="hidden">
+					<p>${CMD.g_writer}</p>
 			</div>
 			<div>
 				<label>작성일자</label>
 				<input
 					name="g_date"
-					value="${CMD.g_date}">
+					value="${CMD.g_date}" type="hidden">
+					<p>${CMD.g_date}</p>
 			</div>
 			<div>
 				<label>작성시간</label>
 				<input
 					name="g_time"
-					value="${CMD.g_time}">
+					value="${CMD.g_time}" type="hidden">
+					<p>${CMD.g_time}</p>
 			</div>
 		</div>
 

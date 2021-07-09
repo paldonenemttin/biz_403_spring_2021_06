@@ -8,36 +8,42 @@
 <c:set
 	var="rootPath"
 	value="${pageContext.request.contextPath}" />
-	<style>
-		div.msg.view{
-			color:yellow;
-			background-color: red;
-			font-size: 20px;
-			padding:1rem;
-			border-radius: 20px;
-		}
-	</style>
-<form id="login_form" method="post">
-<div class="msg login error"></div>
-	<div>
-		<label>사용자 id</label>
-		<input
-			name="m_userid"
-			type="email">
+<style>
+div.msg.view {
+	color: yellow;
+	background-color: red;
+	font-size: 20px;
+	padding: 1rem;
+	border-radius: 20px;
+}
+</style>
+<form
+	id="login_form"
+	method="post">
+	<div class="msg login error"></div>
+	<div id="">
+		<div>
+			<label>사용자 id</label>
+			<input
+				name="m_userid"
+				type="email">
+		</div>
+		<div>
+			<label>비밀번호</label>
+			<input
+				name="m_password"
+				type="password">
+		</div>
 	</div>
 	<div>
-		<label>비밀번호</label>
-		<input
-			name="m_password"
-			type="password">
-	</div>
-	<div>
-		<button
-			type="button"
-			class="login">로그인</button>
-		<button
-			type="button"
-			class="join">회원가입</button>
+		<div>
+			<button
+				type="button"
+				class="login">로그인</button>
+			<button
+				type="button"
+				class="join">회원가입</button>
+		</div>
 	</div>
 </form>
 <script>
@@ -86,5 +92,10 @@ let btn_login = document.querySelector("button.login")
 	}else if(login_fail === "NEQ_PASS"){
 		msg_error.innerText = "님 비번 틀림"
 			msg_error.classList.add("view");
+	} else if(login_fail === "LOGIN_REQ"){
+		msg_error.innerText = "로그인 해야 가능한 서비스"
+		msg_error.innerHTML = "로그인 부탁"
+		
+		msg.error.classList.add("view")
 	}
 </script>

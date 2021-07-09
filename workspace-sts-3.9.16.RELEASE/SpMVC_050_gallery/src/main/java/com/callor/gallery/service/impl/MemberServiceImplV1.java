@@ -5,11 +5,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.callor.gallery.model.MemberVO;
+import com.callor.gallery.persistance.ext.FileDao;
+import com.callor.gallery.persistance.ext.GalleryDao;
 import com.callor.gallery.persistance.ext.MemberDao;
+import com.callor.gallery.service.FileService;
 import com.callor.gallery.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -22,11 +26,11 @@ public class MemberServiceImplV1 implements MemberService{
 
 	protected final MemberDao mDao;
 	
-	@Autowired
-	public int create_member_table(MemberDao dumy) {
-		Map<String, String> maps = new HashMap<String, String>();
-		return mDao.create_table(maps);
-	}
+	protected final GalleryDao gaDao;
+	protected final FileDao fDao;
+	
+	@Qualifier("fileServiceV2")
+	protected final FileService fService;
 	
 	/*
 	 * 1. 회원가입에서 최초로 가입된 멤버는 어드민이다

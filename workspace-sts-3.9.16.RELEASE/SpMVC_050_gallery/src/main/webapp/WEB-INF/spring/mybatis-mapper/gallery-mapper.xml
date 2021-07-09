@@ -17,15 +17,43 @@
 		g_seq = #{g_seq}
 		order by g_date desc, g_time desc
 	</select>
-	<select id="findByIdGalleryFiles" resultType="GalleryFilesDTO">
+	<!-- select된 결과를 DTO와 매칭하는 중간단계 RowMapper id: table select 했을때 PK지장된 값 property 
+		: DTO변수이름, column: SELECT 된 칼럼이름 AS된 칼럼이름 result: PK가 아닌 칼럼들 -->
+	<resultMap type="GalleryDTO" id="GalleryDTOResultMap">
+		<id property="g_seq" column="g_seq" />
+		<result column="g_writer" property="g_writer" />
+		<result column="g_date" property="g_date" />
+		<result column="g_time" property="g_time" />
+		<result column="g_subject" property="g_subject" />
+		<result column="g_content" property="g_content" />
+		<result column="g_image" property="g_image" />
+		<collection property="fileList" ofType="FileDTO">
+			<id property="file_seq" column="f_seq" />
+			<result property="file_origin" column="f_origin" />
+			<result property="file_upname" column="f_upname" />
+		</collection>
+	</resultMap>
+	<sql id="selectGalleryAndFiles">
 		select G.g_seq as g_seq, G.g_writer AS g_writer, G.g_date as g_date,
 		G.g_time as g_time, G.g_subject as g_subject, G.g_content as
 		g_content,G.g_image as g_image,
 		F.file_seq as f_seq,F.file_origin as
 		f_origin,F.file_upname as f_upname
-		from tbl_gallery G, tbl_files F
-		where G.g_seq = #{g_seq} 
-		and G.g_seq = F.file_gseq
+		from tbl_gallery G
+		left join tbl_files F
+		on G.g_seq = F.file_gseq
+		where G.g_seq = #{g_seq}
+	</sql>
+	<select id="findByIdGalleryFilesResultMap"
+		resultMap="GalleryDTOResultMap">
+		<include refid="selectGalleryAndFiles">
+			<property name="g_seq" value="#{g_seq}" />
+		</include>
+	</select>
+	<select id="findByIdGalleryFiles" resultType="GalleryFilesDTO">
+		<include refid="selectGalleryAndFiles">
+			<property name="g_seq" value="#{g_seq}" />
+		</include>
 	</select>
 	<insert id="insert" parameterType="GalleryDTO">
 		insert into

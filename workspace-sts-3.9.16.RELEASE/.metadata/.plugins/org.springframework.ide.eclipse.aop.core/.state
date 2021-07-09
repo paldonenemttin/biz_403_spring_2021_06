@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
-<aop-project name="SpMVC_030_score"/>
+<aop-project name="SpMVC_040_BookV2"/>
+<aop-project name="SpMVC_030_score">
+<aspect-definition advice-class-name="org.springframework.transaction.interceptor.TransactionInterceptor" advice-method-name="invoke" advice-method-parameter-types="org.aopalliance.intercept.MethodInvocation" advice-type="AROUND" aspect-end-line-number="36" aspect-name="org.springframework.transaction.interceptor.TransactionInterceptor#SpMVC_030_score#src/main/webapp/WEB-INF/spring/appServlet/mybatis-context.xml#36" aspect-start-line-number="36" factory-id="org.springframework.ide.eclipse.aop.core.javaAdvisorDefinitionElementFactory" file="/SpMVC_030_score/src/main/webapp/WEB-INF/spring/appServlet/mybatis-context.xml" pointcut-expression="(@within(org.springframework.transaction.annotation.Transactional) || @annotation(org.springframework.transaction.annotation.Transactional)) &amp;&amp; execution(* *..*(..))" proxy-target-class="false">
+<aop-reference advice-type="AROUND" bean="1:BeansModel|2:SpMVC_030_score|3:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml|7:beans:beans:8|8:studentV1:8" bean-file="/SpMVC_030_score/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" bean-start-line="8" factory-id="org.springframework.ide.eclipse.aop.core.aopReferenceElementFactory" file="/SpMVC_030_score/src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml" source="=SpMVC_030_score/C:\/bizworks\/apache-maven-3.8.1\/repository\/org\/springframework\/spring-tx\/5.2.15.RELEASE\/spring-tx-5.2.15.RELEASE.jar=/maven.pomderived=/true=/=/org.eclipse.jst.component.dependency=/\/WEB-INF\/lib=/=/maven.pomderived=/true=/=/org.eclipse.jst.component.archivename=/spring-tx-5.2.15.RELEASE.jar=/=/maven.groupId=/org.springframework=/=/maven.artifactId=/spring-tx=/=/maven.version=/5.2.15.RELEASE=/=/maven.scope=/compile=/&lt;org.springframework.transaction.interceptor(TransactionInterceptor.class[TransactionInterceptor~invoke~Lorg.aopalliance.intercept.MethodInvocation;" source-start-line="-1" target="=SpMVC_030_score/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.callor.score.service.impl{StudentServiceImplV1.java[StudentServiceImplV1~scoreInput~QScoreInputVO;" target-start-line="149"/>
+</aspect-definition>
+</aop-project>
 <aop-project name="SpMVC_000_StaTea"/>
 <aop-project name="SpMVC_050_gallery"/>
 </aop-reference-model>

@@ -110,7 +110,30 @@ public class GalleryServiceImplV1 implements GalleryService{
 	public List<GalleryFilesDTO> findByIdGalleryFiles(Long g_seq) {
 		// TODO Auto-generated method stub
 		
-		return gaDao.findByIdGalleryFiles(g_seq);
+		List<GalleryFilesDTO> fgList = gaDao.findByIdGalleryFiles(g_seq);
+		/*
+		 * dao로 부터 select를 한 후 데이터 검증 하기 ㅜ이해 사용하는 코드
+		 * gfList가 데이터가 조회되지 않아 null이 발생 할 수 있다
+		 */
+		if(fgList != null && fgList.size() > 0) {
+		log.debug(fgList.toString());
+		}else {
+			log.debug("데이터 없음");
+		}
+		return fgList;
+		
+	}
+
+	@Override
+	public GalleryDTO findByIdGallery(Long g_seq) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int delete(Long g_seq) {
+		return 0;
+		// TODO Auto-generated method stub
 		
 	}
 
