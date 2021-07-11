@@ -14,19 +14,18 @@
 <body>
 
 	<h3>자유게시판 글 작성</h3>
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 	<div class="input">
 		<div class="tit_con">
+		<input id="code" type="text" name="bd_code">
 			<input id="title" type="text" name="bd_title" placeholder="제목을 입력하세요" />
 			<input id="id" type="hidden" name="bd_user" value="${USER.user_id}">
-			<textarea id="box" name="content" placeholder="내용을 입력하세요"></textarea>
+			<input id="date" name="bd_time" value="${FREE.bd_time}"/>
+			<textarea id="box" name="bd_content" placeholder="내용을 입력하세요"></textarea>
 		</div>
 		<div class="under">
-			<input id="date" name="bd_date" value="${FREE.bd_time}"/>
-			<button id="save" onclick="location.href='/statea/board'">저장</button>
-		</div>
+			<button type="submit" id="save" onclick="location.href='/statea/board'">저장</button>
 		<!--파일 업로드-->
-		<div class="file">
 			<input id="image" multiple="multiple" type="file" name="m_file" />
 		</div>
 	</div>

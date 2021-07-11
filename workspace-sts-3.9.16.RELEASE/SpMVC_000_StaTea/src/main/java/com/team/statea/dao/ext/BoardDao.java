@@ -10,7 +10,8 @@ import com.team.statea.model.dto.BoardViewDTO;
 public interface BoardDao extends GenericDao<BoardVO, String> {
 	
 	public List<BoardListDTO> selectList();
-	public List<BoardViewDTO> selectView();
+	public BoardViewDTO selectView(String bd_code);
 	public List<BoardListDTO> findSearch();
+	public BoardViewDTO BoardDTOResultMap(String bd_code);
 
 }

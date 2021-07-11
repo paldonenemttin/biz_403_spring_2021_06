@@ -16,8 +16,8 @@ import lombok.ToString;
 public class ImageVO {
 
 	private String img_code;
-	private String img_dbcode;
-	private String img_uname;
+	private String img_cncode;
+	private String img_upname;
 	private String img_name;
 	
 }

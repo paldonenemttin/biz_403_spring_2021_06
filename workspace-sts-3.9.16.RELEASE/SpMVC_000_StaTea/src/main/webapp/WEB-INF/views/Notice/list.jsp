@@ -12,28 +12,31 @@
 	<h2>자유게시판</h2>
 	<div class="main">
 		<div class="btn_writ">
-			<button id="write" onclick="location.href='freeboard/input'"
+			<button id="write" onclick="location.href='board/input'"
 				value="글쓰기">글쓰기</button>
 		</div>
+		
 		<div class="all_table">
 			<table>
 				<tr class="table">
-					<th id="th_no">번호</th>
+					<th id="th_no">No.</th>
 					<th id="th_title">제목</th>
 					<th id="th_au">작성자</th>
 					<th id="th_avo">추천수</th>
 					<th id="th_date">작성일</th>
 					<th id="th_time">작성시간</th>
 				</tr>
+				<c:forEach items="${BOARDS}" var="board">
 				<tr class="value">
-					<td id="td_no">1</td>
-					<td id="td_title"><a href="freeboard/view">자유게시판 게시물</a></td>
-					<td id="td_au">아무개</td>
-					<td id="td_avo">111</td>
-					<td id="td_date">yyyy-mm-dd</td>
-					<td id="td_time">hh:mm:ss</td>
+					<td id="td_no">${board.bd_code}</td>
+					<td id="td_title"><a href="${rootPath}board/view${board.bd_code}">${board.bd_title}</a></td>
+					<td id="td_au">${board.bd_user}</td>
+					<td id="td_avo">${board.bd_like}</td>
+					<td id="td_date">${board.bd_time}</td>
 				</tr>
+				</c:forEach>
 			</table>
+			
 		</div>
 		<div class="ser_title">
 			<i class="fas fa-search"></i> <input id="search" type="text"

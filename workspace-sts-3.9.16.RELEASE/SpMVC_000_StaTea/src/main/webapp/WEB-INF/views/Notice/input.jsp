@@ -39,10 +39,6 @@
 			</div>
 			<div class="under">
 				<input
-					id="date"
-					name="st_date"
-					type="date" />
-				<input
 					id="time"
 					name="st_time"
 					type="time" />

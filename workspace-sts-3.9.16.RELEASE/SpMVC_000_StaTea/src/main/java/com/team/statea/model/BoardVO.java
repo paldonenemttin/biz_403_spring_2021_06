@@ -18,6 +18,6 @@ public class BoardVO {
 	private String bd_title;
 	private String bd_content;
 	private String bd_vcount;
-	private String bd_date;
 	private String bd_time;
+	private String bd_user;
 }

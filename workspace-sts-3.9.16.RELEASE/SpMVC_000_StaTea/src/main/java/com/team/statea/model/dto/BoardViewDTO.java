@@ -1,5 +1,9 @@
 package com.team.statea.model.dto;
 
+import java.util.List;
+
+import com.team.statea.model.ImageVO;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,5 +25,6 @@ public class BoardViewDTO {
 	private String bd_img;
 	private String bd_time;
 	private int bd_vcount;
-
+	
+	List<ImageVO> imgList;
 }

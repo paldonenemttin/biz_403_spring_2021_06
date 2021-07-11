@@ -12,7 +12,7 @@
 	<h2>자유게시판</h2>
 	<div class="main">
 		<div class="btn_writ">
-			<button id="write" onclick="location.href='freeboard/input'"
+			<button id="write" onclick="location.href='board/input'"
 				value="글쓰기">글쓰기</button>
 		</div>
 		<div class="all_table">
@@ -27,10 +27,9 @@
 				</tr>
 				<tr class="value">
 					<td id="td_no">1</td>
-					<td id="td_title"><a href="freeboard/view">자유게시판 게시물</a></td>
+					<td id="td_title"><a href="board/view">자유게시판 게시물</a></td>
 					<td id="td_au">아무개</td>
 					<td id="td_avo">111</td>
-					<td id="td_date">yyyy-mm-dd</td>
 					<td id="td_time">hh:mm:ss</td>
 				</tr>
 			</table>
