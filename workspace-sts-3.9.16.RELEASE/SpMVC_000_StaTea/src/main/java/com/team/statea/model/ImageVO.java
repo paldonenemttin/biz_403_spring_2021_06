@@ -15,9 +15,9 @@ import lombok.ToString;
 @AllArgsConstructor
 public class ImageVO {
 
-	private String img_code;
-	private String img_cncode;
-	private String img_upname;
-	private String img_name;
+	public Long img_code;
+	public String img_cncode;
+	public String img_upname;
+	public String img_origin;
 	
 }

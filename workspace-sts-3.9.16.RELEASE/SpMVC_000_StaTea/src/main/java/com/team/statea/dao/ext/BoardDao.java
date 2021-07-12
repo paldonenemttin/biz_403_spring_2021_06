@@ -12,6 +12,6 @@ public interface BoardDao extends GenericDao<BoardVO, String> {
 	public List<BoardListDTO> selectList();
 	public BoardViewDTO selectView(String bd_code);
 	public List<BoardListDTO> findSearch();
-	public BoardViewDTO BoardDTOResultMap(String bd_code);
+	public BoardViewDTO selectBoardView(String bd_code);
 
 }

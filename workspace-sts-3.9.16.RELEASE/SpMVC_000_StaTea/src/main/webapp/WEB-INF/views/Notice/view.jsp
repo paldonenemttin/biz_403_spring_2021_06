@@ -14,7 +14,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link
-	href="${rootPath}/static/css/freeview.css?ver=2021-06-15-004"
+	href="${rootPath}/static/css/freeview.css?ver=2021-07-12-001"
 	rel="stylesheet" />
 </head>
 <body>

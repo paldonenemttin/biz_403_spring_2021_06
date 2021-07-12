@@ -19,10 +19,9 @@ public class BoardViewDTO {
 	
 	private String bd_code;
 	private String bd_title;
-	private String bd_writer;
+	private String bd_user;
 	private String bd_content;
-	private int like_count;
-	private String bd_img;
+	private int bd_like;
 	private String bd_time;
 	private int bd_vcount;
 	

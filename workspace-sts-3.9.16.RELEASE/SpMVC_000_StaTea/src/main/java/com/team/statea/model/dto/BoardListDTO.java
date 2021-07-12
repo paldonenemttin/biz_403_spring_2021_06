@@ -13,12 +13,12 @@ import lombok.ToString;
 @ToString
 public class BoardListDTO {
 	
-	private String board_code;
-	private String board_content;
-	private String board_user;
-	private int like_count;
-	private String board_vcount;
-	private String board_date;
-	private String board_time;
+	private String bd_code;
+	private String bd_title;
+	private String bd_content;
+	private String bd_user;
+	private int bd_like;
+	private String bd_vcount;
+	private String bd_time;
 
 }

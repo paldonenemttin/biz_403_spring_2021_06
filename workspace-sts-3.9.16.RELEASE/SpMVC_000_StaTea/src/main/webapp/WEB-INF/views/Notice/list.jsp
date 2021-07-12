@@ -9,7 +9,7 @@
 <script src="https://kit.fontawesome.com/7f8ef4d19e.js"
 	crossorigin="anonymous"></script>
 <body>
-	<h2>자유게시판</h2>
+	<h2>공지사항</h2>
 	<div class="main">
 		<div class="btn_writ">
 			<button id="write" onclick="location.href='board/input'"

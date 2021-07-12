@@ -31,8 +31,8 @@ public class BoardController {
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(HttpSession httpSession, Model model) {
-		List<BoardListDTO> blList = bdService.selectList();
-		model.addAttribute("BOARDS", blList);// 나중에 impl 추가
+		List<BoardListDTO> liList = bdService.selectList();
+		model.addAttribute("BOARDS", liList);
 		return "board/list";
 	}
 
@@ -71,6 +71,7 @@ public class BoardController {
 		}
 		
 		BoardViewDTO boardviewDTO = bdService.selectView(bd_code);
+		model.addAttribute("BVIEWS",boardviewDTO);
 		return "board/view";
 		
 	}

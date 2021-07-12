@@ -17,4 +17,5 @@ public interface BoardService {
 	public void insert(BoardVO boardVO, MultipartHttpServletRequest m_file) throws Exception;
 	public int update(BoardVO boardVO);
 	public int delete(String bd_seq);
+	public int vcount(int bd_vcount);
 }

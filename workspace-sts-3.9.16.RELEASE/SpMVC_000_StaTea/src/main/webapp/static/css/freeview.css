@@ -1,0 +1,102 @@
+@charset "UTF-8";
+*{
+	box-sizing: border-box;
+}
+html,body{
+	height: 100%;
+}
+p#title {
+	font-size: 20px;
+	margin-left: 25%;
+	padding-bottom: 15px;
+}
+
+div.view {
+	margin: auto;
+}
+
+table {
+	margin-left: 25%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	height: 10px;
+	width: 50%;
+}
+
+td, th {
+	text-align: center;
+	padding: 1px 2px;
+	height: 10px;
+	font-size: 5px;
+	width:12.5%;
+}
+
+th#th_date, td#td_date{
+	width:12.5%;
+}
+
+th:first-child, th:last-child, td:first-child, td:last-child {
+	border-left: none;
+	border-right: none;
+}
+
+div.main_cont {
+	margin-left: 25%;
+	border: 1px solid #aaa;
+	width: 50%;
+	height: 60%;
+}
+
+p#content {
+	margin:2px 2px 2px 2px;
+	font-size: 10px;
+}
+p#ex_image{
+	
+	margin: 2px 2px 2px 2px;
+}
+
+
+
+button {
+	padding: 5px 10px;
+	background-color: rgb(3, 102, 53);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 15px;
+	transition: background-color 0.3s;
+	margin-bottom: 5px;
+	margin-top: 2px;
+}
+
+button:hover {
+	padding: 5px 10px;
+	background-color: rgb(68, 32, 32);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 15px;
+	transition: background-color 0.3s;
+	cursor: pointer;
+	box-shadow: 1px 1px 1px gray;
+	margin-bottom: 5px
+}
+
+button#list {
+	font-size: 12px;
+	margin-left: 25%;
+}
+
+button#like {
+	font-size: 12px;
+	margin-left: 42.3%;
+}
+div.view_cont{
+	height:85%; 
+	position: relative;
+	
+}
+div.btn_avo_list{
+	padding-bottom: 52px;
+}

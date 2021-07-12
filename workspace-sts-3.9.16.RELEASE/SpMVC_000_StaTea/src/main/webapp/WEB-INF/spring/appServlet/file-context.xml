@@ -5,14 +5,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
-	<mvc:resources mapping="/files/**"
-		location="/files/, file:///c:/bizworks/files/, Users/403/Documents/workspace/files/"></mvc:resources>
+	<mvc:resources mapping="board/view/statea/**"
+		location="/statea/, file:///c:/bizworks/statea/, Users/403/Documents/workspace/statea/"></mvc:resources>
 	<bean id="macPath" class="java.lang.String">
 		<constructor-arg
-			value="/Users/aipro/Documents/workspace/files/" />
+			value="/Users/aipro/Documents/workspace/statea/" />
 	</bean>
 	<bean id="winPath" class="java.lang.String">
-		<constructor-arg value="c:/bizworks/files/" />
+		<constructor-arg value="c:/bizworks/statea/" />
 	</bean>
 
 </beans>

@@ -55,7 +55,7 @@ public class BoardServiceImplV1 implements BoardService{
 			String imgOriginName = file.getOriginalFilename();
 			String fileUUName = imgService.fileUp(file);
 			
-			ImageVO imgVO = ImageVO.builder().img_cncode(bd_code).img_name(imgOriginName).img_upname(fileUUName).build();
+			ImageVO imgVO = ImageVO.builder().img_cncode(bd_code).img_origin(imgOriginName).img_upname(fileUUName).build();
 			images.add(imgVO);
 		}
 		imgDao.insertOrUpdateList(images);
@@ -77,8 +77,15 @@ public class BoardServiceImplV1 implements BoardService{
 	@Override
 	public BoardViewDTO selectView(String bd_code) {
 		// TODO Auto-generated method stub
-		BoardViewDTO view = bdDao.BoardDTOResultMap(bd_code);
+		BoardViewDTO view = bdDao.selectBoardView(bd_code);
 		return view;
+	}
+
+
+	@Override
+	public int vcount(int bd_vcount) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	
