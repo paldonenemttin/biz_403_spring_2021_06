@@ -65,7 +65,11 @@
 		</selectKey>
 	</insert>
 	<update id="update" parameterType="GalleryDTO"></update>
-	<delete id="delete"></delete>
+	<delete id="delete">
+	delete from tbl_gallery
+	where g_seq = #{g_seq}
+	
+	</delete>
 	<!-- 현재 프로젝트에서 프로젝트를 Run하면 자동으로 table을 검사하여 table이 없으면 새로 생성하도록 작성 DDL 명령(CREAT, 
 		DROP, ALTER)을 수행하면 Transaction이 완전히 무시된다 Transaction 한가지의 일련의 작업(JOB)이 진행되는 
 		과정에서 다수의 table에 대해 sql(dal,create=insert ,update,delete) table에 저장된 데이터의 

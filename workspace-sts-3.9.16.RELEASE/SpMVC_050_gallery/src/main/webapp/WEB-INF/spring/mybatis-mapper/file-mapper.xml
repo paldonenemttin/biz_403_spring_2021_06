@@ -50,8 +50,15 @@
 		file_seq bigint auto_increment primary key,
 		file_gseq bigint not null ,
 		file_origin varchar(256) not null ,
-		file_upname varchar(256) not null
+		file_upname varchar(256) not null,
+		constraint foreign key (file_seq)
+		references tbl_gallery(g_seq)
+		on delete cascade
 		)
 
 	</update>
+	<delete id="delete">
+		delete from tbl_files
+		where file_seq = #{file_seq}
+	</delete>
 </mapper>

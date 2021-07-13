@@ -51,7 +51,5 @@ public class NoticeController {
 	}
 	
 	
-	public String update() {
-		return "notice/update";
-	}
+	
 }

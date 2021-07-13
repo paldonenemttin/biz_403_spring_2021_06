@@ -76,9 +76,9 @@
 		#{bd_user}, #{bd_time})
 	</insert>
 
-	<delete id="delete">
+	<delete id="delete" >
 		delete from tbl_board
-		where bd_code = ?
+		where bd_code = #{bd_code}
 	</delete>
 
 	<update id="update" parameterType="BoardVO">
@@ -88,6 +88,12 @@
 		where
 		bd_code =
 		#{bd_code}
+	</update>
+	
+	<update id="viewCount" parameterType="BoardVO">
+	update tbl_board set
+	bd_vcount = bd_vcount + 1
+	where bd_code = #{bd_code}
 	</update>
 
 </mapper>

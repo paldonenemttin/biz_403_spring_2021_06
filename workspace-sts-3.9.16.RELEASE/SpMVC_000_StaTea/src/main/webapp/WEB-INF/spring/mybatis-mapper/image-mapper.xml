@@ -22,7 +22,6 @@
 	</delete>
 	<update id="update" parameterType="ImageVO">
 		update tbl_image set
-		img_src = #{img_src},
 		img_name = #{img_name}
 		WHERE img_cncode = #{img_cncode}
 	</update>

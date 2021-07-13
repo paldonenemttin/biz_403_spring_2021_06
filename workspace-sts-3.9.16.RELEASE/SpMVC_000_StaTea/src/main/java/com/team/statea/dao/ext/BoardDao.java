@@ -13,5 +13,6 @@ public interface BoardDao extends GenericDao<BoardVO, String> {
 	public BoardViewDTO selectView(String bd_code);
 	public List<BoardListDTO> findSearch();
 	public BoardViewDTO selectBoardView(String bd_code);
+	public int viewCount(String bd_code);
 
 }

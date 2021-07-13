@@ -70,8 +70,13 @@
     document.querySelector("#like").addEventListener("click",(e)=>{
             alert("해당 게시물을 추천했습니다.");
         });
-        document.querySelector("#list").addEventListener("click",(e)=>{
-            alert("목록으로 돌아갑니다.");
-        });
+        
+    document.querySelector("#delete").addEventListener("click",(e)=>{
+    	if(confirm("해당 게시물을 삭제합니다")){
+    		location.replace("${rootPath}/board/delete?bd_code=${BVIEWS.bd_code}")
+    	}
+    })
+        
+        
   </script>
 </html>

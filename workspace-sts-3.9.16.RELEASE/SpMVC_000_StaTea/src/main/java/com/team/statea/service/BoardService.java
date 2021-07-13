@@ -15,7 +15,7 @@ public interface BoardService {
 	public BoardViewDTO selectView(String bd_code);
 	public List<BoardListDTO> searchList();
 	public void insert(BoardVO boardVO, MultipartHttpServletRequest m_file) throws Exception;
-	public int update(BoardVO boardVO);
-	public int delete(String bd_seq);
-	public int vcount(int bd_vcount);
+	public int delete(String bd_code);
+	public int viewCount(String bd_code);
+	public void update(BoardVO boardVO, MultipartHttpServletRequest m_file);
 }

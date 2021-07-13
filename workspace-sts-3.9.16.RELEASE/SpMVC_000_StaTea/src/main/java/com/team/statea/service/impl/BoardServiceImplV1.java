@@ -20,14 +20,14 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service("boardV1")
-public class BoardServiceImplV1 implements BoardService{
+public class BoardServiceImplV1 implements BoardService {
 
 	protected final BoardDao bdDao;
-	
+
 	protected final ImageDao imgDao;
-	
+
 	protected final ImageService imgService;
-	
+
 	@Override
 	public List<BoardListDTO> selectList() {
 		// TODO Auto-generated method stub
@@ -35,7 +35,6 @@ public class BoardServiceImplV1 implements BoardService{
 		return liList;
 	}
 
-	
 	@Override
 	public List<BoardListDTO> searchList() {
 		// TODO Auto-generated method stub
@@ -49,30 +48,25 @@ public class BoardServiceImplV1 implements BoardService{
 		bdDao.insert(boardVO);
 		String bd_code = boardVO.getBd_code();
 		List<ImageVO> images = new ArrayList<ImageVO>();
-		
+
 		List<MultipartFile> mfiles = m_file.getFiles("m_file");
-		for(MultipartFile file : mfiles) {
+		for (MultipartFile file : mfiles) {
 			String imgOriginName = file.getOriginalFilename();
 			String fileUUName = imgService.fileUp(file);
-			
-			ImageVO imgVO = ImageVO.builder().img_cncode(bd_code).img_origin(imgOriginName).img_upname(fileUUName).build();
+
+			ImageVO imgVO = ImageVO.builder().img_cncode(bd_code).img_origin(imgOriginName).img_upname(fileUUName)
+					.build();
 			images.add(imgVO);
 		}
 		imgDao.insertOrUpdateList(images);
 	}
 
 	@Override
-	public int update(BoardVO boardVO) {
+	public int delete(String bd_code) {
 		// TODO Auto-generated method stub
-		return 0;
+		
+		return bdDao.delete(bd_code);
 	}
-
-	@Override
-	public int delete(String bd_seq) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 
 	@Override
 	public BoardViewDTO selectView(String bd_code) {
@@ -81,13 +75,17 @@ public class BoardServiceImplV1 implements BoardService{
 		return view;
 	}
 
-
 	@Override
-	public int vcount(int bd_vcount) {
+	public int viewCount(String bd_code) {
 		// TODO Auto-generated method stub
-		return 0;
+
+		return bdDao.viewCount(bd_code);
 	}
 
-	
+	@Override
+	public void update(BoardVO boardVO, MultipartHttpServletRequest m_file) {
+		// TODO Auto-generated method stub
+
+	}
 
 }
