@@ -76,6 +76,11 @@
     		location.replace("${rootPath}/board/delete?bd_code=${BVIEWS.bd_code}")
     	}
     })
+    document.querySelector("#update").addEventListener("click",(e)=>{
+    	location.href= "${rootPath}/board/update/"
+    })
+    
+    
         
         
   </script>

@@ -22,11 +22,16 @@ import com.callor.gallery.service.GalleryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/*
+ * fainlë¡œ ì„ ì–¸ëœ inject ë³€ìˆ˜ì˜ ì´ˆê¸°í™”ë¥¼ í•˜ëŠ”ë° í•„ìš”í•œ
+ * ìƒì„±ìë¥¼ ìë™ìœ¼ë¡œ ë§Œë“¤ì–´ì£¼ëŠ” lombokì˜ ê¸°ëŠ¥ì´ë‹¤
+ * 
+ * í´ë˜ìŠ¤ë¥¼ ìƒì†í•˜ë©´ @RequiredArgsConstructorëŠ” ìƒì† ë°›ì€ í´ë˜ìŠ¤ì—ì„œ ì‚¬ìš© ë¶ˆê°€ 
+ */
 @RequiredArgsConstructor
 @Slf4j
 @Service("galleryServiceV1")
 public class GalleryServiceImplV1 implements GalleryService{
-
 	protected final GalleryDao gaDao;
 	protected final FileDao fDao;
 	
@@ -34,13 +39,14 @@ public class GalleryServiceImplV1 implements GalleryService{
 	protected final FileService fService;
 	
 	/*
-	 * @Autowired°¡ ¼³Á¤µÈ º¯¼ö, method, °´Ã¼µîÀ» ¸¸³ª¸é
-	 * ½ºÇÁ¸µ ÇÁ·¹ÀÓ¿öÅ©´Â º¯¼ö¸¦ ÃÊ±âÈ­ method¸¦ ½ÇÇàÇÏ¿© ¶Ç º¯¼ö ÃÊ±âÈ­
-	 * ÀÌ¹Ì »ı¼ºµÇ¾î ÁØºñµÈ °´Ã¼¿¡ ÁÖÀÔµîÀ» ¼öÇàÇÑ´Ù
+	 * @Autowiredê°€ ì„¤ì •ëœ ë³€ìˆ˜, method, ê°ì²´ ë“±ì„ ë§Œë‚˜ë©´
+	 * Spring frameworkëŠ” ë³€ìˆ˜ë¥¼ ì´ˆê¸°í™”, 
+	 * 		methodë¥¼ ì‹¤í–‰í•˜ì—¬ ë˜ ë³€ìˆ˜ ì´ˆê¸°í™”
+	 * 		ì´ë¯¸ ìƒì„±ë˜ì–´ ì¤€ë¹„ëœ ê°ì²´ì— ì£¼ì…ë“±ì„ ìˆ˜í–‰í•œë‹¤
 	 */
 	@Autowired
 	public void create_table(GalleryDao gDao) {
-		Map<String, String> maps = new HashMap<String, String>();
+		Map<String,String> maps = new HashMap<String,String>();
 		gaDao.create_table(maps);
 		fDao.create_table(maps);
 	}
@@ -48,50 +54,57 @@ public class GalleryServiceImplV1 implements GalleryService{
 	@Override
 	public int insert(GalleryDTO galleryDTO) throws Exception {
 		// TODO Auto-generated method stub
-		
-		
 		return 0;
 	}
 
 	@Override
-	public void input(GalleryDTO gaDTO, MultipartFile one_file, MultipartHttpServletRequest m_file) throws Exception {
+	public void input(GalleryDTO gaDTO, 
+				MultipartFile one_file, 
+				MultipartHttpServletRequest m_file) throws Exception {
 		// TODO Auto-generated method stub
 		
-		// ´ëÇ¥ÀÌ¹ÌÁö°¡ ¾÷·Îµå µÇ¸é
-		// ÀÌ¹ÌÁö¸¦ ¼­¹ö¿¡ ÀúÀåÇÏ°í ÀúÀåµÈ ÆÄÀÏÀÇ ÀÌ¸§À» return ¹Ş±â
-		String strUUID =fService.fileUp(one_file);
+		// ëŒ€í‘œì´ë¯¸ì§€ê°€ ì—…ë¡œë“œ ë˜ë©´...
+		// ì´ë¯¸ì§€ë¥¼ ì„œë²„ì— ì €ì¥í•˜ê³ 
+		// ì €ì¥ëœ íŒŒì¼ì˜ ì´ë¦„ì„ return ë°›ê¸°
+		String strUUID = fService.fileUp(one_file);
 		
-		// DTO¿¡ ÀÌ¹ÌÁö ÀÌ¸§ ÀúÀåÇÏ±â
+		// DTOì— ì´ë¯¸ì§€ ì´ë¦„ì„ ì €ì¥í•˜ê¸°
 		gaDTO.setG_image(strUUID);
 		
-		log.debug("insert Àü seq :{}", gaDTO.getG_seq());
-		//GalleryDTO¿¡ ´ã±ä µ¥ÀÌÅÍ¸¦ tbl_gallery¿¡ insertÇÏ±â
+		log.debug(" INSERT ì „ seq {}", gaDTO.getG_seq());
 		
-		//mapper¿¡¼­ insert¸¦ ¼öÇàÇÑ ÈÄ »õ·Î »ı¼ºµÈ g_seq°ªÀ»
-		// select Key ÇÏ¿© gaDTOÀÇ g_seq º¯¼ö¿¡ ´ã¾Æ³õÀº »óÅÂÀÌ´Ù
+		// GalleryDTOì— ë‹´ê¸´ ë°ì´í„°ë¥¼ tbl_gallery tableì— insert í•˜ê¸°
+		// mapperì—ì„œ insertë¥¼ ìˆ˜í–‰í•œ í›„ ìƒˆë¡œ ìƒì„±ëœ g_seqê°’ì„
+		//		selectKey í•˜ì—¬ gaDTOì˜ g_seq ë³€ìˆ˜ì— ë‹´ì•„ë†“ì€ ìƒíƒœì´ë‹¤
 		gaDao.insert(gaDTO);
 		
-		log.debug("insert ÈÄ seq :{}", gaDTO.getG_seq());
+		log.debug(" INSERT í›„ seq {}", gaDTO.getG_seq());
 		
-		// °¶·¯¸® °Ô½ÃÆÇ seq°ª°ú ÆÄÀÏµéÀ» ¹­À½À¸·Î insertÇÏ±â À§ÇÑ ÁØºñ ÇÏ±â
+		// ê°¤ëŸ¬ë¦¬ ê°œì‹œíŒseq ê°’ê³¼ íŒŒì¼ë“¤ì„ ë¬¶ìŒìœ¼ë¡œ insert í•˜ê¸° ìœ„í•œ
+		// ì¤€ë¹„í•˜ê¸°
 		Long g_seq = gaDTO.getG_seq();
 		
 		List<FileDTO> files = new ArrayList<FileDTO>();
 		
-		// ¾÷·ÎµåµÇ ¤¤¸ÖÆ¼ÆÄÀÏÀ» ¼­¹ö¿¡ ¾÷·ÎµåÇÏ°í
-		// ¿ø·¡ ÆÄÀÏÀÌ¸§°ú UUID°¡ Ã·°¡µÈ  ÆÄÀÏÀÌ¸§À» ÃßÃâÇÏ¿©
-		// FileDTO¿¡ ´ã°í ´Ù½Ã List¿¡ ´ã¾Æ ³õ´Â´Ù
-		List<MultipartFile> mfiles = m_file.getFiles("m_file");
-		for(MultipartFile file : mfiles) {
+		// ì—…ë¡œë“œëœ ë©€í‹°íŒŒì¼ì„ ì„œë²„ì— ì—…ë¡œë“œ í•˜ê³ 
+		// ì›ë˜ íŒŒì¼ì´ë¦„ê³¼ UUID ê°€ ì²¨ê°€ëœ íŒŒì¼ì´ë¦„ì„ ì¶”ì¶œí•˜ì—¬
+		// FileDTOì— ë‹´ê³ 
+		// ë‹¤ì‹œ Listì— ë‹´ì•„ ë†“ëŠ”ë‹¤
+		
+		List<MultipartFile> mFiles = m_file.getFiles("m_file");
+		for(MultipartFile file : mFiles) {
 			
 			String fileOriginName = file.getOriginalFilename();
 			String fileUUName = fService.fileUp(file);
 			
-			FileDTO fDto = FileDTO.builder().file_gseq(g_seq).file_origin(fileOriginName).file_upname(fileUUName).build();
+			FileDTO fDto = FileDTO.builder()
+							.file_gseq(g_seq) // ê°¤ëŸ¬ë¦¬ ë°ì´í„°ì˜ PKê°’
+							.file_origin(fileOriginName)
+							.file_upname(fileUUName)
+							.build();
 			files.add(fDto);
 		}
-		
-		log.debug("ÀÌ¹ÌÁöµé :{} ", mfiles.toString());
+		log.debug("ì´ë¯¸ì§€ ë“¤ {}", files.toString());
 		
 		fDao.insertOrUpdateWithList(files);
 		
@@ -102,26 +115,102 @@ public class GalleryServiceImplV1 implements GalleryService{
 		// TODO Auto-generated method stub
 		
 		List<GalleryDTO> gaList = gaDao.selectAll();
-		log.debug("°¶·¯¸® ¸®½ºÆ® :{}",gaList.toString());
+		log.debug("ê°¤ëŸ¬ë¦¬ ë¦¬ìŠ¤íŠ¸ {}", gaList.toString());
 		return gaList;
+	
 	}
 
 	@Override
 	public List<GalleryFilesDTO> findByIdGalleryFiles(Long g_seq) {
+		
+		List<GalleryFilesDTO> gfList = gaDao.findByIdGalleryFiles(g_seq);
+		
+		/*
+		 * daoë¡œ ë¶€í„° selectë¥¼ í•œ í›„ ë°ì´í„° ê²€ì¦ í•˜ê¸° ìœ„í•´ ì‚¬ìš©í•˜ëŠ” ì½”ë“œ
+		 * gfListê°€ ë°ì´í„°ê°€ ì¡°íšŒë˜ì§€ ì•Šì•„ nullì´ ë°œìƒí• ìˆ˜ ìˆë‹¤
+		 */
+		if(gfList != null && gfList.size() > 0) {
+			log.debug(gfList.toString());	
+		} else {
+			log.debug("ì¡°íšŒëœ ë°ì´í„°ê°€ ì—†ìŒ");
+		}
+		
+		return gfList;
+	}
+
+	
+	@Override
+	public GalleryDTO findByIdGellery(Long g_seq) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int delete(Long g_seq) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int file_delete(Long g_seq) {
 		// TODO Auto-generated method stub
 		
-		List<GalleryFilesDTO> fgList = gaDao.findByIdGalleryFiles(g_seq);
-		/*
-		 * dao·Î ºÎÅÍ select¸¦ ÇÑ ÈÄ µ¥ÀÌÅÍ °ËÁõ ÇÏ±â ¤ÌÀÌÇØ »ç¿ëÇÏ´Â ÄÚµå
-		 * gfList°¡ µ¥ÀÌÅÍ°¡ Á¶È¸µÇÁö ¾Ê¾Æ nullÀÌ ¹ß»ı ÇÒ ¼ö ÀÖ´Ù
-		 */
-		if(fgList != null && fgList.size() > 0) {
-		log.debug(fgList.toString());
-		}else {
-			log.debug("µ¥ÀÌÅÍ ¾øÀ½");
-		}
-		return fgList;
+		// íŒŒì¼ì„ ì‚­ì œí•˜ê¸° ìœ„í•˜ì—¬ ì €ì¥ëœ íŒŒì¼ ì •ë³´ë¥¼ SELECT í•˜ê¸°
+		FileDTO fDTO = fDao.findById(g_seq);
 		
+		// ì—…ë¡œë“œë˜ì–´ ì €ì¥ëœ íŒŒì¼ì„ ì‚­ì œ
+		int ret = fService.delete(fDTO.getFile_upname());
+		
+		if( ret > 0) {
+			// tbl_files tableì—ì„œ ë°ì´í„°ë¥¼ ì‚­ì œí•˜ê¸°
+			ret = fDao.delete(g_seq);
+		}
+		return ret;
+	}
+
+	/*
+	 * pageNumë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ì•„ì„œ
+	 * selectALl í•œ ë°ì´í„°ë¥¼ ì˜ë¼ë‚´ê³ 
+	 * pageNumì— í•´ë‹¹í•˜ëŠ” list ë¶€ë¶„ë§Œ return í•˜ê¸°
+	 * 
+	 * í•œí˜ì´ì§€ì— ë³´ì—¬ì¤„ list = 10 ê°œ
+	 * 
+	 */
+	@Override
+	public List<GalleryDTO> selectAllPage(int pageNum) throws Exception {
+
+		// 1 ì „ì²´ ë°ì´í„° SELECT í•˜ê¸°
+		List<GalleryDTO> gaListAll = gaDao.selectAll();
+
+		// 2 pageNumê°€ 1ì´ë¼ë©´ listì—ì„œ 0ë²ˆì§¸ ìš”ì†Œ ~ 9ë²ˆì§¸ ìš”ì†Œê¹Œì§€ ì¶”ì¶œí•˜ê¸°
+		//   pageNumê°€ 2ë¼ë©´ listì—ì„œ 10ë²ˆì§¸ ìš”ì†Œ ~ 19ë²ˆì§¸ ìš”ì†Œê¹Œì§€ ì¶”ì¶œí•˜ê¸°
+		//   pageNumê°€ 3ë¼ë©´ listì—ì„œ 20ë²ˆì§¸ ìš”ì†Œ ~ 29ë²ˆì§¸ ìš”ì†Œê¹Œì§€ ì¶”ì¶œí•˜ê¸°
+		
+		int totalCount = gaListAll.size();
+		
+		int start = (pageNum - 1) * 10;
+		int end = pageNum * 10;
+		 if(pageNum > totalCount * 10) {
+			 end = totalCount;
+			 start = end -10;
+		 }
+		List<GalleryDTO> pageList = new ArrayList<>();
+		for(int i = start; i < end ; i++) {
+			pageList.add(gaListAll.get(i));
+		}
+		return pageList;
+	}
+
+	@Override
+	public List<GalleryDTO> findBySearchPage(int pageNum, String search) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<GalleryDTO> fineBySearchOrderPage(int pageNum, String search, String column) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -129,15 +218,5 @@ public class GalleryServiceImplV1 implements GalleryService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public int delete(Long g_seq) {
-		return 0;
-		// TODO Auto-generated method stub
-		
-	}
-
 	
-	
-
 }

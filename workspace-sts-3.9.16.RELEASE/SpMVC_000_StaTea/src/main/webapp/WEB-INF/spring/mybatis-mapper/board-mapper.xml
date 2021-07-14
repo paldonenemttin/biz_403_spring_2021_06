@@ -21,18 +21,22 @@
 	<sql id="selectBoardView">
 		SELECT
 		bd_code, bd_title,
-		bd_user, bd_content, like_hit as bd_like,
+		bd_user, bd_content, like_hit as
+		bd_like,
 		bd_vcount,
-		bd_time, img_code as i_code , img_upname as i_uname, img_origin as i_origin
+		bd_time, img_code as i_code , img_upname as i_uname,
+		img_origin as i_origin
 		FROM
 		tbl_board
 		LEFT JOIN tbl_like
 		ON
-		bd_code = like_cncode
+		bd_code =
+		like_cncode
 		LEFT JOIN tbl_image
 		ON
 		bd_code = img_cncode
-		where bd_code = #{bd_code}
+		where bd_code =
+		#{bd_code}
 	</sql>
 	<select id="selectBoardView" resultMap="BoardDTOResultMap">
 		<include refid="selectBoardView">
@@ -46,8 +50,10 @@
 		bd_user, like_hit as bd_like, bd_vcount, bd_time
 		FROM
 		tbl_board
-		LEFT JOIN tbl_like
+		LEFT JOIN
+		tbl_like
 		ON bd_code = like_cncode
+		where bd_code != 'B0000'
 		order by
 		bd_code DESC
 	</select>
@@ -66,6 +72,9 @@
 		order by board_code DESC
 	</select>
 
+	<select id="getMaxCode" resultType="String">
+		select max(bd_code) as bd_code from tbl_board
+	</select>
 	<insert id="insert" parameterType="BoardVO">
 		insert into
 		tbl_board(bd_code,
@@ -76,9 +85,10 @@
 		#{bd_user}, #{bd_time})
 	</insert>
 
-	<delete id="delete" >
+	<delete id="delete">
 		delete from tbl_board
-		where bd_code = #{bd_code}
+		where bd_code =
+		#{bd_code}
 	</delete>
 
 	<update id="update" parameterType="BoardVO">
@@ -89,11 +99,10 @@
 		bd_code =
 		#{bd_code}
 	</update>
-	
-	<update id="viewCount" parameterType="BoardVO">
-	update tbl_board set
-	bd_vcount = bd_vcount + 1
-	where bd_code = #{bd_code}
-	</update>
 
+	<update id="viewCount" parameterType="BoardVO">
+		update tbl_board set
+		bd_vcount = bd_vcount + 1
+		where bd_code = #{bd_code}
+	</update>
 </mapper>

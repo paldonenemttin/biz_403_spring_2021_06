@@ -16,10 +16,27 @@ public interface GalleryService {
 
 	public List<GalleryDTO> selectAll() throws Exception;
 
+	// 조건에 관계 없이  전체리스트를 pagination을 적용한 list로 만들기
+	// pageNum값을 매개변수로 받아서 일정할 분량으로 잘라
+	// list를 return하기
+	public List<GalleryDTO> selectAllPage(int pageNum) throws Exception;
+	
+	// 검색조건과 pageNum 값을 매개변수로 받아서 조건 검색을 수행한 후
+	// 일정 분량으로 잘라서 list를 return
+	public List<GalleryDTO> findBySearchPage(int pageNum, String search);
+	
+	// 검색소건, 정렬조건, pageNum 값 매개변수로 받아서 List return 하기
+	public List<GalleryDTO> fineBySearchOrderPage(int pageNum, String search, String column);
 	public List<GalleryFilesDTO> findByIdGalleryFiles(Long g_seq);
 	
 	public GalleryDTO findByIdGallery(Long g_seq);
 
 	public int delete(Long g_seq);
+
+	public int file_delete(Long g_seq);
+
+	GalleryDTO findByIdGellery(Long g_seq);
+	
+	
 
 }

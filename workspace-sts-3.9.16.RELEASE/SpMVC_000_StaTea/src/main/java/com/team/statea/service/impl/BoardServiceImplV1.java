@@ -83,9 +83,13 @@ public class BoardServiceImplV1 implements BoardService {
 	}
 
 	@Override
-	public void update(BoardVO boardVO, MultipartHttpServletRequest m_file) {
+	public int update(String bd_code , MultipartHttpServletRequest m_file) throws Exception {
 		// TODO Auto-generated method stub
-
+		
+		return bdDao.update(bd_code);
 	}
+
+
+	
 
 }

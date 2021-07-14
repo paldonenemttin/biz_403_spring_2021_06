@@ -18,8 +18,14 @@ import lombok.extern.slf4j.Slf4j;
 public class GalleryServiceImplV2 extends GalleryServiceImplV1{
 
 	/*
-	 * @RequiredArgsConstructor 문제로 상속받은 클래스에서
-	 * 강제로 생성자 만들어야 함
+	 * @RequiredArgsConstructor를 사용한 클래스를 상속받을땐
+	 * 상속받은 클래스에서 강제로 생성자 만들어야 함
+	 * 
+	 * 이클립스의 자동완성 기능을 사용하여 생성자를 만든
+	 * 만약 매개변수로 설정된 요소중에 interface를 상속받은 클래스가
+	 * 2개 이상일 경우  @Qualifier를 설정해야 하는데
+	 * 
+	 * 이때 각 매개변수의 요소 type앞에 작성해주면 된다
 	 * 
 	 */
 	public GalleryServiceImplV2(GalleryDao gaDao, FileDao fDao, 

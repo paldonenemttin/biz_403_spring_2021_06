@@ -34,7 +34,7 @@ div.ga_box:last-of-type {
 			<c:if test="${not empty gallery.g_image}">
 				<img
 					src="${rootPath}/files/${gallery.g_image}"
-					width="200px">
+					width="100px">
 			</c:if>
 		</div>
 		<div id="sub_con">
@@ -46,3 +46,4 @@ div.ga_box:last-of-type {
 	</div>
 
 </c:forEach>
+<%@ include file="/WEB-INF/views/include/include_page.jsp" %>

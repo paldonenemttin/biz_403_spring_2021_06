@@ -14,24 +14,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.team.statea.dao.ext.BoardDao;
 import com.team.statea.model.BoardVO;
-import com.team.statea.model.ImageVO;
-import com.team.statea.model.LikeVO;
+
 import com.team.statea.model.dto.BoardListDTO;
 import com.team.statea.model.dto.BoardViewDTO;
 import com.team.statea.service.BoardService;
 
-import jdk.internal.org.jline.utils.Log;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
+
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/board")
 public class BoardController {
 	
 	protected final BoardService bdService;
+	protected final BoardDao bdDao;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(HttpSession httpSession, Model model) {
@@ -42,13 +41,21 @@ public class BoardController {
 
 	@RequestMapping(value = "/input", method = RequestMethod.GET)
 	public String insert(Model model) {
+		BoardVO boardVO = new BoardVO();
+		
+		String bdCode = bdDao.getMaxCode();
+		String bdNum = bdCode.substring(1);
+		
+		Integer bdSeq = Integer.valueOf(bdNum) + 1;
+		
+		String newBdCode = String.format("%s%04d", "B", bdSeq);
 		
 		Date date = new Date(System.currentTimeMillis()); 
-		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd/h:MM:ss");
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd|hh:MM:ss");
 		
 		String datetime = sd.format(date);
 		
-		BoardVO boardVO = BoardVO.builder().bd_time(datetime).build();
+		boardVO = BoardVO.builder().bd_time(datetime).bd_code(newBdCode).build();
 		model.addAttribute("FREE", boardVO);
 		
 		return "board/input";
@@ -88,7 +95,9 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-//	public String update() {
-//		return "
-//	}
+	@RequestMapping(value="/update", method = RequestMethod.GET)
+	public String update(@RequestParam("bd_code") String bd_code, MultipartHttpServletRequest m_file) throws Exception {
+		bdService.update(bd_code, m_file);
+		return "board/input";
+	}
 }

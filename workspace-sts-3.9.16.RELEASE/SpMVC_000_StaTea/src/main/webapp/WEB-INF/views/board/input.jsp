@@ -17,7 +17,7 @@
 <form method="POST" enctype="multipart/form-data">
 	<div class="input">
 		<div class="tit_con">
-		<input id="code" type="text" name="bd_code">
+		<input id="code" type="text" name="bd_code" value="${FREE.bd_code}">
 			<input id="title" type="text" name="bd_title" placeholder="제목을 입력하세요" />
 			<input id="id" type="hidden" name="bd_user" value="${USER.user_id}">
 			<input id="date" type="hidden" name="bd_time" value="${FREE.bd_time}"/><p>${FREE.bd_time}</p>

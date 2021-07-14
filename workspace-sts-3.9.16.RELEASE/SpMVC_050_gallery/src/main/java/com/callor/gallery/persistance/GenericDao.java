@@ -7,6 +7,7 @@ public interface GenericDao<VO,PK> {
 	
 	public List<VO> selectAll();
 	
+	// 매개변수 하나만 있을 시 변수 명은 상관 없음
 	public VO findById(PK pk);
 	
 	public int insert(VO vo);
