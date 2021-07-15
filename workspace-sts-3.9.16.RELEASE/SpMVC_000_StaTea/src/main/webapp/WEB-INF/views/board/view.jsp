@@ -55,31 +55,67 @@
 			</c:forEach>
 		</div>
 	</div>
-
+	<form>
+		<div id="like_box">
+			<p></p>
+			<input
+				type="hidden"
+				name="like_user">
+			<input
+				type="hidden"
+				name="like_cncode">
+			<button id="like">추천</button>
+		</div>
+	</form>
 	<div class="btn_avo_list">
 		<button
 			id="list"
 			onclick="location.href='/statea/board/list'">목록으로</button>
-		<button id="like">추천</button>
 		<button id="update">수정</button>
 		<button id="delete">삭제</button>
+		<!--
+		회원 기능 생길시 사용할 코드 
+		<c:if test="${USER.user_id == USER.user_id}">
+			<button id="update">수정</button>
+			<button id="delete">삭제</button>
+		</c:if>
+		 -->
 	</div>
 
 </body>
 <script>
-    document.querySelector("#like").addEventListener("click",(e)=>{
-            alert("해당 게시물을 추천했습니다.");
-        });
-        
+      
     document.querySelector("#delete").addEventListener("click",(e)=>{
     	if(confirm("해당 게시물을 삭제합니다")){
     		location.replace("${rootPath}/board/delete?bd_code=${BVIEWS.bd_code}")
     	}
     })
+    
     document.querySelector("#update").addEventListener("click",(e)=>{
-    	location.href= "${rootPath}/board/update/"
+    	location.href= "${rootPath}/board/update/${BVIEWS.bd_code}" 
     })
     
+    document.querySelector("#like").addEventListener("click",(e)=>{
+    	let user = document.querySelector("input[name='like_user']").value
+    	let cncode = document.querySelector("input[name='like_cncode']").value
+    	
+    	fetch("${rootPath}/board/like/${BVIEW.bd_code}",{
+    		method: "POST",
+    		body: jsonString,
+    		headers : {
+    			"content-Type" : "application/json"
+    		}	
+    	})
+    	.then(response=>response.text())
+    	.then(result=>{
+    		if(result === "LIKE"){
+    			
+    		}
+    
+    	
+    		
+    	})
+    });
     
         
         

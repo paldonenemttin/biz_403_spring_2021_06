@@ -52,16 +52,21 @@ section.page_box li:actice {
 	<ul class="page_nav_main">
 		<li data-num="1">| &lt;</li>
 		<li data-num="${PAGE_NUM - 1}">&lt;</li>
+		<c:if test="${PAGE_NAV.starPage > 2}">
+			<li>......</li>
+		</c:if>
 		<c:forEach
-			begin="1"
-			end="10"
+			begin="${PAGE_NAV.startPage}"
+			end="${PAGE_NAV.endPage}"
 			var="pageNum">
 			<li
 				data-num="${pageNum}"
 				class="
-				<c:if test="${PAGE_NUM == pageNum}">active</c:if>"
-				>${pageNum}</li>
+				<c:if test="${PAGE_NUM == pageNum}">active</c:if>">${pageNum}</li>
 		</c:forEach>
+		<c:if test="${PAGE_NAV.endPage < PAGE_NAV.totalPages}">
+			<li>......</li>
+		</c:if>
 		<li data-num="${PAGE_NUM  + 1}">&gt;</li>
 	</ul>
 </section>

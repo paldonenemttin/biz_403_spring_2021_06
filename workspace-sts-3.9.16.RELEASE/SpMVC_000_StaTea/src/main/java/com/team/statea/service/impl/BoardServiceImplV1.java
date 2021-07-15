@@ -83,11 +83,43 @@ public class BoardServiceImplV1 implements BoardService {
 	}
 
 	@Override
-	public int update(String bd_code , MultipartHttpServletRequest m_file) throws Exception {
+	public void update(String bd_code , BoardVO boardVO , MultipartHttpServletRequest m_file) throws Exception {
 		// TODO Auto-generated method stub
 		
-		return bdDao.update(bd_code);
+		bdDao.update(boardVO);
+		bd_code = boardVO.getBd_code();
+		List<ImageVO> images = new ArrayList<ImageVO>();
+		List<MultipartFile> mfiles = m_file.getFiles("m_file");
+		for (MultipartFile file : mfiles) {
+			String imgOriginName = file.getOriginalFilename();
+			String fileUUName = imgService.fileUp(file);
+
+			ImageVO imgVO = ImageVO.builder().img_cncode(bd_code).img_origin(imgOriginName).img_upname(fileUUName)
+					.build();
+			images.add(imgVO);
+		}
+		imgDao.insertOrUpdateList(images);
 	}
+
+	@Override
+	public int fileDelete(Long img_code) {
+		// TODO Auto-generated method stub
+		BoardViewDTO bvDTO = new BoardViewDTO();
+		List<ImageVO> imgList = bvDTO.getImgList();
+		for(ImageVO image : imgList) {
+			// 첨부파일 삭제
+			String attFileName = image.getImg_upname();
+			int ret = gS
+			
+			// 데이터 한개씩 삭제
+			if(ret > 0) {
+				fDao.delete(file.getFile_seq());
+			}
+		}
+		return imgDao.delete(img_code);
+	}
+
+	
 
 
 	

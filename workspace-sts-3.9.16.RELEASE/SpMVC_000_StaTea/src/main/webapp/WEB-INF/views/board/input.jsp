@@ -18,15 +18,26 @@
 	<div class="input">
 		<div class="tit_con">
 		<input id="code" type="text" name="bd_code" value="${FREE.bd_code}">
-			<input id="title" type="text" name="bd_title" placeholder="제목을 입력하세요" />
+			<input id="title" type="text" name="bd_title" placeholder="제목을 입력하세요" value="${FREE.bd_title}"/>
 			<input id="id" type="hidden" name="bd_user" value="${USER.user_id}">
 			<input id="date" type="hidden" name="bd_time" value="${FREE.bd_time}"/><p>${FREE.bd_time}</p>
-			<textarea id="box" name="bd_content" placeholder="내용을 입력하세요"></textarea>
+			<textarea id="box" name="bd_content" placeholder="내용을 입력하세요">${FREE.bd_content}</textarea>
 		</div>
 		<div class="under">
 			<button id="save">저장</button>
 		<!--파일 업로드-->
 			<input id="image" multiple="multiple" type="file" name="m_file" />
+		</div>
+		<div id="img_con">
+			<c:forEach
+				items="${FREE.imgList}"
+				var="image">
+				<c:if test="${not empty image.img_upname}">
+					<img
+						src="${rootPath}/board/view/statea/${image.img_upname}"
+						height="200px">
+				</c:if>
+			</c:forEach>
 		</div>
 	</div>
 	</form>
@@ -35,5 +46,10 @@
 document.querySelector("#save").addEventListener("click",(e)=>{
     alert("데이터를 저장합니다.");
 });
+document.qeurySelector("#img_con").addEventListener("change",(e)=>{
+	let file = new FileReader();
+	file.onload = function(e)
+	img_con.src = e.target.result
+})
 </script>
 </html>

@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.team.statea.dao.ext.BoardDao;
+import com.team.statea.dao.ext.ImageDao;
 import com.team.statea.model.BoardVO;
 
 import com.team.statea.model.dto.BoardListDTO;
@@ -31,6 +33,7 @@ public class BoardController {
 	
 	protected final BoardService bdService;
 	protected final BoardDao bdDao;
+	protected final ImageDao mDao;
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(HttpSession httpSession, Model model) {
@@ -63,7 +66,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/input", method = RequestMethod.POST)
-	public String insert( BoardVO boardVO, MultipartHttpServletRequest m_file, Model model) throws Exception {
+	public String insert( BoardVO boardVO, MultipartHttpServletRequest m_file) throws Exception {
 		
 		bdService.insert(boardVO, m_file);
 		return "redirect:/board/list";
@@ -95,9 +98,47 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	@RequestMapping(value="/update", method = RequestMethod.GET)
-	public String update(@RequestParam("bd_code") String bd_code, MultipartHttpServletRequest m_file) throws Exception {
-		bdService.update(bd_code, m_file);
+	@RequestMapping(value="/update/{code}", method = RequestMethod.GET)
+	public String update(@PathVariable("code") String code, Model model, HttpSession session){ 
+			
+			String bd_code = null;
+			try {
+				bd_code = String.valueOf(code);
+			} catch (Exception e) {
+				// TODO: handle exception
+				return "redirect:/";
+			}
+			
+			BoardViewDTO boardviewDTO = bdService.selectView(bd_code);
+			model.addAttribute("FREE",boardviewDTO);
 		return "board/input";
 	}
+	
+	@RequestMapping(value="/update/{code}", method = RequestMethod.POST)
+	public String update(@PathVariable("code") String code,Long img_code,BoardVO boardVO, MultipartHttpServletRequest m_file) throws Exception {
+		
+		if(m_file == null) {
+			bdService.fileDelete(img_code);
+		}
+		bdService.update(code, boardVO, m_file);
+		return "redirect:/board/view/{code}";
+	}
+	
+//	@ResponseBody
+//	@RequestMapping(value="/file/delete/{seq}", method = RequestMethod.GET)
+//	public String file_delete(@PathVariable("code") String code) {
+//		
+//		Long img_code = 0L;
+//		
+//		try {
+//			g_seq = Long.valueOf(code);
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			return "FAIL_SEQ";
+//		}
+//		
+//		int ret = gaService.file_delete(g_seq);
+//		if(ret > 0) return "OK";
+//		else return "FAIL";
+//	}
 }

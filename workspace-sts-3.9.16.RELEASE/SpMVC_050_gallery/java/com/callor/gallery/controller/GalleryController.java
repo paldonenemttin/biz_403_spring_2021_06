@@ -65,14 +65,23 @@ public class GalleryController {
 	// localhost:8080/rootPath/gallery/ 또는
 	// localhost:8080/rootPath/gallery로 요청했을때
 	@RequestMapping(value = { "/", "" }, method = RequestMethod.GET)
-	public String list(@RequestParam(value = "pageNum",required = false, defaultValue = "1") String pageNum,Model model) throws Exception {
+	public String list(@RequestParam(value = "pageNum",required = false, defaultValue = "1") int pageNum,
+			@RequestParam(value="search_column", required = false, defaultValue = "none") String search_column,
+			@RequestParam(value="search_text", required = false, defaultValue = "none") String search_text,
+			Model model) throws Exception {
 		
 		int intPageNum = Integer.valueOf(pageNum);
-		List<GalleryDTO> gaList = gaService.selectAllPage(intPageNum);
-		//List<GalleryDTO> gaList = gaService.selectAll();
-		model.addAttribute("GALLERYS", gaList);
+		if(intPageNum > 0) {
+			model.addAttribute("PAGE_NUM",intPageNum);
+		}
+//		int intPageNum = Integer.valueOf(pageNum);
+//		List<GalleryDTO> gaList = gaService.selectAllPage(intPageNum);
+//		//List<GalleryDTO> gaList = gaService.selectAll();
+//		model.addAttribute("GALLERYS", gaList);
+//		
+		gaService.findBySearchPage(intPageNum, search_text, pageNum, model, search_column);
 		model.addAttribute("BODY", "GA-LIST");
-		return "home";
+		return "home"; 
 	}
 
 	@RequestMapping(value = "/input", method = RequestMethod.GET)

@@ -8,16 +8,19 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.callor.gallery.model.FileDTO;
 import com.callor.gallery.model.GalleryDTO;
 import com.callor.gallery.model.GalleryFilesDTO;
+import com.callor.gallery.model.PageDTO;
 import com.callor.gallery.persistance.ext.FileDao;
 import com.callor.gallery.persistance.ext.GalleryDao;
 import com.callor.gallery.service.FileService;
 import com.callor.gallery.service.GalleryService;
+import com.callor.gallery.service.PageService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,13 +34,15 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 @Service("galleryServiceV1")
-public class GalleryServiceImplV1 implements GalleryService{
+public class GalleryServiceImplV1 implements GalleryService {
 	protected final GalleryDao gaDao;
 	protected final FileDao fDao;
-	
+
 	@Qualifier("fileServiceV2")
 	protected final FileService fService;
-	
+
+	protected final PageService pService;
+
 	/*
 	 * @Autowired가 설정된 변수, method, 객체 등을 만나면
 	 * Spring framework는 변수를 초기화, 
@@ -46,11 +51,11 @@ public class GalleryServiceImplV1 implements GalleryService{
 	 */
 	@Autowired
 	public void create_table(GalleryDao gDao) {
-		Map<String,String> maps = new HashMap<String,String>();
+		Map<String, String> maps = new HashMap<String, String>();
 		gaDao.create_table(maps);
 		fDao.create_table(maps);
 	}
-	
+
 	@Override
 	public int insert(GalleryDTO galleryDTO) throws Exception {
 		// TODO Auto-generated method stub
@@ -58,87 +63,81 @@ public class GalleryServiceImplV1 implements GalleryService{
 	}
 
 	@Override
-	public void input(GalleryDTO gaDTO, 
-				MultipartFile one_file, 
-				MultipartHttpServletRequest m_file) throws Exception {
+	public void input(GalleryDTO gaDTO, MultipartFile one_file, MultipartHttpServletRequest m_file) throws Exception {
 		// TODO Auto-generated method stub
-		
+
 		// 대표이미지가 업로드 되면...
 		// 이미지를 서버에 저장하고
 		// 저장된 파일의 이름을 return 받기
 		String strUUID = fService.fileUp(one_file);
-		
+
 		// DTO에 이미지 이름을 저장하기
 		gaDTO.setG_image(strUUID);
-		
+
 		log.debug(" INSERT 전 seq {}", gaDTO.getG_seq());
-		
+
 		// GalleryDTO에 담긴 데이터를 tbl_gallery table에 insert 하기
 		// mapper에서 insert를 수행한 후 새로 생성된 g_seq값을
 		//		selectKey 하여 gaDTO의 g_seq 변수에 담아놓은 상태이다
 		gaDao.insert(gaDTO);
-		
+
 		log.debug(" INSERT 후 seq {}", gaDTO.getG_seq());
-		
+
 		// 갤러리 개시판seq 값과 파일들을 묶음으로 insert 하기 위한
 		// 준비하기
 		Long g_seq = gaDTO.getG_seq();
-		
+
 		List<FileDTO> files = new ArrayList<FileDTO>();
-		
+
 		// 업로드된 멀티파일을 서버에 업로드 하고
 		// 원래 파일이름과 UUID 가 첨가된 파일이름을 추출하여
 		// FileDTO에 담고
 		// 다시 List에 담아 놓는다
-		
+
 		List<MultipartFile> mFiles = m_file.getFiles("m_file");
-		for(MultipartFile file : mFiles) {
-			
+		for (MultipartFile file : mFiles) {
+
 			String fileOriginName = file.getOriginalFilename();
 			String fileUUName = fService.fileUp(file);
-			
-			FileDTO fDto = FileDTO.builder()
-							.file_gseq(g_seq) // 갤러리 데이터의 PK값
-							.file_origin(fileOriginName)
-							.file_upname(fileUUName)
-							.build();
+
+			FileDTO fDto = FileDTO.builder().file_gseq(g_seq) // 갤러리 데이터의 PK값
+					.file_origin(fileOriginName).file_upname(fileUUName).build();
 			files.add(fDto);
 		}
 		log.debug("이미지 들 {}", files.toString());
-		
+
 		fDao.insertOrUpdateWithList(files);
-		
+
 	}
 
 	@Override
 	public List<GalleryDTO> selectAll() throws Exception {
 		// TODO Auto-generated method stub
-		
+
 		List<GalleryDTO> gaList = gaDao.selectAll();
 		log.debug("갤러리 리스트 {}", gaList.toString());
 		return gaList;
-	
+
 	}
 
 	@Override
 	public List<GalleryFilesDTO> findByIdGalleryFiles(Long g_seq) {
-		
+
 		List<GalleryFilesDTO> gfList = gaDao.findByIdGalleryFiles(g_seq);
-		
+
 		/*
 		 * dao로 부터 select를 한 후 데이터 검증 하기 위해 사용하는 코드
 		 * gfList가 데이터가 조회되지 않아 null이 발생할수 있다
 		 */
-		if(gfList != null && gfList.size() > 0) {
-			log.debug(gfList.toString());	
+		if (gfList != null && gfList.size() > 0) {
+			log.debug(gfList.toString());
 		} else {
 			log.debug("조회된 데이터가 없음");
 		}
-		
+
 		return gfList;
 	}
 
-	
 	@Override
 	public GalleryDTO findByIdGellery(Long g_seq) {
 		// TODO Auto-generated method stub
@@ -154,14 +153,14 @@ public class GalleryServiceImplV1 implements GalleryService{
 	@Override
 	public int file_delete(Long g_seq) {
 		// TODO Auto-generated method stub
-		
+
 		// 파일을 삭제하기 위하여 저장된 파일 정보를 SELECT 하기
 		FileDTO fDTO = fDao.findById(g_seq);
-		
+
 		// 업로드되어 저장된 파일을 삭제
 		int ret = fService.delete(fDTO.getFile_upname());
-		
-		if( ret > 0) {
+
+		if (ret > 0) {
 			// tbl_files table에서 데이터를 삭제하기
 			ret = fDao.delete(g_seq);
 		}
@@ -185,26 +184,20 @@ public class GalleryServiceImplV1 implements GalleryService{
 		// 2 pageNum가 1이라면 list에서 0번째 요소 ~ 9번째 요소까지 추출하기
 		//   pageNum가 2라면 list에서 10번째 요소 ~ 19번째 요소까지 추출하기
 		//   pageNum가 3라면 list에서 20번째 요소 ~ 29번째 요소까지 추출하기
-		
+
 		int totalCount = gaListAll.size();
-		
+
 		int start = (pageNum - 1) * 10;
 		int end = pageNum * 10;
-		 if(pageNum > totalCount * 10) {
-			 end = totalCount;
-			 start = end -10;
-		 }
+		if (pageNum > totalCount * 10) {
+			end = totalCount;
+			start = end - 10;
+		}
 		List<GalleryDTO> pageList = new ArrayList<>();
-		for(int i = start; i < end ; i++) {
+		for (int i = start; i < end; i++) {
 			pageList.add(gaListAll.get(i));
 		}
 		return pageList;
-	}
-
-	@Override
-	public List<GalleryDTO> findBySearchPage(int pageNum, String search) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
@@ -218,5 +211,46 @@ public class GalleryServiceImplV1 implements GalleryService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	@Override
+	public List<GalleryDTO> selectAllPage(int intPageNum, Model model) throws Exception {
+		// TODO Auto-generated method stub
+
+		List<GalleryDTO> galleryAll = gaDao.selectAll();
+		int totalListSize = galleryAll.size();
+		
+		PageDTO pageDTO = pService.makePageation(totalListSize, intPageNum);
+		
+		List<GalleryDTO> pageList = new ArrayList<>();
+		
+		for(int i = pageDTO.getOffset() ; i < pageDTO.getLimit(); i++) {
+			pageList.add(galleryAll.get(i));
+		}
+
+		model.addAttribute("PAGE_NAV",pageDTO);
+		model.addAttribute("GALLERYS",pageList);
+		return null;
+	}
+
+	@Override
+	public List<GalleryDTO> findBySearchPage(int intPageNum, String search_column, int pageNum, Model model,
+			String search_text) {
+		// TODO Auto-generated method stub
+
+		List<GalleryDTO> galleryList = gaDao.findBySearch(search_text, search_column);
+
+		int totalListSize = galleryList.size();
+		PageDTO pageDTO = pService.makePageation(totalListSize, pageNum);
+		
+		List<GalleryDTO> pageList = new ArrayList<>();
+		if(pageDTO == null) {
+			
+		}
+		for(int i = pageDTO.getOffset(); i < pageDTO.getLimit(); i ++) {
+			pageList.add(galleryList.get(i));
+		}
+		model.addAttribute("GALLERYS", galleryList);
+		return null;
+	}
+
 }
