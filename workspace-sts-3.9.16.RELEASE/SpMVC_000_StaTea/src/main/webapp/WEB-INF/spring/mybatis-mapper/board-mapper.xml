@@ -11,7 +11,6 @@
 		<result column="bd_content" property="bd_content" />
 		<result column="bd_time" property="bd_time" />
 		<result column="bd_vcount" property="bd_vcount" />
-		<result column="like_hit" property="bd_like" />
 		<collection property="imgList" ofType="ImageVO">
 			<id property="img_code" column="i_code" />
 			<result property="img_origin" column="i_origin" />
@@ -21,8 +20,7 @@
 	<sql id="selectBoardView">
 		SELECT
 		bd_code, bd_title,
-		bd_user, bd_content, like_hit as
-		bd_like,
+		bd_user, bd_content,
 		bd_vcount,
 		bd_time, img_code as i_code , img_upname as i_uname,
 		img_origin as i_origin
@@ -47,12 +45,9 @@
 	<select id="selectList" resultType="BoardListDTO">
 		SELECT
 		bd_code, bd_title,
-		bd_user, like_hit as bd_like, bd_vcount, bd_time
+		bd_user, bd_vcount, bd_time
 		FROM
 		tbl_board
-		LEFT JOIN
-		tbl_like
-		ON bd_code = like_cncode
 		where bd_code != 'B0000'
 		order by
 		bd_code DESC

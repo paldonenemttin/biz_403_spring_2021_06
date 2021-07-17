@@ -29,13 +29,11 @@
 			</tr>
 			<tr>
 				<th id="th_author">작성자</th>
-				<th id="th_avo">추천수</th>
 				<th id="th_date">조회수</th>
 				<th id="th_time">작성시간</th>
 			</tr>
 			<tr>
 				<td id="td_author">${BVIEWS.bd_user}</td>
-				<td id="td_avo">${BVIEWS.bd_like}</td>
 				<td id="td_date">${BVIEWS.bd_vcount}</td>
 				<td id="td_time">${BVIEWS.bd_time}</td>
 			</tr>
@@ -55,18 +53,7 @@
 			</c:forEach>
 		</div>
 	</div>
-	<form>
-		<div id="like_box">
-			<p></p>
-			<input
-				type="hidden"
-				name="like_user">
-			<input
-				type="hidden"
-				name="like_cncode">
-			<button id="like">추천</button>
-		</div>
-	</form>
+	
 	<div class="btn_avo_list">
 		<button
 			id="list"
@@ -95,29 +82,6 @@
     	location.href= "${rootPath}/board/update/${BVIEWS.bd_code}" 
     })
     
-    document.querySelector("#like").addEventListener("click",(e)=>{
-    	let user = document.querySelector("input[name='like_user']").value
-    	let cncode = document.querySelector("input[name='like_cncode']").value
-    	
-    	fetch("${rootPath}/board/like/${BVIEW.bd_code}",{
-    		method: "POST",
-    		body: jsonString,
-    		headers : {
-    			"content-Type" : "application/json"
-    		}	
-    	})
-    	.then(response=>response.text())
-    	.then(result=>{
-    		if(result === "LIKE"){
-    			
-    		}
-    
-    	
-    		
-    	})
-    });
-    
-        
         
   </script>
 </html>

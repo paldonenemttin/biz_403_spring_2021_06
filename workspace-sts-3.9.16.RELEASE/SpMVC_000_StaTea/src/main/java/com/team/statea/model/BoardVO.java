@@ -1,5 +1,7 @@
 package com.team.statea.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,4 +22,6 @@ public class BoardVO {
 	private String bd_vcount;
 	private String bd_time;
 	private String bd_user;
+	
+	List<ImageVO> imgList;
 }

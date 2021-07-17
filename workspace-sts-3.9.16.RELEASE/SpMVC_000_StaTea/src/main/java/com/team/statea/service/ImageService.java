@@ -11,4 +11,6 @@ public interface ImageService {
 	
 	public List<String> filesUp(MultipartHttpServletRequest files) throws Exception;
 
+	public int delete(String fileName);
+
 }

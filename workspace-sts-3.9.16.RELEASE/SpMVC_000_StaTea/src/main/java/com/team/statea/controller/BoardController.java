@@ -117,28 +117,29 @@ public class BoardController {
 	@RequestMapping(value="/update/{code}", method = RequestMethod.POST)
 	public String update(@PathVariable("code") String code,Long img_code,BoardVO boardVO, MultipartHttpServletRequest m_file) throws Exception {
 		
-		if(m_file == null) {
-			bdService.fileDelete(img_code);
-		}
+		
 		bdService.update(code, boardVO, m_file);
 		return "redirect:/board/view/{code}";
 	}
 	
-//	@ResponseBody
-//	@RequestMapping(value="/file/delete/{seq}", method = RequestMethod.GET)
-//	public String file_delete(@PathVariable("code") String code) {
-//		
-//		Long img_code = 0L;
-//		
-//		try {
-//			g_seq = Long.valueOf(code);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			return "FAIL_SEQ";
-//		}
-//		
-//		int ret = gaService.file_delete(g_seq);
-//		if(ret > 0) return "OK";
-//		else return "FAIL";
-//	}
+	@ResponseBody
+	@RequestMapping(value = "/file/delete/{code}", method = RequestMethod.GET)
+	public String filedelete(@PathVariable("code") String code) {
+
+		Long img_code = 0L;
+
+		try {
+			img_code = Long.valueOf(code);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return "FAIL_CODE";
+		}
+
+		int ret = bdService.fileDelete(img_code);
+		if (ret > 0) {
+			return "DROP";
+		} else {
+			return "FAIL";
+		}
+	}
 }

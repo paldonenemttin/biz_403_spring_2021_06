@@ -31,7 +31,6 @@
 					<th id="th_no">번호</th>
 					<th id="th_title">제목</th>
 					<th id="th_au">작성자</th>
-					<th id="th_avo">추천수</th>
 					<th id="th_vcount">조회수</th>
 					<th id="th_date">작성일</th>
 				</tr>
@@ -50,7 +49,6 @@
 								<td id="td_title"><a
 									href="${rootPath}/board/view/${board.bd_code}">${board.bd_title}</a></td>
 								<td id="td_au">${board.bd_user}</td>
-								<td id="td_avo">${board.bd_like}</td>
 								<td id="td_vcount">${board.bd_vcount}</td>
 								<td id="td_date">${board.bd_time}</td>
 							</tr>

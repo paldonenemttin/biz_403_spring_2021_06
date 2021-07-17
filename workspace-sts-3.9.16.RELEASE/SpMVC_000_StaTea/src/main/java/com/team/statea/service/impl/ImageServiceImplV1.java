@@ -15,7 +15,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.team.statea.service.ImageService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service("imageServiceV1")
 public class ImageServiceImplV1 implements ImageService {
@@ -25,6 +27,8 @@ public class ImageServiceImplV1 implements ImageService {
 	
 	protected final String winPath;
 	protected final String macPath;
+	
+	protected String imagePath;
 	
 	@Override
 	public String fileUp(MultipartFile file) throws Exception {
@@ -78,6 +82,27 @@ public class ImageServiceImplV1 implements ImageService {
 			fileNames.add(fileName);
 		}
 		return fileNames;
+	}
+
+	@Override
+	public int delete(String fileName) {
+		// TODO Auto-generated method stub
+		
+		if(fileName == null || fileName.isEmpty()) {
+			return 1;
+		}
+		File dropFile = new File(this.imagePath, fileName);
+		
+		if(dropFile.exists()) {
+			boolean drop = dropFile.delete();
+			if(drop) {
+				return 1;
+			}else {
+				log.debug("½ÇÆÐ");
+				return -1;
+			}
+		}
+		return 1;
 	}
 
 	

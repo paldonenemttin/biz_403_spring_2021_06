@@ -21,7 +21,6 @@ public class BoardViewDTO {
 	private String bd_title;
 	private String bd_user;
 	private String bd_content;
-	private int bd_like;
 	private String bd_time;
 	private int bd_vcount;
 	

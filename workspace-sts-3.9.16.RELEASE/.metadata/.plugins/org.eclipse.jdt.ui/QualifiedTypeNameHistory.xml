@@ -30,12 +30,9 @@
     <fullyQualifiedTypeName name="com.team.statea.model.dto.BoardListDTO"/>
     <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
     <fullyQualifiedTypeName name="com.team.statea.dao.GenericDao"/>
-    <fullyQualifiedTypeName name="com.team.statea.model.ImageVO"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
     <fullyQualifiedTypeName name="jdk.internal.org.jline.utils.Log"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="lombok.extern.slf4j.Slf4j"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="com.team.statea.dao.ext.BoardDao"/>
@@ -60,4 +57,7 @@
     <fullyQualifiedTypeName name="com.team.statea.model.BoardVO"/>
     <fullyQualifiedTypeName name="com.team.statea.dao.ext.ImageDao"/>
     <fullyQualifiedTypeName name="com.team.statea.model.dto.BoardViewDTO"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.team.statea.model.ImageVO"/>
+    <fullyQualifiedTypeName name="lombok.extern.slf4j.Slf4j"/>
 </qualifiedTypeNameHistroy>

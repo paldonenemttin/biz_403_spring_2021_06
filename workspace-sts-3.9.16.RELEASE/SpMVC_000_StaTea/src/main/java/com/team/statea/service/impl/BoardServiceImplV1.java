@@ -47,18 +47,21 @@ public class BoardServiceImplV1 implements BoardService {
 		// TODO Auto-generated method stub
 		bdDao.insert(boardVO);
 		String bd_code = boardVO.getBd_code();
-		List<ImageVO> images = new ArrayList<ImageVO>();
-
 		List<MultipartFile> mfiles = m_file.getFiles("m_file");
-		for (MultipartFile file : mfiles) {
-			String imgOriginName = file.getOriginalFilename();
-			String fileUUName = imgService.fileUp(file);
 
-			ImageVO imgVO = ImageVO.builder().img_cncode(bd_code).img_origin(imgOriginName).img_upname(fileUUName)
-					.build();
-			images.add(imgVO);
+		List<ImageVO> images = new ArrayList<ImageVO>();
+		if (images.size() > -1) {
+			for (MultipartFile file : mfiles) {
+				String imgOriginName = file.getOriginalFilename();
+				String fileUUName = imgService.fileUp(file);
+
+				ImageVO imgVO = ImageVO.builder().img_cncode(bd_code).img_origin(imgOriginName).img_upname(fileUUName)
+						.build();
+				images.add(imgVO);
+				
+			}
+			imgDao.insertOrUpdateList(images);
 		}
-		imgDao.insertOrUpdateList(images);
 	}
 
 	@Override
@@ -85,11 +88,11 @@ public class BoardServiceImplV1 implements BoardService {
 	@Override
 	public void update(String bd_code , BoardVO boardVO , MultipartHttpServletRequest m_file) throws Exception {
 		// TODO Auto-generated method stub
-		
 		bdDao.update(boardVO);
 		bd_code = boardVO.getBd_code();
 		List<ImageVO> images = new ArrayList<ImageVO>();
 		List<MultipartFile> mfiles = m_file.getFiles("m_file");
+		if(images.size() > -1) {
 		for (MultipartFile file : mfiles) {
 			String imgOriginName = file.getOriginalFilename();
 			String fileUUName = imgService.fileUp(file);
@@ -99,25 +102,24 @@ public class BoardServiceImplV1 implements BoardService {
 			images.add(imgVO);
 		}
 		imgDao.insertOrUpdateList(images);
+		}
 	}
 
 	@Override
 	public int fileDelete(Long img_code) {
 		// TODO Auto-generated method stub
-		BoardViewDTO bvDTO = new BoardViewDTO();
-		List<ImageVO> imgList = bvDTO.getImgList();
-		for(ImageVO image : imgList) {
-			// 첨부파일 삭제
-			String attFileName = image.getImg_upname();
-			int ret = gS
-			
-			// 데이터 한개씩 삭제
-			if(ret > 0) {
-				fDao.delete(file.getFile_seq());
-			}
+		ImageVO imgVO = imgDao.findById(img_code);
+
+		int ret = imgService.delete(imgVO.getImg_upname());
+		
+		if (ret > 0) {
+			ret = imgDao.delete(img_code);
 		}
-		return imgDao.delete(img_code);
+
+		return ret;
 	}
+
+
 
 	
 

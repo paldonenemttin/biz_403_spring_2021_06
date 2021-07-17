@@ -32,11 +32,11 @@
 			<c:forEach
 				items="${FREE.imgList}"
 				var="image">
+				<div class="image_file" data-icode="${image.img_code}">
 				<c:if test="${not empty image.img_upname}">
-					<img
-						src="${rootPath}/board/view/statea/${image.img_upname}"
-						height="200px">
+					<p>${image.img_origin}</p>
 				</c:if>
+				</div>
 			</c:forEach>
 		</div>
 	</div>
@@ -46,10 +46,27 @@
 document.querySelector("#save").addEventListener("click",(e)=>{
     alert("데이터를 저장합니다.");
 });
-document.qeurySelector("#img_con").addEventListener("change",(e)=>{
-	let file = new FileReader();
-	file.onload = function(e)
-	img_con.src = e.target.result
-})
+const images = document.querySelector("div#img_con")
+if(images){
+	images.addEventListener("click", (e)=>{
+		if(e.target.tagName === "P" && e.target.parentElement.className.includes("image_file")){
+			const code = e.target.parentElement.dataset.icode
+			if(confirm(code + "삭제합니까?")){
+				fetch("${rootPath}/board/file/delete/" + code)
+				.then(response=>response.text())
+				.then(result=>{
+					if(result === "DROP"){
+						alert("삭제합니다")
+						e.target.remove()
+					}else if( result === "FAIL_CODE"){
+						alert("서버에서 응답하지 않습니다")
+					}else {
+						alert("삭제실패")
+					}
+				})
+			}
+		}
+	})
+}
 </script>
 </html>
