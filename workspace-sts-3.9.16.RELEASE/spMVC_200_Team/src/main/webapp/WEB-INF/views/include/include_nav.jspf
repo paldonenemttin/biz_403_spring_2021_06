@@ -1,0 +1,39 @@
+<%@ page
+	language="java"
+	contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib
+	uri="http://java.sun.com/jsp/jstl/core"
+	prefix="c"%>
+<c:set
+	var="rootPath"
+	value="${pageContext.request.contextPath}" />
+<style>
+#main_nav ul {
+	display: flex;
+	list-style: none;
+	padding: 12px 16px;
+	border-top: 4px double white;
+}
+
+#main_nav ul li {
+	font-size: 50px;
+	margin: 0 auto;
+	font-size: 60px;
+	color: whitesmoke;
+	/* 픽토그램으로 하는걸 생각해봄 */
+}
+
+#main_nav ul li:hover {
+	cursor: pointer;
+}
+</style>
+	<nav id="main_nav">
+		<ul>	
+			<li>HOME</li>
+			<li>CUSTOM</li>
+			<li>BOARD</li>
+			<li>LOGIN</li>
+			<!-- <li>JOIN</li> -->
+		</ul>
+	</nav>

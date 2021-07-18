@@ -1,6 +1,7 @@
 @charset "UTF-8";
 *{
 	box-sizing: border-box;
+	width:0;
 }
 html,body{
 	height: 100%;
@@ -28,57 +29,8 @@ i {
 	margin-right: 2px;
 	font-size: 25px;
 }
-/* 게시물 표 */
-table {
-	margin:auto;
-	width:100%;
-	border-collapse: collapse;
-	border-spacing: 0;
-}
-div.all_table{
-	
-}
-table th, td {
-	border: 1px solid #aaa;
-	padding: 3px 5px;
-	height: 10px;
-	font-size: 20px;
-	border-left: none;
-	border-right: none;
-}
 
-tr.value:hover {
-	cursor: pointer;
-	background-color: #F2F5F4;
-	transition: background-color 0.2s;
-}
 
-th, td {
-	text-align: center;
-}
-
-th#th_au, td#td_au {
-	width: 10px;
-}
-
-th#th_date, td#td_date {
-	width: 20px;
-}
-
-th#th_title, th#td_title {
-	width: 100px;
-}
-
-th#th_no, td#td_no {
-	width: 10px;
-}
-
-th#th_vcount, td#td_vcount {
-	width: 10px;
-}
-th#th_avo, td#td_avo{
-	width:10px;
-}
 a{
 	text-decoration: none;
 	
@@ -94,7 +46,6 @@ button {
 	border: none;
 	border-radius: 5px;
 	font-size: 15px;
-	transition: background-color 0.3s;
 	margin-bottom: 5px
 }
 
@@ -104,8 +55,7 @@ button:hover {
 	color: white;
 	border: none;
 	border-radius: 5px;
-	font-size: 15px;
-	transition: background-color 0.3s;
+	font-size: 15px;	
 	box-shadow: 1px 1px 1px gray;
 	margin-bottom: 5px;
 	
@@ -122,11 +72,18 @@ button#sear_click {
 	margin-left: 8px;
 	margin-top: 5px; 
 }
-div.main{
-	height:79%; 
-	position: relative;
-	padding-bottom: 20px;
+div#list{
+	border:1px solid black;
+	justify-content: center;
 }
-div.cate_body{
-	text-align: center;
+
+div#title{
+	border:1px solid black;
 }
+div#hitid{
+	border:1px solid black;
+}
+div#time{
+	border:1px solid black;
+}
+

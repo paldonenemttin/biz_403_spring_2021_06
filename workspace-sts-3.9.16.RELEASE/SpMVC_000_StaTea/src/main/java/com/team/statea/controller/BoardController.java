@@ -54,7 +54,7 @@ public class BoardController {
 		String newBdCode = String.format("%s%04d", "B", bdSeq);
 		
 		Date date = new Date(System.currentTimeMillis()); 
-		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd|hh:MM:ss");
+		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
 		
 		String datetime = sd.format(date);
 		

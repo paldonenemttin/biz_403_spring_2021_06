@@ -1,27 +1,112 @@
-<%@ page
-	language="java"
-	contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib
-	uri="http://java.sun.com/jsp/jstl/core"
-	prefix="c"%>
-<c:set
-	var="rootPath"
-	value="${pageContext.request.contextPath}" />
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="rootPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link
-	href="${rootPath}/static/css/freeview.css?ver=2021-06-15-004"
-	rel="stylesheet" />
+<style type="text/css">
+* {
+	box-sizing: border-box;
+}
+
+html, body {
+	width: 345px;
+	height: 100%;
+}
+
+p#title {
+	font-size: 20px;
+	padding-bottom: 15px;
+}
+
+div.view {
+	margin: auto;
+}
+
+table {
+	margin-left: 25%;
+	border-collapse: collapse;
+	border-spacing: 0;
+	height: 10px;
+	width: 50%;
+}
+
+td, th {
+	text-align: center;
+	padding: 1px 2px;
+	height: 10px;
+	font-size: 5px;
+	width: 12.5%;
+}
+
+th#th_date, td#td_date {
+	width: 12.5%;
+}
+
+th:first-child, th:last-child, td:first-child, td:last-child {
+	border-left: none;
+	border-right: none;
+}
+
+div.main_cont {
+	margin-left: 5%;
+	border: 1px solid #aaa;
+	width: 100%;
+	height: 60%;
+}
+
+p#content {
+	margin: 2px 2px 2px 2px;
+	font-size: 10px;
+}
+
+button {
+	padding: 5px 10px;
+	background-color: rgb(3, 102, 53);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 15px;
+	transition: background-color 0.3s;
+	margin-bottom: 5px;
+	margin-top: 2px;
+}
+
+button:hover {
+	padding: 5px 10px;
+	background-color: rgb(68, 32, 32);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 15px;
+	transition: background-color 0.3s;
+	cursor: pointer;
+	box-shadow: 1px 1px 1px gray;
+	margin-bottom: 5px
+}
+
+button#list {
+	font-size: 12px;
+	margin-left: 5px
+}
+
+div.view_cont {
+	position: relative;
+}
+
+div.btn_avo_list {
+	padding-bottom: 52px;
+}
+img{
+max-width:150px;
+max-height: 150px;
+}
+</style>
 </head>
 <body>
-	<div id="view_tit">
-
-		<p id="title">자유게시판 게시물</p>
-	</div>
 	<div class="state">
 		<table>
 			<tr>
@@ -41,23 +126,16 @@
 	</div>
 	<div class="main_cont">
 		<p id="content">${BVIEWS.bd_content}</p>
-		<div>
-			<c:forEach
-				items="${BVIEWS.imgList}"
-				var="image">
+			<c:forEach items="${BVIEWS.imgList}" var="image">
 				<c:if test="${not empty image.img_upname}">
-					<img
-						src="${rootPath}/board/view/statea/${image.img_upname}"
+					<img src="${rootPath}/board/view/statea/${image.img_upname}"
 						height="200px">
 				</c:if>
 			</c:forEach>
-		</div>
 	</div>
-	
+
 	<div class="btn_avo_list">
-		<button
-			id="list"
-			onclick="location.href='/statea/board/list'">목록으로</button>
+		<button id="list" onclick="location.href='/statea/board/list'">목록으로</button>
 		<button id="update">수정</button>
 		<button id="delete">삭제</button>
 		<!--
