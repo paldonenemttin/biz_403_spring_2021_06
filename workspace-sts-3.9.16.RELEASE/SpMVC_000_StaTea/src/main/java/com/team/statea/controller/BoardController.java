@@ -38,12 +38,18 @@ public class BoardController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String list(HttpSession httpSession, Model model) {
 		List<BoardListDTO> liList = bdService.selectList();
+		bdService.searchList();
 		model.addAttribute("BOARDS", liList);
 		return "board/list";
 	}
 
 	@RequestMapping(value = "/input", method = RequestMethod.GET)
 	public String insert(Model model) {
+		
+//		MemberVO mVO = (MemberVO) session.getAttribute("MEMBER");
+//		if(mVO == null) {
+//			return "redirect:/member/login";
+//		}
 		BoardVO boardVO = new BoardVO();
 		
 		String bdCode = bdDao.getMaxCode();
@@ -54,11 +60,11 @@ public class BoardController {
 		String newBdCode = String.format("%s%04d", "B", bdSeq);
 		
 		Date date = new Date(System.currentTimeMillis()); 
-		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd HH:mm:SS");
+		SimpleDateFormat dd = new SimpleDateFormat("yyyy-MM-dd hh:MM:ss");
 		
-		String datetime = sd.format(date);
+		String dt = dd.format(date);
 		
-		boardVO = BoardVO.builder().bd_time(datetime).bd_code(newBdCode).build();
+		boardVO = BoardVO.builder().bd_time(dt).bd_code(newBdCode).build();
 		model.addAttribute("FREE", boardVO);
 		
 		return "board/input";

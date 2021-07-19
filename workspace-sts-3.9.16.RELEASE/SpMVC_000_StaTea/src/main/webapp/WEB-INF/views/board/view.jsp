@@ -13,7 +13,6 @@
 }
 
 html, body {
-	width: 345px;
 	height: 100%;
 }
 
@@ -54,8 +53,8 @@ th:first-child, th:last-child, td:first-child, td:last-child {
 div.main_cont {
 	margin-left: 5%;
 	border: 1px solid #aaa;
-	width: 100%;
-	height: 60%;
+	width: 90%;
+	padding: 50px 30px;
 }
 
 p#content {
@@ -88,27 +87,23 @@ button:hover {
 	margin-bottom: 5px
 }
 
-button#list {
-	font-size: 12px;
-	margin-left: 5px
-}
+
 
 div.view_cont {
 	position: relative;
 }
 
-div.btn_avo_list {
-	padding-bottom: 52px;
-}
-img{
-max-width:150px;
-max-height: 150px;
+
+
+img {
+	max-width: 150px;
+	max-height: 150px;
 }
 </style>
 </head>
 <body>
 	<div class="state">
-		<table>
+		<table id="">
 			<tr>
 				<td colspan="5">${BVIEWS.bd_title}</td>
 			</tr>
@@ -126,27 +121,30 @@ max-height: 150px;
 	</div>
 	<div class="main_cont">
 		<p id="content">${BVIEWS.bd_content}</p>
-			<c:forEach items="${BVIEWS.imgList}" var="image">
-				<c:if test="${not empty image.img_upname}">
-					<img src="${rootPath}/board/view/statea/${image.img_upname}"
-						height="200px">
-				</c:if>
-			</c:forEach>
+		<c:forEach items="${BVIEWS.imgList}" var="image">
+			<c:if test="${not empty image.img_upname}">
+				<img src="${rootPath}/board/view/statea/${image.img_upname}"
+					height="200px">
+			</c:if>
+		</c:forEach>
 	</div>
 
 	<div class="btn_avo_list">
-		<button id="list" onclick="location.href='/statea/board/list'">목록으로</button>
-		<button id="update">수정</button>
-		<button id="delete">삭제</button>
-		<!--
+		<div id="back">
+			<button id="list" onclick="location.href='/statea/board/list'">목록으로</button>
+		</div>
+		<div id="up_del">
+			<button id="update">수정</button>
+			<button id="delete">삭제</button>
+		</div>
+	</div>
+	<!--
 		회원 기능 생길시 사용할 코드 
-		<c:if test="${USER.user_id == USER.user_id}">
+		<c:if test="${USER.user_id} == ${USER.user_id}">
 			<button id="update">수정</button>
 			<button id="delete">삭제</button>
 		</c:if>
 		 -->
-	</div>
-
 </body>
 <script>
       

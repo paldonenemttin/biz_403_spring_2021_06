@@ -19,10 +19,9 @@
 	</resultMap>
 	<sql id="selectBoardView">
 		SELECT
-		bd_code, bd_title,
-		bd_user, bd_content,
-		bd_vcount,
-		bd_time, img_code as i_code , img_upname as i_uname,
+		bd_code, bd_title,bd_user, bd_content,
+		bd_vcount,bd_time, 
+		img_code as i_code , img_upname as i_uname,
 		img_origin as i_origin
 		FROM
 		tbl_board
@@ -53,18 +52,19 @@
 		bd_code DESC
 	</select>
 
-	<select id="findSearch" resultType="BoardListDTO">
+	<select id="findSearch" resultType="BoardViewDTO">
 		SELECT
 		bd_code, bd_title,
-		bd_user, like_count as bd_like, bd_vcount, bd_time
+		bd_user, bd_vcount, bd_time
 		FROM
 		tbl_board
-		LEFT
-		JOIN tbl_like
-		ON board_code = like_bdcode
 		where bd_title
-		like = '%?%'
-		order by board_code DESC
+		like concat('%',#{bd_title},'%') 
+		or
+		bd_user like concat('%',#{bd_user},'%') 
+		or
+		bd_content like concat('%',#{bd_content},'%') 
+		order by bd_code DESC
 	</select>
 
 	<select id="getMaxCode" resultType="String">

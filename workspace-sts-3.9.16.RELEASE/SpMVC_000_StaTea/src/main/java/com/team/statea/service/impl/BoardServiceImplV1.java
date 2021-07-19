@@ -36,10 +36,10 @@ public class BoardServiceImplV1 implements BoardService {
 	}
 
 	@Override
-	public List<BoardListDTO> searchList() {
+	public List<BoardViewDTO> searchList() {
 		// TODO Auto-generated method stub
-		List<BoardListDTO> schList = bdDao.findSearch();
-		return schList;
+	
+		return  bdDao.findSearch();
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class BoardServiceImplV1 implements BoardService {
 				ImageVO imgVO = ImageVO.builder().img_cncode(bd_code).img_origin(imgOriginName).img_upname(fileUUName)
 						.build();
 				images.add(imgVO);
-				
+
 			}
 			imgDao.insertOrUpdateList(images);
 		}
@@ -67,7 +67,7 @@ public class BoardServiceImplV1 implements BoardService {
 	@Override
 	public int delete(String bd_code) {
 		// TODO Auto-generated method stub
-		
+
 		return bdDao.delete(bd_code);
 	}
 
@@ -86,22 +86,22 @@ public class BoardServiceImplV1 implements BoardService {
 	}
 
 	@Override
-	public void update(String bd_code , BoardVO boardVO , MultipartHttpServletRequest m_file) throws Exception {
+	public void update(String bd_code, BoardVO boardVO, MultipartHttpServletRequest m_file) throws Exception {
 		// TODO Auto-generated method stub
 		bdDao.update(boardVO);
 		bd_code = boardVO.getBd_code();
 		List<ImageVO> images = new ArrayList<ImageVO>();
 		List<MultipartFile> mfiles = m_file.getFiles("m_file");
-		if(images.size() > -1) {
-		for (MultipartFile file : mfiles) {
-			String imgOriginName = file.getOriginalFilename();
-			String fileUUName = imgService.fileUp(file);
+		if (images.size() > -1) {
+			for (MultipartFile file : mfiles) {
+				String imgOriginName = file.getOriginalFilename();
+				String fileUUName = imgService.fileUp(file);
 
-			ImageVO imgVO = ImageVO.builder().img_cncode(bd_code).img_origin(imgOriginName).img_upname(fileUUName)
-					.build();
-			images.add(imgVO);
-		}
-		imgDao.insertOrUpdateList(images);
+				ImageVO imgVO = ImageVO.builder().img_cncode(bd_code).img_origin(imgOriginName).img_upname(fileUUName)
+						.build();
+				images.add(imgVO);
+			}
+			imgDao.insertOrUpdateList(images);
 		}
 	}
 
@@ -111,19 +111,12 @@ public class BoardServiceImplV1 implements BoardService {
 		ImageVO imgVO = imgDao.findById(img_code);
 
 		int ret = imgService.delete(imgVO.getImg_upname());
-		
+
 		if (ret > 0) {
 			ret = imgDao.delete(img_code);
 		}
 
 		return ret;
 	}
-
-
-
-	
-
-
-	
 
 }

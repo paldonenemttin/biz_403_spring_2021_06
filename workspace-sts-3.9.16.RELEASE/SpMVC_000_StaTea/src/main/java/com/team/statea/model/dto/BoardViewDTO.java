@@ -22,6 +22,7 @@ public class BoardViewDTO {
 	private String bd_user;
 	private String bd_content;
 	private String bd_time;
+	private String bd_date;
 	private int bd_vcount;
 	
 	List<ImageVO> imgList;

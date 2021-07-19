@@ -3,7 +3,6 @@
     <fullyQualifiedTypeName name="com.callor.gallery.persistance.ext.FileDao"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
-    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
     <fullyQualifiedTypeName name="com.callor.gallery.service.GalleryService"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
     <fullyQualifiedTypeName name="com.callor.gallery.persistance.GenericDao"/>
@@ -56,8 +55,9 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
     <fullyQualifiedTypeName name="com.team.statea.model.BoardVO"/>
     <fullyQualifiedTypeName name="com.team.statea.dao.ext.ImageDao"/>
-    <fullyQualifiedTypeName name="com.team.statea.model.dto.BoardViewDTO"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.team.statea.model.ImageVO"/>
     <fullyQualifiedTypeName name="lombok.extern.slf4j.Slf4j"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="com.team.statea.model.dto.BoardViewDTO"/>
 </qualifiedTypeNameHistroy>

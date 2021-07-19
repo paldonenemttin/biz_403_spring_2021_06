@@ -20,5 +20,6 @@ public class BoardListDTO {
 	private int bd_like;
 	private String bd_vcount;
 	private String bd_time;
+	private String bd_date;
 
 }
