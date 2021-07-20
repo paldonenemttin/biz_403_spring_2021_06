@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.starbucks.dao.ext.ImageDao">
+
+	<select id="findById" resultType="ImageVO">
+		select * from tbl_image
+		where img_code = #{img_code}
+	</select>
+	<insert id="insertOrUpdateList" parameterType="ImageVO">
+		insert into tbl_image(img_code, img_cncode, img_origin, img_upname)
+		values
+		<foreach collection="imgList" item="image" separator=", ">
+			(#{image.img_code},#{image.img_cncode},#{image.img_origin},#{image.img_upname})
+		</foreach>
+		as new(i_code, i_concode, i_origin, i_upname)
+		on duplicate key update
+		img_cncode = i_concode,
+		img_origin = i_origin, 
+		img_upname = i_upname
+	</insert>
+	<delete id="delete" parameterType="ImageVO">
+		delete from tbl_image
+		where
+		img_code = #{img_code}
+	</delete>
+	
+</mapper>

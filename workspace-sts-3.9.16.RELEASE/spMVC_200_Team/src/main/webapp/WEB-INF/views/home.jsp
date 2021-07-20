@@ -15,11 +15,12 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	
 }
-body{
+
+body {
 	background-color: whitesmoke;
 }
+
 fieldset {
 	border: 1px solid transparent;
 }
@@ -95,6 +96,12 @@ form {
 			<c:when test="${BODY eq 'JOIN'}">
 				<%@ include file="/WEB-INF/views/user/join.jsp"%>
 			</c:when>
+			<c:when test="${BODY eq 'UPDATE-ID'}">
+				<%@ include file="/WEB-INF/views/user/userupdate.jsp"%>
+			</c:when>
+			<c:when test="${BODY eq 'FAIL_LOGIN'}">
+				<%@ include file="/WEB-INF/views/custom/mylist.jsp"%>
+			</c:when>
 			<c:otherwise>
 				<%@ include file="/WEB-INF/views/custom/smallList.jsp"%>
 			</c:otherwise>
@@ -117,10 +124,12 @@ form {
 		      } else if (menuText === "CUSTOM") {
 		        urlPath += "/custom/input";
 		      } else if (menuText === "BOARD") {
-		        urlPath += "/board";
+		       /*  urlPath += "/board"; */
 		      } else if (menuText === "LOGIN") {
 		        urlPath += "/user/login";
-		      }
+		      } else if (menuText === "LOGOUT") {
+	            urlPath += "/user/logout";
+	          }
 		      location.href = urlPath;
 		    }
 		  });

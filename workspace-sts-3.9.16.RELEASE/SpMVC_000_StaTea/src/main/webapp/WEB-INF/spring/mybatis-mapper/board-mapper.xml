@@ -88,7 +88,7 @@
 
 	<update id="update" parameterType="BoardVO">
 		update tbl_board set
-		bd_content =#{bd_content},
+		bd_content = #{bd_content},
 		bd_title = #{bd_title}
 		where
 		bd_code =

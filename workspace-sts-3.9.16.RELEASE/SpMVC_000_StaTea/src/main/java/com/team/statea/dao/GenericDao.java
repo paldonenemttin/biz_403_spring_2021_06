@@ -1,6 +1,7 @@
 package com.team.statea.dao;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface GenericDao<VO, PK> {
@@ -10,5 +11,7 @@ public interface GenericDao<VO, PK> {
 	public int insert(VO vo);
 	public int update(VO vo);
 	public int delete(PK pk);
+	
+	public void create_table(Map<String, String> maps);
 
 }

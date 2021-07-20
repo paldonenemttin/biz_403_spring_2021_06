@@ -84,9 +84,10 @@ div.img_box {
 	border: 1px solid black;
 	width: 90%;
 	height: 300px;
-	margin-left:45px;
+	justify-content: center;
 	background-color: #ddd;
 	border-style: none;
+	margin-left:5%;
 }
 </style>
 

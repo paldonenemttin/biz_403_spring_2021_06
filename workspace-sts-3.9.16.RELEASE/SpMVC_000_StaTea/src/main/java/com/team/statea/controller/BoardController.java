@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.team.statea.dao.ext.BoardDao;
 import com.team.statea.dao.ext.ImageDao;
 import com.team.statea.model.BoardVO;
-
+import com.team.statea.model.UserVO;
 import com.team.statea.model.dto.BoardListDTO;
 import com.team.statea.model.dto.BoardViewDTO;
 import com.team.statea.service.BoardService;
@@ -44,12 +44,10 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/input", method = RequestMethod.GET)
-	public String insert(Model model) {
+	public String insert(Model model, HttpSession session) {
 		
-//		MemberVO mVO = (MemberVO) session.getAttribute("MEMBER");
-//		if(mVO == null) {
-//			return "redirect:/member/login";
-//		}
+		UserVO mVO = (UserVO) session.getAttribute("USER");
+		
 		BoardVO boardVO = new BoardVO();
 		
 		String bdCode = bdDao.getMaxCode();

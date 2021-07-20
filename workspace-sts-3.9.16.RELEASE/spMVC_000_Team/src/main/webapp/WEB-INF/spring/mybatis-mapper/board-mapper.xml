@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.team.starbucks.dao.ext.BoardDao">
+ 
+ 	<resultMap type="BoardViewDTO" id="BoardDTOResultMap">
+		<id property="bd_code" column="bd_code" />
+		<result column="bd_title" property="bd_title" />
+		<result column="bd_user" property="bd_user" />
+		<result column="bd_content" property="bd_content" />
+		<result column="bd_time" property="bd_time" />
+		<result column="bd_vcount" property="bd_vcount" />
+		<collection property="imgList" ofType="ImageVO">
+			<id property="img_code" column="i_code" />
+			<result property="img_origin" column="i_origin" />
+			<result property="img_upname" column="i_uname" />
+		</collection>
+	</resultMap>
+	<sql id="selectBoardView">
+		SELECT
+		bd_code, bd_title,bd_user, bd_content,
+		bd_vcount,bd_time, 
+		img_code as i_code , img_upname as i_uname,
+		img_origin as i_origin
+		FROM
+		tbl_board
+		LEFT JOIN tbl_like
+		ON
+		bd_code =
+		like_cncode
+		LEFT JOIN tbl_image
+		ON
+		bd_code = img_cncode
+		where bd_code =
+		#{bd_code}
+	</sql>
+	<select id="selectBoardView" resultMap="BoardDTOResultMap">
+		<include refid="selectBoardView">
+			<property name="bd_seq" value="#{bd_seq}" />
+		</include>
+	</select>
+
+	<select id="selectList" resultType="BoardListDTO">
+		SELECT
+		bd_code, bd_title,
+		bd_user, bd_vcount, bd_time
+		FROM
+		tbl_board
+		where bd_code != 'B0000'
+		order by
+		bd_code DESC
+	</select>
+
+	<select id="findSearch" resultType="BoardViewDTO">
+		SELECT
+		bd_title,
+		bd_user, bd_vcount, bd_time
+		FROM
+		tbl_board
+		where bd_title
+		like concat('%',#{text},'%') 
+		or
+		bd_user like concat('%',#{text},'%') 
+		or
+		bd_content like concat('%',#{text},'%') 
+		order by bd_code DESC
+	</select>
+
+	<select id="getMaxCode" resultType="String">
+		select max(bd_code) as bd_code from tbl_board
+	</select>
+	<insert id="insert" parameterType="BoardVO">
+		insert into
+		tbl_board(bd_code,
+		bd_title,
+		bd_content, bd_user, bd_time)
+		values(#{bd_code}, #{bd_title},
+		#{bd_content},
+		#{bd_user}, #{bd_time})
+	</insert>
+
+	<delete id="delete">
+		delete from tbl_board
+		where bd_code =
+		#{bd_code}
+	</delete>
+
+	<update id="update" parameterType="BoardVO">
+		update tbl_board set
+		bd_content = #{bd_content},
+		bd_title = #{bd_title}
+		where
+		bd_code =
+		#{bd_code}
+	</update>
+
+	<update id="viewCount" parameterType="BoardVO">
+		update tbl_board set
+		bd_vcount = bd_vcount + 1
+		where bd_code = #{bd_code}
+	</update>
+ 
+ </mapper> 

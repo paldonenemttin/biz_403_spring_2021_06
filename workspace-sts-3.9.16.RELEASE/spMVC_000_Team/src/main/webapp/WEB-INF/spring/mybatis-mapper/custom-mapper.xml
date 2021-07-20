@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team.starbucks.dao.ext.CustomDao">
+	<select id="selectAll" resultType="CustomDTO">
+		SELECT * FROM tbl_custom
+		ORDER
+		BY menu_seq DESC
+	</select>
+
+	<select id="findBySeq" resultType="CustomDTO">
+		SELECT * FROM tbl_custom
+		WHERE
+		menu_seq = #{menu_seq}
+		ORDER BY menu_seq DESC
+	</select>
+
+	<select id="findByUser_id" resultType="CustomDTO">
+
+		SELECT * FROM tbl_custom
+		WHERE user_id LIKE #{user_id}
+
+	</select>
+	<select id="findBySearch" resultType="CustomDTO">
+		SELECT * FROM tbl_custom
+		<if test="text != null and text != 'NONE' ">
+			<if test="column == 'user_id' ">
+				WHERE user_id LIKE CONCAT('%', #{text},'%')
+			</if>
+
+			<if test="column == 'menu_name' ">
+				WHERE menu_name LIKE CONCAT('%', #{text},'%')
+			</if>
+
+			<if test="column == 'menu_title' ">
+				WHERE menu_title LIKE CONCAT('%', #{text},'%')
+			</if>
+		</if>
+	</select>
+
+	<insert id="insert" parameterType="CustomDTO">
+		INSERT INTO tbl_custom
+		(
+		menu_code, menu_name, user_id, menu_title,
+		menu_option,
+		file_originalName,
+		file_upname)
+		VALUES
+		(#{menu_code},
+		#{menu_name},
+		#{user_id},
+		#{menu_title},
+		#{menu_option},
+		#{file_originalName},
+		#{file_upname} )
+		<selectKey keyProperty="menu_seq" order="AFTER"
+			resultType="Long">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<update id="update">
+		INSERT INTO tbl_custom(
+		menu_seq, menu_code, user_id,
+		menu_title, menu_name, menu_option)
+		VALUES(
+		#{menu_seq}, #{menu_code},
+		#{user_id}, #{menu_title},
+		#{menu_option} )
+		ON DUPLICATE
+		KEY UPDATE
+		menu_code = #{menu_code},
+		menu_name = #{menu_name},
+		user_id =
+		#{user_id},
+		menu_title =
+		#{menu_title},
+		menu_option = #{menu_option},
+		file_originalName = #{file_originalName},
+		file_upname = #{file_upname}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM tbl_custom
+		WHERE menu_seq = #{menu_seq}
+	</delete>
+
+	<update id="create_table">
+		CREATE TABLE IF NOT EXISTS tbl_custom(
+		menu_seq BIGINT
+		AUTO_INCREMENT PRIMARY KEY,
+		menu_code BIGINT NOT NULL,
+		menu_name
+		VARCHAR(256) NOT NULL,
+		user_id VARCHAR(50) NOT NULL,
+		menu_title
+		VARCHAR(125) NOT NULL,
+		menu_option VARCHAR(256),
+		file_originalName
+		VARCHAR(256) NOT NULL,
+		file_upname VARCHAR(256) NOT NULL
+		)
+	</update>
+
+</mapper> 

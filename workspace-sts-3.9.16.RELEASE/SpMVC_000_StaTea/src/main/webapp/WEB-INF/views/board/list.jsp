@@ -17,7 +17,7 @@ div.ser_title {
 	width: 100%;
 	margin-top: -60px;
 	justify-content: center;
-	margin-left:-9px;
+	margin-left: -9px;
 }
 
 div.main {
@@ -58,7 +58,7 @@ button#sear_click {
 	margin-right: 8px;
 }
 
-div.list {
+div.bd_list {
 	border: 1px solid black;
 	display: flex;
 	font-size: 20px;
@@ -67,37 +67,46 @@ div.list {
 	border-right-style: none;
 }
 
-div.con {
+div.bd_con {
 	width: 90%;
-	text-overflow: ellipsis;
-	overflow: hidden;
 	margin-left: -8px;
 }
 
-div#title {
-	height: 15px;
-	margin-bottom: 10px;
+div#bd_title {
+	border: 1px solid black;
+	height: 40px;
+	padding: 10px 20px;
 }
 
-div#hitid {
+div#bd_hitid {
 	display: flex;
 	margin-top: 20px;
 }
 
-div#time {
-	padding-left: 20px;
-	padding-right: 20px;
+div#bd_time {
+	border: 1px solid black;
+	padding-right: 10px;
+	padding-left: 10px;
 	width: 20%;
-	height: 80px;
+	height: 8px;
+	padding-left: 10px;
 }
 
-div#hitid p {
+div#bd_hitid p {
 	font-size: 5px;
 }
 
-div#time p {
-	margin-top: 15px;
-	white-space: normal;
+div#bd_time p {
+	margin-top: 50px;
+}
+
+div#bd_title p {
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-left: 5px;
+	margin-top: -0.1px;
 }
 
 p {
@@ -110,8 +119,10 @@ p {
 		<div class="ser_title">
 			<input id="search" type="text" placeholder="키워드를 입력하세요" />
 			<button id="sear_click">검색</button>
-			<button id="write" onclick="location.href='${rootPath}/board/input'"
-				value="글쓰기">글쓰기</button>
+			<c:if test="${not empty USER.user_id}">
+				<button id="write" onclick="location.href='${rootPath}/board/input'"
+					value="글쓰기">글쓰기</button>
+			</c:if>
 		</div>
 		<div class="all_list">
 			<c:choose>
@@ -123,19 +134,19 @@ p {
 				<c:otherwise>
 					<c:forEach items="${BOARDS}" var="board">
 
-						<div class="list">
-							<div class="con">
-								<div id="title">
+						<div class="bd_list">
+							<div class="bd_con">
+								<div id="bd_title">
 									<p>
 										<a href="${rootPath}/board/view/${board.bd_code}">${board.bd_title}</a>
 									</p>
 								</div>
-								<div id="hitid">
+								<div id="bd_hitid">
 									<p>작성자:${board.bd_user}</p>
 									<p>조회수:${board.bd_vcount}</p>
 								</div>
 							</div>
-							<div id="time">
+							<div id="bd_time">
 								<p>${board.bd_time}</p>
 							</div>
 						</div>
