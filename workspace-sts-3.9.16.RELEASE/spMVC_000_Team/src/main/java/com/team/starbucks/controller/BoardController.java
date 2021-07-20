@@ -37,12 +37,16 @@ public class BoardController {
 	protected final ImageDao mDao;
 	
 	@RequestMapping(value = "/board", method = RequestMethod.GET)
-	public String list(HttpSession httpSession, Model model) {
+	public String list(HttpSession httpSession, Model model,
+			@RequestParam(value="column", required = false, defaultValue = "NONE")
+	String column,
+	@RequestParam(value="text", required = false, defaultValue = "NONE")
+	String text) {
 		List<BoardListDTO> liList = bdService.selectList();
-		bdService.searchList();
+		bdService.findSearch(column, text);
 		model.addAttribute("BOARDS", liList);
-		model.addAttribute("BB", "BOARD-LIST");
-		return "board/list";
+		model.addAttribute("BODY", "BOARD-LIST");
+		return "home";
 	}
 
 	@RequestMapping(value = "board/input", method = RequestMethod.GET)
@@ -63,14 +67,14 @@ public class BoardController {
 		String newBdCode = String.format("%s%04d", "B", bdSeq);
 		
 		Date date = new Date(System.currentTimeMillis()); 
-		SimpleDateFormat dd = new SimpleDateFormat("yyyy-MM-dd hh:MM:ss");
+		SimpleDateFormat dd = new SimpleDateFormat("yy-MM-dd hh:MM:ss");
 		
 		String dt = dd.format(date);
 		
 		boardVO = BoardVO.builder().bd_time(dt).bd_code(newBdCode).build();
 		model.addAttribute("FREE", boardVO);
-		model.addAttribute("BB", "BOARD-INPUT");
-		return "board/input";
+		model.addAttribute("BODY", "BOARD-INPUT");
+		return "home";
 		
 	}
 	
@@ -78,7 +82,7 @@ public class BoardController {
 	public String insert( BoardVO boardVO, MultipartHttpServletRequest m_file) throws Exception {
 		
 		bdService.insert(boardVO, m_file);
-		return "redirect:/board";
+		return "home";
 		
 	}
 	
@@ -96,8 +100,8 @@ public class BoardController {
 		BoardViewDTO boardviewDTO = bdService.selectView(bd_code);
 		bdService.viewCount(bd_code);
 		model.addAttribute("BVIEWS",boardviewDTO);
-		model.addAttribute("BB", "BOARD-VIEW");
-		return "board/view";
+		model.addAttribute("BODY", "BOARD-VIEW");
+		return "home";
 		
 	}
 	
@@ -105,7 +109,7 @@ public class BoardController {
 	public String delete(@RequestParam("bd_code") String bd_code , HttpSession session) {
 		
 		bdService.delete(bd_code);
-		return "redirect:/board";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="board/update/{code}", method = RequestMethod.GET)

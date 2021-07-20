@@ -33,7 +33,6 @@
     <fullyQualifiedTypeName name="com.callor.gallery.service.PageService"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="com.callor.gallery.model.GalleryDTO"/>
-    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Param"/>
     <fullyQualifiedTypeName name="com.callor.gallery.model.PageDTO"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
@@ -47,7 +46,6 @@
     <fullyQualifiedTypeName name="com.team.statea.dao.ext.UserDao"/>
     <fullyQualifiedTypeName name="com.team.statea.model.UserVO"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.team.starbucks.service.BoardService"/>
     <fullyQualifiedTypeName name="com.team.starbucks.model.ImageVO"/>
     <fullyQualifiedTypeName name="com.team.starbucks.dao.GenericDao"/>
@@ -58,6 +56,8 @@
     <fullyQualifiedTypeName name="com.team.starbucks.dao.ext.ImageDao"/>
     <fullyQualifiedTypeName name="com.team.starbucks.model.BoardListDTO"/>
     <fullyQualifiedTypeName name="com.team.starbucks.model.BoardVO"/>
-    <fullyQualifiedTypeName name="com.team.starbucks.model.BoardViewDTO"/>
     <fullyQualifiedTypeName name="lombok.extern.slf4j.Slf4j"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Param"/>
+    <fullyQualifiedTypeName name="com.team.starbucks.model.BoardViewDTO"/>
 </qualifiedTypeNameHistroy>

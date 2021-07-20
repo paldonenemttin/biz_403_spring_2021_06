@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- <mapper namespace="com.team.starbucks.dao.ext.BoardDao">
- 
- 	<resultMap type="BoardViewDTO" id="BoardDTOResultMap">
+
+<mapper namespace="com.team.starbucks.dao.ext.BoardDao">
+
+	<resultMap type="BoardViewDTO" id="BoardDTOResultMap">
 		<id property="bd_code" column="bd_code" />
 		<result column="bd_title" property="bd_title" />
 		<result column="bd_user" property="bd_user" />
@@ -21,15 +21,10 @@
 	<sql id="selectBoardView">
 		SELECT
 		bd_code, bd_title,bd_user, bd_content,
-		bd_vcount,bd_time, 
+		bd_vcount,bd_time,
 		img_code as i_code , img_upname as i_uname,
 		img_origin as i_origin
-		FROM
-		tbl_board
-		LEFT JOIN tbl_like
-		ON
-		bd_code =
-		like_cncode
+		FROM tbl_board
 		LEFT JOIN tbl_image
 		ON
 		bd_code = img_cncode
@@ -49,27 +44,26 @@
 		FROM
 		tbl_board
 		where bd_code != 'B0000'
-		order by
+		order
+		by
 		bd_code DESC
 	</select>
 
 	<select id="findSearch" resultType="BoardViewDTO">
-		SELECT
-		bd_title,
-		bd_user, bd_vcount, bd_time
-		FROM
-		tbl_board
-		where bd_title
-		like concat('%',#{text},'%') 
-		or
-		bd_user like concat('%',#{text},'%') 
-		or
-		bd_content like concat('%',#{text},'%') 
-		order by bd_code DESC
+		select * from tbl_board
+		<if test="text != null and text != 'NONE' ">
+			<if test="column == 'bd_title' ">
+				where bd_title LIKE CONCAT('%', #{text}, '%')
+			</if>
+			<if test="column == 'bd_user' ">
+				where bd_user LIKE CONCAT('%', #{text}, '%')
+			</if>
+		</if>
 	</select>
 
 	<select id="getMaxCode" resultType="String">
-		select max(bd_code) as bd_code from tbl_board
+		select max(bd_code) as
+		bd_code from tbl_board
 	</select>
 	<insert id="insert" parameterType="BoardVO">
 		insert into
@@ -101,5 +95,5 @@
 		bd_vcount = bd_vcount + 1
 		where bd_code = #{bd_code}
 	</update>
- 
- </mapper> 
+
+</mapper> 

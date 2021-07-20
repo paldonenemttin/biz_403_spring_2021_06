@@ -13,7 +13,7 @@ public interface BoardService {
 
 	public List<BoardListDTO> selectList();
 	public BoardViewDTO selectView(String bd_code);
-	public List<BoardViewDTO> searchList();
+	public List<BoardViewDTO> findSearch(String search_column, String search_text);
 	public void insert(BoardVO boardVO, MultipartHttpServletRequest m_file) throws Exception;
 	public int delete(String bd_code);
 	public int viewCount(String bd_code);

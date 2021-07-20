@@ -17,11 +17,11 @@ div.ser_title {
 	width: 100%;
 	margin-top: -60px;
 	justify-content: center;
-	margin-left: -9px;
+	border-style: none;
 }
 
 div.main {
-	margin-top: 60px;
+	margin-top: 90px;
 	justify-content: center;
 }
 
@@ -65,22 +65,26 @@ div.bd_list {
 	border-top-style: none;
 	border-left-style: none;
 	border-right-style: none;
+	justify-content: space-between;
 }
 
 div.bd_con {
-	width: 90%;
+	width: 70%;
 	margin-left: -8px;
+	
 }
 
 div#bd_title {
 	border: 1px solid black;
 	height: 40px;
 	padding: 10px 20px;
+	border-style: none;
 }
 
 div#bd_hitid {
 	display: flex;
-	margin-top: 20px;
+	margin-top: 15px;
+	
 }
 
 div#bd_time {
@@ -88,16 +92,18 @@ div#bd_time {
 	padding-right: 10px;
 	padding-left: 10px;
 	width: 20%;
-	height: 8px;
+	height: 80px;
 	padding-left: 10px;
+	border-style: none;
 }
 
 div#bd_hitid p {
+margin-bottom:5px;
 	font-size: 5px;
 }
 
 div#bd_time p {
-	margin-top: 50px;
+	margin-top: 20px;
 }
 
 div#bd_title p {
@@ -117,13 +123,17 @@ p {
 
 	<div class="main">
 		<div class="ser_title">
-			<input id="search" type="text" placeholder="키워드를 입력하세요" />
+			<form>
+				<select name="column">
+					<option value="bd_title">제목</option>
+					<option value="bd_user">작성자</option>
+				</select> <input id="search" name="text" type="text" placeholder="키워드를 입력하세요" />
 			<button id="sear_click">검색</button>
+			</form>
 			<c:if test="${not empty LOGIN.user_id}">
-			<button id="write" onclick="location.href='${rootPath}/board/input'"
-				value="글쓰기">글쓰기</button>
+				<button id="write" onclick="location.href='${rootPath}/board/input'"
+					value="글쓰기">글쓰기</button>
 			</c:if>
-			 
 		</div>
 		<div class="all_list">
 			<c:choose>

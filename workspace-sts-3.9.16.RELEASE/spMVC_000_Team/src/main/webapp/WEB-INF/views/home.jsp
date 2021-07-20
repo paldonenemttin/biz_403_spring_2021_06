@@ -96,13 +96,13 @@ form {
 			<c:when test="${BODY eq 'FAIL_LOGIN'}">
 				<%@ include file="/WEB-INF/views/custom/mylist.jsp"%>
 			</c:when>
-			<c:when test="${BB eq 'BOARD-LIST'}">
+			<c:when test="${BODY eq 'BOARD-LIST'}">
 				<%@ include file="/WEB-INF/views/board/list.jsp"%>
 			</c:when>
-			<c:when test="${BB eq 'BOARD-INPUT'}">
+			<c:when test="${BODY eq 'BOARD-INPUT'}">
 				<%@ include file="/WEB-INF/views/board/input.jsp"%>
 			</c:when>
-			<c:when test="${BB eq 'BOARD-VIEW'}">
+			<c:when test="${BODY eq 'BOARD-VIEW'}">
 				<%@ include file="/WEB-INF/views/board/view.jsp"%>
 			</c:when>
 			<c:otherwise>

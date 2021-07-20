@@ -104,7 +104,7 @@ div.img_box {
 				<input id="code" type="hidden" name="bd_code"
 					value="${FREE.bd_code}"> <input id="title" type="text"
 					name="bd_title" placeholder="제목을 입력하세요" value="${FREE.bd_title}" />
-				<input id="id" name="bd_user" value="${LOGIN.user_id}">
+				<input id="id" type="hidden" name="bd_user" value="${LOGIN.user_id}">
 				<input id="time" type="hidden" name="bd_time"
 					value="${FREE.bd_time}" />
 				<textarea id="box" name="bd_content" placeholder="내용을 입력하세요">${FREE.bd_content}</textarea>

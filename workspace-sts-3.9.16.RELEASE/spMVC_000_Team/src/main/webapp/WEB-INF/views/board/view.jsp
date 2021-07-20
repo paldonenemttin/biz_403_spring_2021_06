@@ -12,7 +12,7 @@
 	box-sizing: border-box;
 }
 
-html, body {
+body {
 	height: 100%;
 }
 
@@ -26,23 +26,24 @@ div.view {
 }
 
 table {
-	margin-left: 25%;
+	border: 1px solid black;
+	margin-left: 5%;
+	margin-bottom: 20px;
 	border-collapse: collapse;
 	border-spacing: 0;
-	height: 10px;
-	width: 50%;
+	height: 90px;
+	width: 90%;
+	
 }
 
 td, th {
-	text-align: center;
+	text-align : center;
 	padding: 1px 2px;
 	height: 10px;
 	font-size: 5px;
 	width: 12.5%;
-}
-
-th#th_date, td#td_date {
-	width: 12.5%;
+	text-align: center;
+	font-size: 20px;
 }
 
 th:first-child, th:last-child, td:first-child, td:last-child {
@@ -59,7 +60,7 @@ div.main_cont {
 
 p#content {
 	margin: 2px 2px 2px 2px;
-	font-size: 10px;
+	font-size: 20px;
 }
 
 button {
@@ -92,8 +93,22 @@ div.view_cont {
 }
 
 img {
-	max-width: 150px;
+	max-width: 300px;
 	max-height: 150px;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 50px;
+}
+
+div.btn_list {
+	display: flex;
+	margin-top: 10px;
+	margin-left: 5%;
+	width: 90%;
+	justify-content: space-between;
+}
+p{
+	
 }
 </style>
 </head>
@@ -125,9 +140,9 @@ img {
 		</c:forEach>
 	</div>
 
-	<div class="btn_avo_list">
+	<div class="btn_list">
 		<div id="back">
-			<button id="list" onclick="location.href='/statea/board/list'">목록으로</button>
+			<button id="list" onclick="location.href='/starbucks/board'">목록으로</button>
 		</div>
 		<div id="up_del">
 			<c:if test="${LOGIN.user_id == BVIEWS.bd_user}">

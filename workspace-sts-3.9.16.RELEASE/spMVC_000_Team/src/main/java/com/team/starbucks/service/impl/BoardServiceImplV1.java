@@ -45,12 +45,7 @@ public class BoardServiceImplV1 implements BoardService {
 		return view;
 	}
 
-	@Override
-	public List<BoardViewDTO> searchList() {
-		// TODO Auto-generated method stub
-		return bdDao.findSearch();
-	}
-
+	
 	@Override
 	public void insert(BoardVO boardVO, MultipartHttpServletRequest m_file) throws Exception {
 		// TODO Auto-generated method stub
@@ -117,6 +112,14 @@ public class BoardServiceImplV1 implements BoardService {
 		}
 
 		return ret;
+	}
+
+	@Override
+	public List<BoardViewDTO> findSearch(String column, String text) {
+		// TODO Auto-generated method stub
+		List<BoardViewDTO> search = bdDao.findSearch(column, text);
+		
+		return search;
 	}
 
 }
