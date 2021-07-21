@@ -38,10 +38,8 @@ public class BoardController {
 	
 	@RequestMapping(value = "/board", method = RequestMethod.GET)
 	public String list(HttpSession httpSession, Model model,
-			@RequestParam(value="column", required = false, defaultValue = "NONE")
-	String column,
-	@RequestParam(value="text", required = false, defaultValue = "NONE")
-	String text) {
+			@RequestParam(value="column", required = false, defaultValue = "NONE")String column,
+	@RequestParam(value="text", required = false, defaultValue = "NONE")String text) {
 		List<BoardListDTO> liList = bdService.selectList();
 		bdService.findSearch(column, text);
 		model.addAttribute("BOARDS", liList);
@@ -55,7 +53,6 @@ public class BoardController {
 		UserVO userVO = (UserVO) session.getAttribute("LOGIN");
 		
 		log.debug(userVO.toString());
-		
 		
 		BoardVO boardVO = new BoardVO();
 		
@@ -82,7 +79,7 @@ public class BoardController {
 	public String insert( BoardVO boardVO, MultipartHttpServletRequest m_file) throws Exception {
 		
 		bdService.insert(boardVO, m_file);
-		return "home";
+		return "redirect:/board";
 		
 	}
 	

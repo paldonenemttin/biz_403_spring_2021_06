@@ -13,15 +13,15 @@ div.ser_title {
 	display: flex;
 	border: 1px solid black;
 	position: fixed;
-	display: flex;
 	width: 100%;
-	margin-top: -60px;
+	margin-top: 132%;
 	justify-content: center;
 	border-style: none;
+	background-color: white;
 }
 
 div.main {
-	margin-top: 90px;
+	margin-top: 20px;
 	justify-content: center;
 }
 

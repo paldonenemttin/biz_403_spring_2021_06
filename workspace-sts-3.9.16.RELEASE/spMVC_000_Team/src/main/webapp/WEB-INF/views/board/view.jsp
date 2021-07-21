@@ -134,7 +134,7 @@ p{
 		<p id="content">${BVIEWS.bd_content}</p>
 		<c:forEach items="${BVIEWS.imgList}" var="image">
 			<c:if test="${not empty image.img_upname}">
-				<img src="${rootPath}/board/view/statea/${image.img_upname}"
+				<img src="${rootPath}/statea/${image.img_upname}"
 					height="200px">
 			</c:if>
 		</c:forEach>

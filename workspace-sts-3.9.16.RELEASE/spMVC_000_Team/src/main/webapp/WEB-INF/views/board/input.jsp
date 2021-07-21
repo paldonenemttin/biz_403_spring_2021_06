@@ -6,14 +6,9 @@
 <html>
 <head>
 <style>
-h3 {
-	margin-bottom: 5px;
-	text-align: center;
-	margin-bottom: 5px;
-}
 
 div.input {
-	margin-bottom: 202px;
+	margin-bottom: 200px;
 }
 
 div.tit_con {
@@ -38,6 +33,7 @@ input#title {
 	width: 90%;
 	padding:4px 4px;
 	font-size: 20px;
+	margin-top:10px;
 	margin-bottom: 20px;
 	height: 50px;
 }
@@ -89,21 +85,22 @@ div.img_box {
 	border-style: none;
 	margin-left:5%;
 }
+p#img_delete:hover{
+	cursor: pointer;
+}
+
 </style>
 
 <meta charset="UTF-8">
 <title>글 작성 페이지</title>
 </head>
 <body>
-
-	<h3>자유게시판 글 작성</h3>
-	<hr></hr>
 	<form method="POST" enctype="multipart/form-data">
 		<div class="input">
 			<div class="tit_con">
 				<input id="code" type="hidden" name="bd_code"
 					value="${FREE.bd_code}"> <input id="title" type="text"
-					name="bd_title" placeholder="제목을 입력하세요" value="${FREE.bd_title}" />
+					name="bd_title" placeholder="제목은 반드시 입력하세요" value="${FREE.bd_title}" />
 				<input id="id" type="hidden" name="bd_user" value="${LOGIN.user_id}">
 				<input id="time" type="hidden" name="bd_time"
 					value="${FREE.bd_time}" />
@@ -121,7 +118,7 @@ div.img_box {
 					<c:forEach items="${FREE.imgList}" var="image">
 						<div class="image_file" data-icode="${image.img_code}">
 							<c:if test="${not empty image.img_upname}">
-								<p>${image.img_origin}</p>
+								<p id="img_delete">${image.img_origin}</p>
 							</c:if>
 						</div>
 					</c:forEach>

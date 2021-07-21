@@ -31,6 +31,7 @@ public class BoardServiceImplV1 implements BoardService {
 	protected final ImageDao imgDao;
 
 	protected final ImageService imgService;
+
 	@Override
 	public List<BoardListDTO> selectList() {
 		// TODO Auto-generated method stub
@@ -45,27 +46,25 @@ public class BoardServiceImplV1 implements BoardService {
 		return view;
 	}
 
-	
 	@Override
 	public void insert(BoardVO boardVO, MultipartHttpServletRequest m_file) throws Exception {
 		// TODO Auto-generated method stub
-		bdDao.insert(boardVO);
-		String bd_code = boardVO.getBd_code();
+
 		List<MultipartFile> mfiles = m_file.getFiles("m_file");
 
 		List<ImageVO> images = new ArrayList<ImageVO>();
-		if (images.size() > -1) {
-			for (MultipartFile file : mfiles) {
-				String imgOriginName = file.getOriginalFilename();
-				String fileUUName = imgService.fileUp(file);
+		bdDao.insert(boardVO);
+		String bd_code = boardVO.getBd_code();
+		bdDao.insert(boardVO);
+		for (MultipartFile file : mfiles) {
+			String imgOriginName = file.getOriginalFilename();
+			String fileUUName = imgService.fileUp(file);
+			ImageVO imgVO = ImageVO.builder().img_cncode(bd_code).img_origin(imgOriginName).img_upname(fileUUName)
+					.build();
+			images.add(imgVO);
 
-				ImageVO imgVO = ImageVO.builder().img_cncode(bd_code).img_origin(imgOriginName).img_upname(fileUUName)
-						.build();
-				images.add(imgVO);
-
-			}
-			imgDao.insertOrUpdateList(images);
 		}
+		imgDao.insertOrUpdateList(images);
 	}
 
 	@Override
@@ -87,17 +86,17 @@ public class BoardServiceImplV1 implements BoardService {
 		bd_code = boardVO.getBd_code();
 		List<ImageVO> images = new ArrayList<ImageVO>();
 		List<MultipartFile> mfiles = m_file.getFiles("m_file");
-		if (images.size() > -1) {
-			for (MultipartFile file : mfiles) {
-				String imgOriginName = file.getOriginalFilename();
-				String fileUUName = imgService.fileUp(file);
+		for (MultipartFile file : mfiles) {
+			String imgOriginName = file.getOriginalFilename();
+			String fileUUName = imgService.fileUp(file);
 
-				ImageVO imgVO = ImageVO.builder().img_cncode(bd_code).img_origin(imgOriginName).img_upname(fileUUName)
-						.build();
-				images.add(imgVO);
-			}
-			imgDao.insertOrUpdateList(images);
+			ImageVO imgVO = ImageVO.builder().img_cncode(bd_code).img_origin(imgOriginName).img_upname(fileUUName)
+					.build();
+			images.add(imgVO);
+
 		}
+		imgDao.insertOrUpdateList(images);
+
 	}
 
 	@Override
@@ -118,7 +117,7 @@ public class BoardServiceImplV1 implements BoardService {
 	public List<BoardViewDTO> findSearch(String column, String text) {
 		// TODO Auto-generated method stub
 		List<BoardViewDTO> search = bdDao.findSearch(column, text);
-		
+
 		return search;
 	}
 
